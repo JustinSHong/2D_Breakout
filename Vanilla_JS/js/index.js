@@ -70,9 +70,14 @@ function draw() {
 	if (y + dy < ballRadius) {
 		dy = -dy;
 	} else if (y + dy > canvas.height - ballRadius) {
-		// ball reaches the bottom edge
-		alert("GAME OVER");
-		document.location.reload(); // refreshes the page to restart the game
+		if (x > paddleX && x < paddleX + paddleWidth) {
+			// ball collides with the paddle
+			dy = -dy;
+		} else {
+			// ball reaches the bottom edge
+			alert("GAME OVER");
+			document.location.reload(); // refreshes the page to restart the game
+		}
 	}
 	// detect collision with left and right edges
 	if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) {
