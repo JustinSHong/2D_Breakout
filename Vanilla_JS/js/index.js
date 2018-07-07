@@ -11,6 +11,19 @@ let y = canvas.width / 2;
 let dx = 2;
 let dy = -2;
 
+// paddle dimensions
+const paddleHeight = 10;
+const paddleWidth = 75;
+const paddleX = (canvas.width - paddleWidth) / 2; // starting point of the paddle
+
+// pressed buttons states
+let rightPressed = false;
+let leftPressed = false;
+
+// listen for key press and key release
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -18,11 +31,6 @@ function drawBall() {
 	ctx.fill();
 	ctx.closePath();
 }
-
-// paddle dimensions
-const paddleHeight = 10;
-const paddleWidth = 75;
-const paddleX = (canvas.width - paddleWidth) / 2; // starting point of the paddle
 
 function drawPaddle() {
 	ctx.beginPath();
