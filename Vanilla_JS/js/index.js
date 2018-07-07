@@ -66,9 +66,13 @@ function draw() {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBall();
 	drawPaddle();
-	// detect collisions with top and bottom edges
-	if (y + dy < ballRadius || y + dy > canvas.height - ballRadius) {
+	// detect collisions with top edge
+	if (y + dy < ballRadius) {
 		dy = -dy;
+	} else if (y + dy > canvas.height - ballRadius) {
+		// ball reaches the bottom edge
+		alert("GAME OVER");
+		document.location.reload(); // refreshes the page to restart the game
 	}
 	// detect collision with left and right edges
 	if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) {
