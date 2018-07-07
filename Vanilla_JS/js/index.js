@@ -34,9 +34,23 @@ const brickOffsetLeft = 30;
 
 const bricks = [];
 for (let col = 0; col < brickColumnCount; col++) {
-	bricks[c] = [];
+	bricks[col] = [];
 	for (let row = 0; row < brickRowCount; row++) {
 		bricks[col][row] = { x: 0, y: 0 };
+	}
+}
+
+function drawBricks() {
+	for (let col = 0; col < brickColumnCount; col++) {
+		for (let row = 0; row < brickRowCount; row++) {
+			bricks[col][row].x = 0;
+			bricks[col][row].y = 0;
+			ctx.beginPath();
+			ctx.rect(0, 0, brickWidth, brickHeight);
+			ctx.fillStyle = "#0095DD";
+			ctx.fill();
+			ctx.closePath();
+		}
 	}
 }
 
@@ -80,6 +94,7 @@ function drawPaddle() {
 function draw() {
 	// clear previous ball before drawing a new one
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawBricks();
 	drawBall();
 	drawPaddle();
 	// detect collisions with top edge
