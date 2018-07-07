@@ -8,12 +8,25 @@ let x = canvas.height - 30;
 let y = canvas.width / 2;
 
 // values that x and y will change by each frame
-const dx = 2;
-const dy = -2;
+let dx = 2;
+let dy = -2;
 
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+	ctx.fillStyle = "#0095DD";
+	ctx.fill();
+	ctx.closePath();
+}
+
+// paddle dimensions
+const paddleHeight = 10;
+const paddleWidth = 75;
+const paddleX = (canvas.width - paddleWidth) / 2; // starting point of the paddle
+
+function drawPaddle() {
+	ctx.beginPath();
+	ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
 	ctx.fillStyle = "#0095DD";
 	ctx.fill();
 	ctx.closePath();
