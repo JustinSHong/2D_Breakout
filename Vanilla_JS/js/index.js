@@ -43,10 +43,12 @@ for (let col = 0; col < brickColumnCount; col++) {
 function drawBricks() {
 	for (let col = 0; col < brickColumnCount; col++) {
 		for (let row = 0; row < brickRowCount; row++) {
+			let brickX = col * (brickWidth + brickPadding) + brickOffsetLeft;
+			let brickY = row * (brickHeight + brickPadding) + brickOffsetTop;
 			bricks[col][row].x = 0;
 			bricks[col][row].y = 0;
 			ctx.beginPath();
-			ctx.rect(0, 0, brickWidth, brickHeight);
+			ctx.rect(brickX, brickY, brickWidth, brickHeight);
 			ctx.fillStyle = "#0095DD";
 			ctx.fill();
 			ctx.closePath();
