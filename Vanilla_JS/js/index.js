@@ -1,23 +1,34 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
-// creates a red rectangle with height and width of 50px
-ctx.beginPath();
-ctx.rect(20, 40, 50, 50);
-ctx.fillStyle = "#FF0000";
-ctx.fill();
-ctx.closePath();
+// draws the ball onto the canvas with different position
+function draw() {
+	ctx.beginPath();
+	ctx.arc(x, y, 10, 0, Math.PI * 2);
+	ctx.fillStyle = "#0095DD";
+	ctx.fill();
+	ctx.closePath();
+}
 
-// creates a green circle
-ctx.beginPath();
-ctx.arc(240, 160, 20, 0, Math.PI * 2);
-ctx.fillStyle = "green";
-ctx.fill();
-ctx.closePath();
+setInterval(draw, 10);
 
-// creates a blue-stroked empty rectangle
-ctx.beginPath();
-ctx.rect(160, 10, 100, 40);
-ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
-ctx.stroke();
-ctx.closePath();
+// // creates a red rectangle with height and width of 50px
+// ctx.beginPath();
+// ctx.rect(20, 40, 50, 50);
+// ctx.fillStyle = "#FF0000";
+// ctx.fill();
+// ctx.closePath();
+
+// // creates a green circle
+// ctx.beginPath();
+// ctx.arc(240, 160, 20, 0, Math.PI * 2);
+// ctx.fillStyle = "green";
+// ctx.fill();
+// ctx.closePath();
+
+// // creates a blue-stroked empty rectangle
+// ctx.beginPath();
+// ctx.rect(160, 10, 100, 40);
+// ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+// ctx.stroke();
+// ctx.closePath();
