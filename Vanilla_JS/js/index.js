@@ -11,6 +11,8 @@ const dy = -2;
 
 // draws the ball onto the canvas with different position
 function draw() {
+	// clear previous ball before drawing a new one
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	ctx.beginPath();
 	ctx.arc(x, y, 10, 0, Math.PI * 2);
 	ctx.fillStyle = "#0095DD";
