@@ -24,6 +24,23 @@ let leftPressed = false;
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
 
+function keyDownHandler(e) {
+	if (e.keyCode === 39) {
+		rightPressed = true;
+	} else if (e.keyCode === 37) {
+		leftPressed = true;
+	}
+}
+
+function keyUpHandler(e) {
+	// reset key state to default
+	if (e.keyCode === 39) {
+		rightPressed = false;
+	} else if (e.keyCode === 37) {
+		leftPressed = false;
+	}
+}
+
 function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
@@ -45,7 +62,7 @@ function draw() {
 	// clear previous ball before drawing a new one
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBall();
-
+	drawPaddle();
 	// detect collisions with top and bottom edges
 	if (y + dy < ballRadius || y + dy > canvas.height - ballRadius) {
 		dy = -dy;
