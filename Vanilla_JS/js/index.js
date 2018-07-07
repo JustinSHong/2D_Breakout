@@ -1,6 +1,14 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+// starting point for the ball
+let x = canvas.height - 30;
+let y = canvas.width / 2;
+
+// values that x and y will change by each frame
+const dx = 2;
+const dy = -2;
+
 // draws the ball onto the canvas with different position
 function draw() {
 	ctx.beginPath();
@@ -8,6 +16,9 @@ function draw() {
 	ctx.fillStyle = "#0095DD";
 	ctx.fill();
 	ctx.closePath();
+	// increment x and y
+	x += dx;
+	y += dy;
 }
 
 setInterval(draw, 10);
