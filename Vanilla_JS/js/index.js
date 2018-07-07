@@ -9,15 +9,19 @@ let y = canvas.width / 2;
 const dx = 2;
 const dy = -2;
 
-// draws the ball onto the canvas with different position
-function draw() {
-	// clear previous ball before drawing a new one
-	ctx.clearRect(0, 0, canvas.width, canvas.height);
+function drawBall() {
 	ctx.beginPath();
 	ctx.arc(x, y, 10, 0, Math.PI * 2);
 	ctx.fillStyle = "#0095DD";
 	ctx.fill();
 	ctx.closePath();
+}
+
+// draws the ball onto the canvas with different position
+function draw() {
+	// clear previous ball before drawing a new one
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	drawBall();
 	// increment x and y
 	x += dx;
 	y += dy;
