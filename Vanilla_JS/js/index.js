@@ -1,6 +1,8 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+const ballRadius = 10;
+
 // starting point for the ball
 let x = canvas.height - 30;
 let y = canvas.width / 2;
@@ -11,7 +13,7 @@ const dy = -2;
 
 function drawBall() {
 	ctx.beginPath();
-	ctx.arc(x, y, 10, 0, Math.PI * 2);
+	ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
 	ctx.fillStyle = "#0095DD";
 	ctx.fill();
 	ctx.closePath();
