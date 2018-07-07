@@ -14,7 +14,7 @@ let dy = -2;
 // paddle dimensions
 const paddleHeight = 10;
 const paddleWidth = 75;
-const paddleX = (canvas.width - paddleWidth) / 2; // starting point of the paddle
+let paddleX = (canvas.width - paddleWidth) / 2; // starting point of the paddle
 
 // pressed buttons states
 let rightPressed = false;
@@ -26,8 +26,10 @@ document.addEventListener("keyup", keyUpHandler, false);
 
 function keyDownHandler(e) {
 	if (e.keyCode === 39) {
+		// right cursor key pressed
 		rightPressed = true;
 	} else if (e.keyCode === 37) {
+		// left cursor key pressed
 		leftPressed = true;
 	}
 }
@@ -35,8 +37,10 @@ function keyDownHandler(e) {
 function keyUpHandler(e) {
 	// reset key state to default
 	if (e.keyCode === 39) {
+		// right cursor key released
 		rightPressed = false;
 	} else if (e.keyCode === 37) {
+		// right cursor key released
 		leftPressed = false;
 	}
 }
@@ -57,7 +61,6 @@ function drawPaddle() {
 	ctx.closePath();
 }
 
-// draws the ball onto the canvas with different position
 function draw() {
 	// clear previous ball before drawing a new one
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -70,6 +73,13 @@ function draw() {
 	// detect collision with left and right edges
 	if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) {
 		dx = -dx;
+	}
+	// move paddle right until the right edge of the canvas
+	if (rightPressed && paddleX < canvas.width - paddleWidth) {
+		paddleX += 7;
+	} else if (leftPressed && paddleX > 0) {
+		// move paddle left until the left edge of the canvas
+		paddleX -= 7;
 	}
 	// increment x and y
 	x += dx;
