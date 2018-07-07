@@ -24,6 +24,15 @@ function draw() {
 	// clear previous ball before drawing a new one
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 	drawBall();
+
+	// detect collisions with top and bottom edges
+	if (y + dy < ballRadius || y + dy > canvas.height - ballRadius) {
+		dy = -dy;
+	}
+	// detect collision with left and right edges
+	if (x + dx < ballRadius || x + dx > canvas.width - ballRadius) {
+		dx = -dx;
+	}
 	// increment x and y
 	x += dx;
 	y += dy;
