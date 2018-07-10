@@ -25,6 +25,8 @@ let leftPressed = false;
 // listen for key press and key release
 document.addEventListener("keydown", keyDownHandler, false);
 document.addEventListener("keyup", keyUpHandler, false);
+// listen for mouse movement
+document.addEventListener("mousemove", mouseMoveHandler, false);
 
 const brickRowCount = 3;
 const brickColumnCount = 5;
@@ -42,22 +44,10 @@ for (let col = 0; col < brickColumnCount; col++) {
 	}
 }
 
-function drawBricks() {
-	for (let col = 0; col < brickColumnCount; col++) {
-		for (let row = 0; row < brickRowCount; row++) {
-			if (bricks[col][row].status === 1) {
-				// ball did not collide with brick
-				let brickX = col * (brickWidth + brickPadding) + brickOffsetLeft;
-				let brickY = row * (brickHeight + brickPadding) + brickOffsetTop;
-				bricks[col][row].x = brickX;
-				bricks[col][row].y = brickY;
-				ctx.beginPath();
-				ctx.rect(brickX, brickY, brickWidth, brickHeight);
-				ctx.fillStyle = "#0095DD";
-				ctx.fill();
-				ctx.closePath();
-			}
-		}
+function mouseMoveHandler(e) {
+	let relativeX = e.clientX - canvas.offsetLeft;
+	if (relativeX > 0 && relativeX < canvas.width) {
+		paddleX = relativeX - paddleWidth / 2;
 	}
 }
 
@@ -114,6 +104,25 @@ function drawScore() {
 	ctx.font = "16px Arial";
 	ctx.fillStyle = "#0095DD";
 	ctx.fillText("Score: " + score, 8, 20);
+}
+
+function drawBricks() {
+	for (let col = 0; col < brickColumnCount; col++) {
+		for (let row = 0; row < brickRowCount; row++) {
+			if (bricks[col][row].status === 1) {
+				// ball did not collide with brick
+				let brickX = col * (brickWidth + brickPadding) + brickOffsetLeft;
+				let brickY = row * (brickHeight + brickPadding) + brickOffsetTop;
+				bricks[col][row].x = brickX;
+				bricks[col][row].y = brickY;
+				ctx.beginPath();
+				ctx.rect(brickX, brickY, brickWidth, brickHeight);
+				ctx.fillStyle = "#0095DD";
+				ctx.fill();
+				ctx.closePath();
+			}
+		}
+	}
 }
 
 function drawBall() {
