@@ -47,8 +47,8 @@ function drawBricks() {
 				// ball did not collide with brick
 				let brickX = col * (brickWidth + brickPadding) + brickOffsetLeft;
 				let brickY = row * (brickHeight + brickPadding) + brickOffsetTop;
-				bricks[col][row].x = 0;
-				bricks[col][row].y = 0;
+				bricks[col][row].x = brickX;
+				bricks[col][row].y = brickY;
 				ctx.beginPath();
 				ctx.rect(brickX, brickY, brickWidth, brickHeight);
 				ctx.fillStyle = "#0095DD";
@@ -82,8 +82,8 @@ function keyUpHandler(e) {
 
 function collisionDetection() {
 	// compare position of bricks with the ball for every frame
-	for (var col = 0; col < brickColumnCount; col++) {
-		for (var row = 0; row < brickRowCount; row++) {
+	for (let col = 0; col < brickColumnCount; col++) {
+		for (let row = 0; row < brickRowCount; row++) {
 			let brick = bricks[col][row];
 			// a collision with a brick occurs when the center of the ball is inside a brick's coordinates
 			// if a collision occurs, change the movement of the ball and change brick's status
@@ -124,6 +124,7 @@ function draw() {
 	drawBricks();
 	drawBall();
 	drawPaddle();
+	collisionDetection();
 	// detect collisions with top edge
 	if (y + dy < ballRadius) {
 		dy = -dy;
