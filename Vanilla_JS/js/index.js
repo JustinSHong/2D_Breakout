@@ -36,22 +36,25 @@ const bricks = [];
 for (let col = 0; col < brickColumnCount; col++) {
 	bricks[col] = [];
 	for (let row = 0; row < brickRowCount; row++) {
-		bricks[col][row] = { x: 0, y: 0 };
+		bricks[col][row] = { x: 0, y: 0, status: 1 }; // default brick properties
 	}
 }
 
 function drawBricks() {
 	for (let col = 0; col < brickColumnCount; col++) {
 		for (let row = 0; row < brickRowCount; row++) {
-			let brickX = col * (brickWidth + brickPadding) + brickOffsetLeft;
-			let brickY = row * (brickHeight + brickPadding) + brickOffsetTop;
-			bricks[col][row].x = 0;
-			bricks[col][row].y = 0;
-			ctx.beginPath();
-			ctx.rect(brickX, brickY, brickWidth, brickHeight);
-			ctx.fillStyle = "#0095DD";
-			ctx.fill();
-			ctx.closePath();
+			if (bricks[col][row].status === 1) {
+				// ball did not collide with brick
+				let brickX = col * (brickWidth + brickPadding) + brickOffsetLeft;
+				let brickY = row * (brickHeight + brickPadding) + brickOffsetTop;
+				bricks[col][row].x = 0;
+				bricks[col][row].y = 0;
+				ctx.beginPath();
+				ctx.rect(brickX, brickY, brickWidth, brickHeight);
+				ctx.fillStyle = "#0095DD";
+				ctx.fill();
+				ctx.closePath();
+			}
 		}
 	}
 }
