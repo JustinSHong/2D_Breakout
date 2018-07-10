@@ -156,6 +156,7 @@ function draw() {
 	drawBall();
 	drawPaddle();
 	drawScore();
+	drawLives();
 	collisionDetection();
 	// detect collisions with top edge
 	if (y + dy < ballRadius) {
@@ -165,9 +166,17 @@ function draw() {
 			// ball collides with the paddle
 			dy = -dy;
 		} else {
-			// ball reaches the bottom edge
-			alert("GAME OVER");
-			document.location.reload(); // refreshes the page to restart the game
+			lives--;
+			if (lives === 0) {
+				alert("Game Over");
+				document.location.reload();
+			} else {
+				x = canvas.width / 2;
+				y = canvas.height - 30;
+				dx = 2;
+				dy = -2;
+				paddleX = (canvas.width - paddleWidth) / 2;
+			}
 		}
 	}
 	// detect collision with left and right edges
