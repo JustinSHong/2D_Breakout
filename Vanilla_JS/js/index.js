@@ -1,6 +1,8 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+let score = 0;
+
 const ballRadius = 10;
 
 // starting point for the ball
@@ -100,6 +102,12 @@ function collisionDetection() {
 			}
 		}
 	}
+}
+
+function drawScore() {
+	ctx.font = "16px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("Score: " + score, 8, 20);
 }
 
 function drawBall() {
