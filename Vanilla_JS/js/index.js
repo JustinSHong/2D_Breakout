@@ -147,6 +147,7 @@ function draw() {
 	drawBricks();
 	drawBall();
 	drawPaddle();
+	drawScore();
 	collisionDetection();
 	// detect collisions with top edge
 	if (y + dy < ballRadius) {
