@@ -88,7 +88,7 @@ function collisionDetection() {
 		for (let row = 0; row < brickRowCount; row++) {
 			let brick = bricks[col][row];
 			// a collision with a brick occurs when the center of the ball is inside a brick's coordinates
-			// if a collision occurs, change the movement of the ball and change brick's status
+			// if a collision occurs, change the movement of the ball, a brick's status, score
 			if (brick.status === 1) {
 				if (
 					x > brick.x && // x position of the ball is greater than the x position of the brick
@@ -98,6 +98,7 @@ function collisionDetection() {
 				) {
 					dy = -dy;
 					brick.status = 0;
+					score++;
 				}
 			}
 		}
