@@ -99,6 +99,11 @@ function collisionDetection() {
 					dy = -dy;
 					brick.status = 0;
 					score++;
+					if (score == brickRowCount * brickColumnCount) {
+						// display winning msg when score is equal to the number of bricks
+						alert("You Win! Congrats!");
+						document.location.reload();
+					}
 				}
 			}
 		}
