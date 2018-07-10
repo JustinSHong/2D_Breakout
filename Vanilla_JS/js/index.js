@@ -1,6 +1,8 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
 
+let lives = 3;
+
 let score = 0;
 
 const ballRadius = 10;
@@ -98,6 +100,12 @@ function collisionDetection() {
 			}
 		}
 	}
+}
+
+function drawLives() {
+	ctx.font = "16px Arial";
+	ctx.fillStyle = "#0095DD";
+	ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
 }
 
 function drawScore() {
