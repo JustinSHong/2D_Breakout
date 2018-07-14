@@ -1,0 +1,28 @@
+{
+  "name": "2D_Breakout",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JustinSHong/2D_Pong.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JustinSHong/2D_Pong/issues"
+  },
+  "homepage": "https://github.com/JustinSHong/2D_Pong#readme",
+  "dependencies": {
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "helmet": "^3.12.1",
+    "nodemon": "^1.18.2",
+    "socket.io": "^2.1.1"
+  }
+}
