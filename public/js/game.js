@@ -1,14 +1,12 @@
+// modules
+import { canvas, ctx } from "./modules/canvas";
+
 document.write(
 	'<script src="http://' +
 		(location.host || "localhost").split(":")[0] +
 		':35729/livereload.js?snipver=1"></' +
 		"script>"
 );
-
-var io = this.io();
-
-const canvas = document.getElementById("myCanvas");
-const ctx = canvas.getContext("2d");
 
 let lives = 3;
 

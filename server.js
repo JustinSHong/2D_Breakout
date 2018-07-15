@@ -14,11 +14,12 @@ app.use(express.json());
 app.use(cors());
 
 // render the static files
+app.use(express.static(__dirname + "/build"));
 app.use(express.static(__dirname + "/public"));
 
 // Root - server serves index.html
 app.get("/", (req, res) => {
-	res.sendFile(__dirname + "/build/index.html");
+	res.sendFile(__dirname + "/index.html");
 });
 
 io.on("connection", function(socket) {
