@@ -15,30 +15,30 @@ document.write(
 
 class Game {
 	constructor() {
-		// this.rightPressed = false;
-		// this.leftPressed = false;
+		this.rightPressed = false;
+		this.leftPressed = false;
+
+		// listen for key press and key release
+		window.addEventListener("keydown", this.keyDownHandler, false);
+		window.addEventListener("keyup", this.keyUpHandler, false);
+		// listen for mouse movement
+		window.addEventListener("mousemove", this.mouseMoveHandler, false);
 	}
 
 	// initialize the game objects and the game loop
 	init() {
-		window.requestAnimationFrame(() => this.draw(canvas));
+		requestAnimationFrame(() => this.draw(canvas));
 	}
 
 	// main draw function of the game - initiates game loop - WORK IN PROGRESS
 	draw(canvas) {
-		let rightPressed = false;
-		let leftPressed = false;
-
-		// listen for key press and key release
-		document.addEventListener("keydown", this.keyDownHandler, false);
-		document.addEventListener("keyup", this.keyUpHandler, false);
-		// listen for mouse movement
-		document.addEventListener("mousemove", this.mouseMoveHandler, false);
+		debugger;
 		// clear previous ball before drawing a new one
 		canvas.clear();
+		canvas.ctx.beginPath();
+		paddle.drawPaddle(canvas);
 		brick.drawBricks(canvas);
 		ball.drawBall(canvas);
-		paddle.drawPaddle(canvas);
 		player.drawScore(canvas);
 		player.drawLives(canvas);
 		canvas.detectBrickCollisions(ball, brick, player);
@@ -49,7 +49,6 @@ class Game {
 			this.rightPressed &&
 			paddle.paddleX < canvas.width - paddle.paddleWidth
 		) {
-			console.log("made it");
 			paddle.update(7);
 		} else if (this.leftPressed && paddle.paddleX > 0) {
 			paddle.update(-7);
@@ -67,10 +66,10 @@ class Game {
 	keyDownHandler(e) {
 		if (e.keyCode === 39) {
 			// right cursor key pressed
-			this.rightPressed = true;
+			g.rightPressed = true;
 		} else if (e.keyCode === 37) {
 			// left cursor key pressed
-			this.leftPressed = true;
+			g.leftPressed = true;
 		}
 	}
 
@@ -79,19 +78,30 @@ class Game {
 		// reset key state to default
 		if (e.keyCode === 39) {
 			// right cursor key released
-			this.rightPressed = false;
+			g.rightPressed = false;
 		} else if (e.keyCode === 37) {
 			// right cursor key released
-			this.leftPressed = false;
+			g.leftPressed = false;
 		}
 	}
 
 	// move paddle relative to the mouse position within canvas
-	// mouseMoveHandler(e) {
-	// 	let relativeX = e.clientX - canvas.offsetLeft;
-	// 	if (relativeX > 0 && relativeX < canvas.width) {
-	// 		paddle.paddleX = relativeX - paddle.paddleWidth / 2; // OBTAIN PADDLEX POSITION
-	// 	}
-	// }
+	mouseMoveHandler(e) {
+		let relativeX = e.clientX - canvas.canvas.offsetLeft;
+		if (relativeX > 0 && relativeX < canvas.width) {
+			paddle.paddleX = relativeX - paddle.paddleWidth / 2;
+		}
+	}
 }
 
+// < ===== STARTING THE GAME ===== >
+// instantiate game objects
+const canvas = new Canvas();
+const ball = new Ball(canvas.height, canvas.width);
+const brick = new Brick(canvas);
+const paddle = new Paddle(canvas);
+const player = new Player();
+
+const g = new Game(); // instantiate a game
+
+g.init(); // start the game loop
