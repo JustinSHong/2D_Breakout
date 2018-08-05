@@ -21,6 +21,11 @@ class Player {
 		canvas.ctx.font = "16px Arial";
 		canvas.ctx.fillStyle = "#0095DD";
 		canvas.ctx.fillText("Lives: " + this.lives, canvas.width - 65, 20);
+		canvas.ctx.fillText(
+			"Opponent's Lives " + this.opponentLives,
+			canvas.width - 145,
+			30
+		);
 	}
 
 	// udpate player data
