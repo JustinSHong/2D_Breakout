@@ -3,6 +3,7 @@ class Player {
 		this.lives = 3;
 		this.score = 0;
 		this.opponentScore = 0;
+		this.opponentLives = 0;
 		this.x = 0;
 		this.y = 0;
 	}
