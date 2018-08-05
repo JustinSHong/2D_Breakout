@@ -1,6 +1,3 @@
-// const canvas = document.getElementById("myCanvas");
-// const ctx = canvas.getContext("2d");
-
 class Canvas {
 	constructor() {
 		this.canvas = document.getElementById("myCanvas");
@@ -35,7 +32,7 @@ class Canvas {
 					ball.y = this.height - 30;
 					ball.dx = 2;
 					ball.dy = -2;
-					paddle.paddleX = (this.width - paddle.paddleWidth) / 2; // CALL PADDLE.UPDATE() HERE
+					paddle.paddleX = (this.width - paddle.paddleWidth) / 2;
 				}
 			}
 		}
