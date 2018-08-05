@@ -27,11 +27,15 @@ let playerID = 0;
 // client connects to server
 io.on("connection", function(socket) {
 	console.log("a user connected");
-	// emit to all connected clients
-	socket.emit("SocketId", addNewPlayer(socket.id));
+	// DEBUGGING: verify a socket has been established
+	// socket.emit("SocketId", addNewPlayer(socket.id));
 
 	// emit to all clients except the newest one
 	socket.broadcast.emit("SocketId", players[playerID]);
+
+	socket.on("playerScored", function(player) {
+		socket.broadcast.emit("otherPlayerScore", player.score);
+	});
 
 	socket.on("disconnect", function() {
 		console.log("a user disconnected", socket.id);
