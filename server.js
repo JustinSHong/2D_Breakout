@@ -34,7 +34,7 @@ io.on("connection", function(socket) {
 	socket.broadcast.emit("SocketId", players[playerID]);
 
 	socket.on("disconnect", function() {
-		console.log("a user disconnected");
+		console.log("a user disconnected", socket.id);
 	});
 });
 
