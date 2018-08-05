@@ -4,6 +4,7 @@ import Ball from "./modules/ball";
 import Brick from "./modules/brick";
 import Paddle from "./modules/paddle";
 import Player from "./modules/player";
+import socket from "./modules/client";
 
 // emable live reload
 document.write(
@@ -17,6 +18,7 @@ class Game {
 	constructor() {
 		this.rightPressed = false;
 		this.leftPressed = false;
+		this.players = []; // holds all players in the game
 
 		// listen for key press and key release
 		window.addEventListener("keydown", this.keyDownHandler, false);
@@ -32,7 +34,6 @@ class Game {
 
 	// main draw function of the game - initiates game loop - WORK IN PROGRESS
 	draw(canvas) {
-		debugger;
 		// clear previous ball before drawing a new one
 		canvas.clear();
 		canvas.ctx.beginPath();
@@ -95,13 +96,17 @@ class Game {
 }
 
 // < ===== STARTING THE GAME ===== >
-// instantiate game objects
+
 const canvas = new Canvas();
 const ball = new Ball(canvas.height, canvas.width);
 const brick = new Brick(canvas);
 const paddle = new Paddle(canvas);
 const player = new Player();
-
 const g = new Game(); // instantiate a game
+
+socket.on("SocketId", function(data) {
+	console.log(data);
+	console.log(player.id);
+});
 
 g.init(); // start the game loop
