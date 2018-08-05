@@ -2,13 +2,13 @@ class Brick {
 	constructor() {
 		// brick properties
 		this.brickColor = "#0095DD";
-		this.brickRowCount = 3;
-		this.brickColumnCount = 5;
+		this.brickRowCount = 10;
+		this.brickColumnCount = 7;
 		this.brickWidth = 75;
 		this.brickHeight = 20;
 		this.brickPadding = 10;
-		this.brickOffsetTop = 30;
-		this.brickOffsetLeft = 30;
+		this.brickOffsetTop = 50;
+		this.brickOffsetLeft = 160;
 		// initialize bricks
 		this.bricks = [];
 
