@@ -45,6 +45,8 @@ class Game {
 		canvas.detectBrickCollisions(ball, brick, player);
 		canvas.detectEdgeCollisions(ball, paddle, player);
 
+		socket.emit("playerScored", player); // send player data to server
+
 		// move paddle right until the right edge of the canvas
 		if (
 			this.rightPressed &&
@@ -104,9 +106,15 @@ const paddle = new Paddle(canvas);
 const player = new Player();
 const g = new Game(); // instantiate a game
 
-socket.on("SocketId", function(data) {
-	console.log(data);
-	console.log(player.id);
+// DEBUGGING: verify a socket has been established
+// socket.on("SocketId", function(data) {
+// 	console.log(data);
+// 	console.log(data.playerID);
+// });
+
+// store your opponent's score
+socket.on("otherPlayerScore", function(data) {
+	player.opponentScore = data;
 });
 
 g.init(); // start the game loop
