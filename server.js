@@ -37,6 +37,10 @@ io.on("connection", function(socket) {
 		socket.broadcast.emit("otherPlayerScore", player.score);
 	});
 
+	socket.on("playerLife", function(player) {
+		socket.broadcast.emit("otherPlayerLife", player.lives);
+	});
+
 	socket.on("disconnect", function() {
 		console.log("a user disconnected", socket.id);
 	});
