@@ -82,6 +82,10 @@ class Game {
 			if (pause === false) {
 				g.init();
 			}
+		} else if (e.keyCode === 81) {
+			console.log("player quit game");
+			alert("You quit. Game Over!");
+			document.location.reload();
 		}
 	}
 
