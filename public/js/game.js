@@ -74,6 +74,9 @@ class Game {
 		} else if (e.keyCode === 37) {
 			// left cursor key pressed
 			g.leftPressed = true;
+		} else if (e.keyCode === 80) {
+			// pause key pressed
+			pause = !pause;
 		}
 	}
 
@@ -97,6 +100,9 @@ class Game {
 		}
 	}
 }
+
+// pause flag
+let pause = false;
 
 // < ===== STARTING THE GAME ===== >
 
