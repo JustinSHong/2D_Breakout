@@ -60,10 +60,12 @@ class Game {
 		// update ball's position
 		ball.update();
 
-		// animation loops
-		requestAnimationFrame(() => {
-			this.draw(canvas);
-		});
+		if (pause === false) {
+			// animation loops
+			requestAnimationFrame(() => {
+				this.draw(canvas);
+			});
+		}
 	}
 
 	// check if a key was pressed
@@ -77,6 +79,9 @@ class Game {
 		} else if (e.keyCode === 80) {
 			// pause key pressed
 			pause = !pause;
+			if (pause === false) {
+				g.init();
+			}
 		}
 	}
 
