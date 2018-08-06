@@ -10,6 +10,15 @@ class Ball {
 		this.dy = -2;
 	}
 
+	changeColor() {
+		const red = Math.random() * 256;
+		const green = Math.random() * 256;
+		const blue = Math.random() * 256;
+		const color = `rgb(${red}, ${green}, ${blue})`;
+		console.log(`change ball color to ${color}`);
+		this.ballColor = color;
+	}
+
 	// draw ball to the canvas
 	drawBall(canvas) {
 		canvas.ctx.beginPath();
