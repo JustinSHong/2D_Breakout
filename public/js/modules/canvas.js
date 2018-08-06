@@ -15,6 +15,7 @@ class Canvas {
 		// detect collisions with top edge
 		if (ball.y + ball.dy < ball.ballRadius) {
 			ball.dy = -ball.dy;
+			ball.changeColor();
 		} else if (ball.y + ball.dy > this.height - ball.ballRadius) {
 			if (
 				ball.x > paddle.paddleX &&
@@ -22,6 +23,7 @@ class Canvas {
 			) {
 				// ball collides with the paddle
 				ball.dy = -ball.dy;
+				ball.changeColor();
 			} else {
 				player.lives--;
 				if (player.lives === 0) {
@@ -42,6 +44,7 @@ class Canvas {
 			ball.x + ball.dx > this.width - ball.ballRadius
 		) {
 			ball.dx = -ball.dx;
+			ball.changeColor();
 		}
 	}
 
@@ -61,6 +64,7 @@ class Canvas {
 						ball.y < b.y + brick.brickHeight // y position of the ball is less than the y position of the brick plus its height
 					) {
 						ball.dy = -ball.dy;
+						ball.changeColor();
 						b.status = 0;
 						player.score++;
 						if (player.score == brick.brickRowCount * brick.brickColumnCount) {

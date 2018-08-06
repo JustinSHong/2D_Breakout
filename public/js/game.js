@@ -107,7 +107,7 @@ class Game {
 }
 
 // pause flag
-let pause = false;
+let pause = true;
 
 // < ===== STARTING THE GAME ===== >
 
