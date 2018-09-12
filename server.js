@@ -1,12 +1,12 @@
 // Dependencies
 const express = require("express");
 const app = express();
-const server = require("https").Server(app);
+const server = require("http").Server(app);
 const io = require("socket.io").listen(server);
 const helmet = require("helmet");
 const cors = require("cors");
 
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT;
 
 // middleware
 app.use(helmet());
