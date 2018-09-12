@@ -6,7 +6,7 @@ const io = require("socket.io").listen(server);
 const helmet = require("helmet");
 const cors = require("cors");
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8081;
 
 // middleware
 app.use(helmet());
