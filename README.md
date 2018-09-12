@@ -22,3 +22,21 @@ These instructions will get you a copy of the project running on your local mach
 * [Node](https://nodejs.org/en/)
 * [Express](http://expressjs.com)
 * [Heroku](https://devcenter.heroku.com)
+
+### Contributing
+
+Please read CONTRIBUTING.md for details on the code of conduct and the process os submitting pull requests.
+
+### Authors
+
+* Justin Hong - _initial work_
+
+See also the list of contributors who participated in this project.
+
+### License
+
+This project is licensed under the [ISC License](https://opensource.org/licenses/ISC) 
+
+
+
+
