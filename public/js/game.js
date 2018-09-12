@@ -8,7 +8,7 @@ import socket from "./modules/client";
 
 // emable live reload
 document.write(
-	'<script src="http://' +
+	'<script src="https://' +
 		(location.host || "localhost").split(":")[0] +
 		':35729/livereload.js?snipver=1"></' +
 		"script>"
