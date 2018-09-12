@@ -19,12 +19,15 @@ class Game {
 		this.rightPressed = false;
 		this.leftPressed = false;
 		this.players = []; // holds all players in the game
+		this.mode = "medium"; // describes game mode
 
 		// listen for key press and key release
 		window.addEventListener("keydown", this.keyDownHandler, false);
 		window.addEventListener("keyup", this.keyUpHandler, false);
 		// listen for mouse movement
 		window.addEventListener("mousemove", this.mouseMoveHandler, false);
+		// listen for changes in game mode
+		window.addEventListener("");
 	}
 
 	// initialize the game objects and the game loop
@@ -122,11 +125,11 @@ const paddle = new Paddle(canvas);
 const player = new Player();
 const g = new Game(); // instantiate a game
 
-// DEBUGGING: verify a socket has been established
-// socket.on("SocketId", function(data) {
-// 	console.log(data);
-// 	console.log(data.playerID);
-// });
+// game mode buttons
+const easyMode = document.querySelector(".easy-mode-btn");
+const mediumMode = document.querySelector(".medium-mode-btn");
+const hardMode = document.querySelector(".hard-mode-btn");
+const maratonMode = document.querySelector(".marathon-mode-btn");
 
 // store your opponent's score
 socket.on("otherPlayerScore", function(data) {
