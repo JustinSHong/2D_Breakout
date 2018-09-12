@@ -6,13 +6,13 @@ import Paddle from "./modules/paddle";
 import Player from "./modules/player";
 import socket from "./modules/client";
 
-// emable live reload
-document.write(
-	'<script src="https://' +
-		(location.host || "localhost").split(":")[0] +
-		':35729/livereload.js?snipver=1"></' +
-		"script>"
-);
+// enable live reload
+// document.write(
+// 	'<script src="https://' +
+// 		(location.host || "localhost").split(":")[0] +
+// 		':35729/livereload.js?snipver=1"></' +
+// 		"script>"
+// );
 
 class Game {
 	constructor() {
@@ -114,6 +114,20 @@ class Game {
 			paddle.paddleX = relativeX - paddle.paddleWidth / 2;
 		}
 	}
+
+	// set the current game instance's mode
+	selectGameMode(e) {
+		const { name } = e.target;
+		if (name === "easy") {
+			this.mode = "easy";
+		} else if (name === "medium") {
+			this.mode = "medium";
+		} else if (name === "hard") {
+			this.mode = "hard";
+		} else {
+			this.mode = "marathon";
+		}
+	}
 }
 
 // pause flag
@@ -121,18 +135,18 @@ let pause = true;
 
 // < ===== STARTING THE GAME ===== >
 
+// game mode buttons
+const easyMode = document.querySelector(".easy-mode-btn");
+const mediumMode = document.querySelector(".medium-mode-btn");
+const hardMode = document.querySelector(".hard-mode-btn");
+const marathonMode = document.querySelector(".marathon-mode-btn");
+
 const canvas = new Canvas();
 const ball = new Ball(canvas.height, canvas.width);
 const brick = new Brick(canvas);
 const paddle = new Paddle(canvas);
 const player = new Player();
 const g = new Game(); // instantiate a game
-
-// game mode buttons
-const easyMode = document.querySelector(".easy-mode-btn");
-const mediumMode = document.querySelector(".medium-mode-btn");
-const hardMode = document.querySelector(".hard-mode-btn");
-const marathonMode = document.querySelector(".marathon-mode-btn");
 
 // store your opponent's score
 socket.on("otherPlayerScore", function(data) {
