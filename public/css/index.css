@@ -41,6 +41,28 @@ p {
 	margin-bottom: 0;
 }
 
+.btn-container {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.easy-mode-btn,
+.medium-mode-btn,
+.hard-mode-btn,
+.marathon-mode-btn {
+	display: block;
+	font-size: 1.2rem;
+	border-radius: 15px 50px;
+	width: 200px;
+	height: 50px;
+	margin: 10px auto;
+	outline: none;
+	box-shadow: 3px 3px 5px 1px #ccc;
+}
+
 canvas {
 	background: #eee;
 	display: block;
