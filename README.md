@@ -11,3 +11,14 @@ These instructions will get you a copy of the project running on your local mach
 1. Clone the project into your local machine.
 2. Install the necessary packages using ```yarn``` or ```yarn install```
 3. Run ```yarn start``` in root folder in a command line window
+
+### Built With
+
+* HTML5
+* CSS3
+* Vanilla JS
+* [Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
+* [Socket.io](https://socket.io)
+* [Node](https://nodejs.org/en/)
+* [Express](http://expressjs.com)
+* [Heroku](https://devcenter.heroku.com)
