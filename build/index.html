@@ -9,39 +9,41 @@
 <body>
 	<!-- Game Information -->
 	<main>
-			<!-- About -->
-			<section class="about">
-				<h2>About</h2>
-				<p>This is a simple 2D breakout game made with:</p>
-				<ul>
-					<li>HTML5/Canvas</li>
-					<li>CSS3</li>
-					<li>Socket.io</li>
-					<li>Node/Express</li>
-				</ul>
-				<p>For more information <a href="https://github.com/JustinSHong/2D_Breakout">click here</a>.</p>
-			</section>
-			<!-- Rules  -->
-			<section class="rules">
-				<h2>Rules</h2>
-				<p>Hit the blocks with the ball and paddle for points!</p>
-				<p>Press P to pause the game.</p>
-				<p>Press Q to quit the game.</p>
-			</section>
-			<!-- Game Modes -->
-			<section>
-					<h2>Game Modes:</h2>
-					<div>
-						<button>Easy</button>
-						<button>Medium</button>
-						<button>Hard</button>
-						<button>Marathon</button>
-					</div>
-			</section>
-			<!-- Game Canvas -->
-			<canvas  tabindex='1' id="myCanvas" width="900" height="700"></canvas>
-			<!-- LeaderBoard -->
-			<section></section>
+			<div class="container">
+				<!-- About -->
+				<section class="about">
+					<h2>About</h2>
+					<p>This is a simple 2D breakout game made with:</p>
+					<ul>
+						<li>HTML5/Canvas</li>
+						<li>CSS3</li>
+						<li>Socket.io</li>
+						<li>Node/Express</li>
+					</ul>
+					<p>For more information <a href="https://github.com/JustinSHong/2D_Breakout">click here</a>.</p>
+				</section>
+				<!-- Rules  -->
+				<section class="rules">
+					<h2>Rules</h2>
+					<p>Hit the blocks with the ball and paddle for points!</p>
+					<p>Press P to pause the game.</p>
+					<p>Press Q to quit the game.</p>
+				</section>
+				<!-- Game Modes -->
+				<section class="game-modes">
+						<h2>Game Modes:</h2>
+						<div>
+							<button>Easy</button>
+							<button>Medium</button>
+							<button>Hard</button>
+							<button>Marathon</button>
+						</div>
+				</section>
+			</div>
+				<!-- Game Canvas -->
+				<canvas  tabindex='1' id="myCanvas" width="900" height="700"></canvas>
+				<!-- LeaderBoard -->
+				<section></section>
 	</main>
 	<script src="http://localhost:8081/socket.io/socket.io.js"></script>
 	<script src="js/main.min.js"></script>
