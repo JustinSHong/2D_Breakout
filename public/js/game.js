@@ -27,7 +27,10 @@ class Game {
 		// listen for mouse movement
 		window.addEventListener("mousemove", this.mouseMoveHandler, false);
 		// listen for changes in game mode
-		window.addEventListener("");
+		easyMode.addEventListener("click", this.selectGameMode, false);
+		mediumMode.addEventListener("click", this.selectGameMode, false);
+		hardMode.addEventListener("click", this.selectGameMode, false);
+		marathonMode.addEventListener("click", this.selectGameMode, false);
 	}
 
 	// initialize the game objects and the game loop
@@ -129,7 +132,7 @@ const g = new Game(); // instantiate a game
 const easyMode = document.querySelector(".easy-mode-btn");
 const mediumMode = document.querySelector(".medium-mode-btn");
 const hardMode = document.querySelector(".hard-mode-btn");
-const maratonMode = document.querySelector(".marathon-mode-btn");
+const marathonMode = document.querySelector(".marathon-mode-btn");
 
 // store your opponent's score
 socket.on("otherPlayerScore", function(data) {
