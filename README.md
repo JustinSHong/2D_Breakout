@@ -29,7 +29,7 @@ Please read CONTRIBUTING.md for details on the code of conduct and the process o
 
 ### Authors
 
-* Justin Hong - _initial work_
+* [Justin Hong](https://github.com/JustinSHong) - _initial work_
 
 See also the list of contributors who participated in this project.
 
