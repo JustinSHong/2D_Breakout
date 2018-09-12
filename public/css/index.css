@@ -28,12 +28,12 @@ section.game-modes {
 	display: block;
 	text-align: center;
 	font-size: 1.5rem;
-	width: 300px;
+	width: 350px;
 }
 
 ul {
 	width: 50%;
-	margin: 0 auto;
+	margin: 20px auto;
 	list-style: none;
 }
 
