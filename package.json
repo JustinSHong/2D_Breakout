@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
+    "start": "NODE_ENV=production node server.js",
     "dev": "rollup -c --watch",
     "reload": "livereload 'build/'",
     "watch": "npm-run-all --parallel reload dev",
