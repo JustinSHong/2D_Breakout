@@ -63,6 +63,22 @@ p {
 	box-shadow: 3px 3px 5px 1px #ccc;
 }
 
+.easy-mode-btn {
+	background-color: #76ff03;
+}
+
+.medium-mode-btn {
+	background-color: #ffa000;
+}
+
+.hard-mode-btn {
+	background-color: #ff5722;
+}
+
+.marathon-mode-btn {
+	background-color: #dd2c00;
+}
+
 canvas {
 	background: #eee;
 	display: block;
