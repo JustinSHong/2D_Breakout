@@ -7,12 +7,12 @@ import Player from "./modules/player";
 import socket from "./modules/client";
 
 // enable live reload
-// document.write(
-// 	'<script src="https://' +
-// 		(location.host || "localhost").split(":")[0] +
-// 		':35729/livereload.js?snipver=1"></' +
-// 		"script>"
-// );
+document.write(
+    '<script src="https://' +
+        (location.host || "localhost").split(":")[0] +
+        ':35729/livereload.js?snipver=1"></' +
+        "script>"
+);
 
 class Game {
     constructor() {
