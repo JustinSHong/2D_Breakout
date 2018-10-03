@@ -174,15 +174,22 @@ function selectGameMode(e) {
         mode = {
             name: "hard",
             dx: 4,
-            dy: -5,
+            dy: -4,
             lives: 2
         };
         console.log("mode changed to hard", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
     } else {
-        mode = "marathon";
+        mode = {
+            name: "marathon",
+            dx: 5,
+            dy: -5,
+            lives: 2
+        };
         console.log("mode changed to marathon", mode);
+        ball = new Ball(canvas.height, canvas.width, mode);
+        player = new Player(mode);
     }
 }
 
