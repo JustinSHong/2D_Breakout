@@ -19,7 +19,6 @@ class Game {
         this.rightPressed = false;
         this.leftPressed = false;
         this.players = []; // holds all players in the game
-        this.mode = "medium"; // describes game mode
 
         // listen for key press and key release
         window.addEventListener("keydown", this.keyDownHandler, false);
@@ -40,6 +39,7 @@ class Game {
 
     // main draw function of the game - initiates game loop - WORK IN PROGRESS
     draw(canvas) {
+        console.log(`MODE ${mode.name}`);
         // clear previous ball before drawing a new one
         canvas.clear();
         canvas.ctx.beginPath();
@@ -135,7 +135,12 @@ let pause = true;
 
 // < ===== STARTING THE GAME ===== >
 
-let mode = "";
+let mode = {
+    name: "very easy",
+    dx: 1.5,
+    dy: -1.5,
+    lives: 5
+};
 
 // game mode buttons
 const easyMode = document.querySelector(".easy-mode-btn");
@@ -146,25 +151,32 @@ const marathonMode = document.querySelector(".marathon-mode-btn");
 function selectGameMode(e) {
     const { name } = e.target;
     if (name === "easy") {
-        mode = "easy";
-        console.log("mode changed to easy");
+        mode = {
+            name: "easy",
+            dx: 2,
+            dy: -2,
+            lives: 3
+        };
+        console.log("mode changed to easy", mode);
+        ball = new Ball(canvas.height, canvas.width, mode);
+        player = new Player(mode);
     } else if (name === "medium") {
         mode = "medium";
-        console.log("mode changed to medium");
+        console.log("mode changed to medium", mode);
     } else if (name === "hard") {
         mode = "hard";
-        console.log("mode changed to hard");
+        console.log("mode changed to hard", mode);
     } else {
         mode = "marathon";
-        console.log("mode changed to marathon");
+        console.log("mode changed to marathon", mode);
     }
 }
 
 const canvas = new Canvas();
-const ball = new Ball(canvas.height, canvas.width);
+let ball = new Ball(canvas.height, canvas.width, mode);
 const brick = new Brick(canvas);
 const paddle = new Paddle(canvas);
-const player = new Player();
+let player = new Player(mode);
 const g = new Game(); // instantiate a game
 
 // store your opponent's score
