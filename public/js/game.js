@@ -161,8 +161,15 @@ function selectGameMode(e) {
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
     } else if (name === "medium") {
-        mode = "medium";
+        mode = {
+            name: "medium",
+            dx: 3,
+            dy: -3,
+            lives: 3
+        };
         console.log("mode changed to medium", mode);
+        ball = new Ball(canvas.height, canvas.width, mode);
+        player = new Player(mode);
     } else if (name === "hard") {
         mode = "hard";
         console.log("mode changed to hard", mode);
