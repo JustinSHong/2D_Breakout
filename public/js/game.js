@@ -160,6 +160,7 @@ function selectGameMode(e) {
         console.log("mode changed to easy", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
+        brick = new Brick(canvas);
     } else if (name === "medium") {
         mode = {
             name: "medium",
@@ -170,6 +171,7 @@ function selectGameMode(e) {
         console.log("mode changed to medium", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
+        brick = new Brick(canvas);
     } else if (name === "hard") {
         mode = {
             name: "hard",
@@ -180,6 +182,7 @@ function selectGameMode(e) {
         console.log("mode changed to hard", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
+        brick = new Brick(canvas);
     } else {
         mode = {
             name: "marathon",
@@ -190,12 +193,13 @@ function selectGameMode(e) {
         console.log("mode changed to marathon", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
+        brick = new Brick(canvas);
     }
 }
 
 const canvas = new Canvas();
 let ball = new Ball(canvas.height, canvas.width, mode);
-const brick = new Brick(canvas);
+let brick = new Brick(canvas);
 const paddle = new Paddle(canvas);
 let player = new Player(mode);
 const g = new Game(); // instantiate a game
