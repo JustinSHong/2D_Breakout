@@ -1,13 +1,13 @@
 class Ball {
-    constructor(height, width) {
+    constructor(height, width, mode) {
         this.ballColor = "#0095DD";
         // starting position
         this.x = width / 2;
         this.y = height - 30;
         this.ballRadius = 10;
         // velocity - change in position
-        this.dx = 2;
-        this.dy = -2;
+        this.dx = mode.dx;
+        this.dy = mode.dy;
     }
 
     changeColor() {
