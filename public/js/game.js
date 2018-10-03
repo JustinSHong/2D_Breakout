@@ -29,7 +29,7 @@ class Game {
         easyMode.addEventListener("click", selectGameMode, false);
         mediumMode.addEventListener("click", selectGameMode, false);
         hardMode.addEventListener("click", selectGameMode, false);
-        marathonMode.addEventListener("click", selectGameMode, false);
+        veryHardMode.addEventListener("click", selectGameMode, false);
     }
 
     // initialize the game objects and the game loop
@@ -146,7 +146,7 @@ let mode = {
 const easyMode = document.querySelector(".easy-mode-btn");
 const mediumMode = document.querySelector(".medium-mode-btn");
 const hardMode = document.querySelector(".hard-mode-btn");
-const marathonMode = document.querySelector(".marathon-mode-btn");
+const veryHardMode = document.querySelector(".veryHard-mode-btn");
 
 function selectGameMode(e) {
     const { name } = e.target;
@@ -185,12 +185,12 @@ function selectGameMode(e) {
         brick = new Brick(canvas);
     } else {
         mode = {
-            name: "marathon",
+            name: "veryHard",
             dx: 5,
             dy: -5,
             lives: 2
         };
-        console.log("mode changed to marathon", mode);
+        console.log("mode changed to veryHard", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
         brick = new Brick(canvas);
