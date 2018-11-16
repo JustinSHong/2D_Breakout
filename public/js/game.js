@@ -112,20 +112,6 @@ class Game {
             paddle.paddleX = relativeX - paddle.paddleWidth / 2;
         }
     }
-
-    // set the current game instance's mode
-    // selectGameMode(e) {
-    //     const { name } = e.target;
-    //     if (name === "easy") {
-    //         this.mode = "easy";
-    //     } else if (name === "medium") {
-    //         this.mode = "medium";
-    //     } else if (name === "hard") {
-    //         this.mode = "hard";
-    //     } else {
-    //         this.mode = "marathon";
-    //     }
-    // }
 }
 
 // pause flag
