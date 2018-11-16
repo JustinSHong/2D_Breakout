@@ -39,7 +39,6 @@ class Game {
 
     // main draw function of the game - initiates game loop - WORK IN PROGRESS
     draw(canvas) {
-        console.log(`MODE ${mode.name}`);
         // clear previous ball before drawing a new one
         canvas.clear();
         canvas.ctx.beginPath();
@@ -89,7 +88,6 @@ class Game {
                 g.init();
             }
         } else if (e.keyCode === 81) {
-            console.log("player quit game");
             alert("You quit. Game Over!");
             document.location.reload();
         }
@@ -157,7 +155,6 @@ function selectGameMode(e) {
             dy: -2,
             lives: 3
         };
-        console.log("mode changed to easy", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
         brick = new Brick(canvas);
@@ -168,7 +165,6 @@ function selectGameMode(e) {
             dy: -3,
             lives: 3
         };
-        console.log("mode changed to medium", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
         brick = new Brick(canvas);
@@ -179,7 +175,6 @@ function selectGameMode(e) {
             dy: -4,
             lives: 2
         };
-        console.log("mode changed to hard", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
         brick = new Brick(canvas);
@@ -190,7 +185,6 @@ function selectGameMode(e) {
             dy: -5,
             lives: 2
         };
-        console.log("mode changed to veryHard", mode);
         ball = new Ball(canvas.height, canvas.width, mode);
         player = new Player(mode);
         brick = new Brick(canvas);
