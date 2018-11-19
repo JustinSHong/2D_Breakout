@@ -137,8 +137,8 @@ function selectGameMode(e) {
     if (name === "easy") {
         mode = {
             name: "easy",
-            dx: 2,
-            dy: -2,
+            dx: 4,
+            dy: -4,
             lives: 3
         };
         ball = new Ball(canvas.height, canvas.width, mode);
@@ -147,8 +147,8 @@ function selectGameMode(e) {
     } else if (name === "medium") {
         mode = {
             name: "medium",
-            dx: 3,
-            dy: -3,
+            dx: 6,
+            dy: -6,
             lives: 3
         };
         ball = new Ball(canvas.height, canvas.width, mode);
@@ -157,8 +157,8 @@ function selectGameMode(e) {
     } else if (name === "hard") {
         mode = {
             name: "hard",
-            dx: 4,
-            dy: -4,
+            dx: 8,
+            dy: -8,
             lives: 2
         };
         ball = new Ball(canvas.height, canvas.width, mode);
@@ -167,8 +167,8 @@ function selectGameMode(e) {
     } else {
         mode = {
             name: "veryHard",
-            dx: 5,
-            dy: -5,
+            dx: 10,
+            dy: -10,
             lives: 2
         };
         ball = new Ball(canvas.height, canvas.width, mode);
