@@ -37,7 +37,7 @@ class Game {
         requestAnimationFrame(() => this.draw(canvas));
     }
 
-    // main draw function of the game - initiates game loop - WORK IN PROGRESS
+    // main draw function of the game - initiates game loop
     draw(canvas) {
         // clear previous ball before drawing a new one
         canvas.clear();
