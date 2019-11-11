@@ -19,7 +19,7 @@ class Canvas {
     } else if (ball.y + ball.dy > this.height - ball.ballRadius) {
       if (
         ball.x > paddle.paddleX &&
-                ball.x < paddle.paddleX + paddle.paddleWidth
+				ball.x < paddle.paddleX + paddle.paddleWidth
       ) {
         // ball collides with the paddle
         ball.dy = -ball.dy;
@@ -39,7 +39,7 @@ class Canvas {
     // detect collision with left and right edges
     if (
       ball.x + ball.dx < ball.ballRadius ||
-            ball.x + ball.dx > this.width - ball.ballRadius
+			ball.x + ball.dx > this.width - ball.ballRadius
     ) {
       ball.dx = -ball.dx;
       ball.changeColor();
@@ -57,9 +57,9 @@ class Canvas {
           // if a collision occurs, change the movement of the ball, a brick's status, score
           if (
             ball.x > b.x && // x position of the ball is greater than the x position of the brick
-                        ball.x < b.x + brick.brickWidth && // x position of the ball is less than the x position of the brick plus its width
-                        ball.y > b.y && // y position of the ball is greater than the y position of the brick
-                        ball.y < b.y + brick.brickHeight // y position of the ball is less than the y position of the brick plus its height
+						ball.x < b.x + brick.brickWidth && // x position of the ball is less than the x position of the brick plus its width
+						ball.y > b.y && // y position of the ball is greater than the y position of the brick
+						ball.y < b.y + brick.brickHeight // y position of the ball is less than the y position of the brick plus its height
           ) {
             ball.dy = -ball.dy;
             ball.changeColor();
@@ -67,7 +67,7 @@ class Canvas {
             player.score++;
             if (
               player.score ==
-                            brick.brickRowCount * brick.brickColumnCount
+							brick.brickRowCount * brick.brickColumnCount
             ) {
               // display winning msg when score is equal to the number of bricks
               alert('You Win! Congrats!');
