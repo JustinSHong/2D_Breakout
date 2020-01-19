@@ -1,8 +1,11 @@
+import { ICanvas } from './canvas'
+
 interface IBrick {
 	brickColumnCount: number
 	brickRowCount: number
 	brickWidth: number
 	brickHeight: number
+	drawBricks: (canvas: ICanvas) => void
 }
 
 interface IBrickObject {
@@ -44,7 +47,7 @@ class Brick implements IBrick {
 	}
 
 	// draw brick grid to the canvas
-	drawBricks(canvas) {
+	public drawBricks(canvas: ICanvas) {
 		for (let col = 0; col < this.brickColumnCount; col++) {
 			for (let row = 0; row < this.brickRowCount; row++) {
 				let brick = this.bricks[col][row]
