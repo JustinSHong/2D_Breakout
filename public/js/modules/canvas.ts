@@ -1,12 +1,13 @@
-interface ICanvas {
+export interface ICanvas {
 	height: number
 	width: number
+	ctx: CanvasRenderingContext2D
 }
 
 class Canvas implements ICanvas {
 	constructor(
 		private canvas: HTMLCanvasElement,
-		private ctx: CanvasRenderingContext2D,
+		public ctx: CanvasRenderingContext2D,
 		public height: number,
 		public width: number
 	) {
