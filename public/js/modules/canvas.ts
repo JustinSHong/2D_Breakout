@@ -1,14 +1,14 @@
 interface ICanvas {
-	width: number
 	height: number
+	width: number
 }
 
 class Canvas implements ICanvas {
 	constructor(
 		private canvas: HTMLCanvasElement,
 		private ctx: CanvasRenderingContext2D,
-		public width: number,
-		public height: number
+		public height: number,
+		public width: number
 	) {
 		this.canvas = document.getElementById('myCanvas') as HTMLCanvasElement
 		this.ctx = this.canvas.getContext('2d')
