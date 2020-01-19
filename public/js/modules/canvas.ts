@@ -1,6 +1,16 @@
-class Canvas {
-	constructor() {
-		this.canvas = document.getElementById('myCanvas')
+interface ICanvas {
+	width: number
+	height: number
+}
+
+class Canvas implements ICanvas {
+	constructor(
+		private canvas: HTMLCanvasElement,
+		private ctx: CanvasRenderingContext2D,
+		public width: number,
+		public height: number
+	) {
+		this.canvas = document.getElementById('myCanvas') as HTMLCanvasElement
 		this.ctx = this.canvas.getContext('2d')
 		this.width = this.canvas.width
 		this.height = this.canvas.height
