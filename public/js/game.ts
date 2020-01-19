@@ -1,7 +1,7 @@
-// modules
-import Canvas from './modules/canvas'
 import Ball from './modules/ball'
 import Brick from './modules/brick'
+// modules
+import Canvas from './modules/canvas'
 import Paddle from './modules/paddle'
 import Player from './modules/player'
 import socket from './modules/client'
@@ -118,8 +118,14 @@ class Game {
 let pause = true
 
 // < ===== STARTING THE GAME ===== >
+export interface IGameMode {
+	name: string
+	dx: number
+	dy: number
+	lives: number
+}
 
-let mode = {
+let mode: IGameMode = {
 	name: 'very easy',
 	dx: 1.5,
 	dy: -1.5,
