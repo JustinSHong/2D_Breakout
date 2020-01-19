@@ -31,7 +31,7 @@ class Ball implements IBall {
 		this.dy = mode.dy
 	}
 
-	changeColor() {
+	public changeColor(): void {
 		const red = Math.random() * 256
 		const green = Math.random() * 256
 		const blue = Math.random() * 256
@@ -40,7 +40,7 @@ class Ball implements IBall {
 	}
 
 	// draw ball to the canvas
-	drawBall(canvas: ICanvas) {
+	public drawBall(canvas: ICanvas): void {
 		canvas.ctx.beginPath()
 		canvas.ctx.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2)
 		canvas.ctx.fillStyle = this.ballColor
@@ -49,7 +49,7 @@ class Ball implements IBall {
 	}
 
 	// update ball's movement
-	update() {
+	public update(): void {
 		this.x += this.dx
 		this.y += this.dy
 	}
