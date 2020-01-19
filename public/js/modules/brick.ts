@@ -1,5 +1,28 @@
-class Brick {
-	constructor() {
+interface IBrick {
+	brickColumnCount: number
+	brickRowCount: number
+	brickWidth: number
+	brickHeight: number
+}
+
+interface IBrickObject {
+	status: number
+	x: number
+	y: number
+}
+
+class Brick implements IBrick {
+	constructor(
+		private brickColor: string,
+		private brickPadding: number,
+		private brickOffsetTop: number,
+		private brickOffsetLeft: number,
+		public brickColumnCount: number,
+		public brickRowCount: number,
+		public brickWidth: number,
+		public brickHeight: number,
+		public bricks: IBrickObject[][]
+	) {
 		// brick properties
 		this.brickColor = '#0095DD'
 		this.brickRowCount = 10
