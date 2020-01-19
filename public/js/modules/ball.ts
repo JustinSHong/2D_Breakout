@@ -15,17 +15,17 @@ class Ball implements IBall {
 		public ballRadius: number,
 		public dx: number,
 		public dy: number,
-		public width: number,
 		public height: number,
 		public mode: IGameMode,
+		public width: number,
 		public x: number,
 		public y: number
 	) {
 		this.ballColor = '#0095DD'
+		this.ballRadius = 10
 		// starting position
 		this.x = width / 2
 		this.y = height - 30
-		this.ballRadius = 10
 		// velocity - change in position
 		this.dx = mode.dx
 		this.dy = mode.dy
