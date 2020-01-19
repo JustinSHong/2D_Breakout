@@ -1,5 +1,26 @@
-class Ball {
-	constructor(height, width, mode) {
+import { ICanvas } from './canvas'
+import { IGameMode } from '../game'
+
+interface IBall {
+	ballRadius: number
+	dx: number
+	dy: number
+	x: number
+	y: number
+}
+
+class Ball implements IBall {
+	constructor(
+		private ballColor: string,
+		public ballRadius: number,
+		public dx: number,
+		public dy: number,
+		public width: number,
+		public height: number,
+		public mode: IGameMode,
+		public x: number,
+		public y: number
+	) {
 		this.ballColor = '#0095DD'
 		// starting position
 		this.x = width / 2
@@ -19,7 +40,7 @@ class Ball {
 	}
 
 	// draw ball to the canvas
-	drawBall(canvas) {
+	drawBall(canvas: ICanvas) {
 		canvas.ctx.beginPath()
 		canvas.ctx.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2)
 		canvas.ctx.fillStyle = this.ballColor
