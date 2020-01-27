@@ -1,5 +1,13 @@
+import { ICanvas } from './canvas'
+
 class Paddle {
-	constructor(canvas) {
+	constructor(
+		public canvas: ICanvas,
+		private paddleColor: string,
+		private paddleHeight: number,
+		private paddleWidth: number,
+		private paddleX: number
+	) {
 		// paddle properties
 		this.paddleColor = '#0095DD'
 		this.paddleHeight = 10
