@@ -17,7 +17,7 @@ class Paddle {
 	}
 
 	// draw paddle to the canvas
-	drawPaddle(canvas) {
+	public drawPaddle(canvas: ICanvas) {
 		canvas.ctx.beginPath()
 		canvas.ctx.rect(
 			this.paddleX,
@@ -31,7 +31,7 @@ class Paddle {
 	}
 
 	// update paddle position
-	update(x) {
+	public update(x: number) {
 		this.paddleX += x
 	}
 }
