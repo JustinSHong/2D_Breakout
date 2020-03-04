@@ -1,10 +1,12 @@
 import Ball from './modules/ball'
 import Brick from './modules/brick'
-// modules
-import Canvas from './modules/canvas'
+import Canvas, { ICanvas } from './modules/canvas'
 import Paddle from './modules/paddle'
 import Player from './modules/player'
 import socket from './modules/client'
+
+import { IPaddle } from './modules/paddle'
+import { IPlayer } from './modules/player'
 
 // enable live reload
 document.write(
@@ -15,6 +17,10 @@ document.write(
 )
 
 class Game {
+	public rightPressed: boolean
+	public leftPressed: boolean
+	public players: IPlayer[]
+
 	constructor() {
 		this.rightPressed = false
 		this.leftPressed = false
@@ -26,10 +32,10 @@ class Game {
 		// listen for mouse movement
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
 		// listen for changes in game mode
-		easyMode.addEventListener('click', selectGameMode, false)
-		mediumMode.addEventListener('click', selectGameMode, false)
-		hardMode.addEventListener('click', selectGameMode, false)
-		veryHardMode.addEventListener('click', selectGameMode, false)
+		easyMode!.addEventListener('click', selectGameMode, false)
+		mediumMode!.addEventListener('click', selectGameMode, false)
+		hardMode!.addEventListener('click', selectGameMode, false)
+		veryHardMode!.addEventListener('click', selectGameMode, false)
 	}
 
 	// initialize the game objects and the game loop
@@ -38,7 +44,7 @@ class Game {
 	}
 
 	// main draw function of the game - initiates game loop
-	draw(canvas) {
+	draw(canvas: ICanvas) {
 		// clear previous ball before drawing a new one
 		canvas.clear()
 		canvas.ctx.beginPath()
@@ -74,7 +80,7 @@ class Game {
 	}
 
 	// check if a key was pressed
-	keyDownHandler(e) {
+	keyDownHandler(e: KeyboardEvent) {
 		if (e.keyCode === 39) {
 			// right cursor key pressed
 			g.rightPressed = true
@@ -94,7 +100,7 @@ class Game {
 	}
 
 	// check if a key was released
-	keyUpHandler(e) {
+	keyUpHandler(e: KeyboardEvent) {
 		// reset key state to default
 		if (e.keyCode === 39) {
 			// right cursor key released
@@ -106,7 +112,7 @@ class Game {
 	}
 
 	// move paddle relative to the mouse position within canvas
-	mouseMoveHandler(e) {
+	mouseMoveHandler(e: MouseEvent) {
 		let relativeX = e.clientX - canvas.canvas.offsetLeft
 		if (relativeX > 0 && relativeX < canvas.width) {
 			paddle.paddleX = relativeX - paddle.paddleWidth / 2
@@ -133,10 +139,12 @@ let mode: IGameMode = {
 }
 
 // game mode buttons
-const easyMode = document.querySelector('.easy-mode-btn')
-const mediumMode = document.querySelector('.medium-mode-btn')
-const hardMode = document.querySelector('.hard-mode-btn')
-const veryHardMode = document.querySelector('.veryHard-mode-btn')
+const easyMode = document.querySelector<HTMLButtonElement>('.easy-mode-btn')
+const mediumMode = document.querySelector<HTMLButtonElement>('.medium-mode-btn')
+const hardMode = document.querySelector<HTMLButtonElement>('.hard-mode-btn')
+const veryHardMode = document.querySelector<HTMLButtonElement>(
+	'.veryHard-mode-btn'
+)
 
 function selectGameMode(e) {
 	const { name } = e.target
@@ -149,7 +157,7 @@ function selectGameMode(e) {
 		}
 		ball = new Ball(canvas.height, canvas.width, mode)
 		player = new Player(mode)
-		brick = new Brick(canvas)
+		brick = new Brick()
 	} else if (name === 'medium') {
 		mode = {
 			name: 'medium',
@@ -159,7 +167,7 @@ function selectGameMode(e) {
 		}
 		ball = new Ball(canvas.height, canvas.width, mode)
 		player = new Player(mode)
-		brick = new Brick(canvas)
+		brick = new Brick()
 	} else if (name === 'hard') {
 		mode = {
 			name: 'hard',
@@ -169,7 +177,7 @@ function selectGameMode(e) {
 		}
 		ball = new Ball(canvas.height, canvas.width, mode)
 		player = new Player(mode)
-		brick = new Brick(canvas)
+		brick = new Brick()
 	} else {
 		mode = {
 			name: 'veryHard',
@@ -179,13 +187,13 @@ function selectGameMode(e) {
 		}
 		ball = new Ball(canvas.height, canvas.width, mode)
 		player = new Player(mode)
-		brick = new Brick(canvas)
+		brick = new Brick()
 	}
 }
 
 const canvas = new Canvas()
 let ball = new Ball(canvas.height, canvas.width, mode)
-let brick = new Brick(canvas)
+let brick = new Brick()
 const paddle = new Paddle(canvas)
 let player = new Player(mode)
 const g = new Game() // instantiate a game
