@@ -1,7 +1,7 @@
 import { ICanvas } from './canvas'
 import { IGameMode } from '../game'
 
-interface IBall {
+export interface IBall {
 	ballRadius: number
 	dx: number
 	dy: number
