@@ -7,6 +7,9 @@ export interface IBall {
 	dy: number
 	x: number
 	y: number
+	changeColor(): void
+	drawBall(canvas: ICanvas): void
+	update(): void
 }
 
 class Ball implements IBall {
