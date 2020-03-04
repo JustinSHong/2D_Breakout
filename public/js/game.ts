@@ -32,10 +32,10 @@ class Game {
 		// listen for mouse movement
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
 		// listen for changes in game mode
-		easyMode!.addEventListener('click', selectGameMode, false)
-		mediumMode!.addEventListener('click', selectGameMode, false)
-		hardMode!.addEventListener('click', selectGameMode, false)
-		veryHardMode!.addEventListener('click', selectGameMode, false)
+		easyMode!.addEventListener('click', this.selectGameMode, false)
+		mediumMode!.addEventListener('click', this.selectGameMode, false)
+		hardMode!.addEventListener('click', this.selectGameMode, false)
+		veryHardMode!.addEventListener('click', this.selectGameMode, false)
 	}
 
 	// initialize the game objects and the game loop
@@ -118,6 +118,51 @@ class Game {
 			paddle.paddleX = relativeX - paddle.paddleWidth / 2
 		}
 	}
+
+	selectGameMode(e: MouseEvent) {
+		const { name } = <HTMLButtonElement>e.target
+		if (name === 'easy') {
+			mode = {
+				name: 'easy',
+				dx: 4,
+				dy: -4,
+				lives: 3,
+			}
+			ball = new Ball(canvas.height, canvas.width, mode)
+			player = new Player(mode)
+			brick = new Brick()
+		} else if (name === 'medium') {
+			mode = {
+				name: 'medium',
+				dx: 6,
+				dy: -6,
+				lives: 3,
+			}
+			ball = new Ball(canvas.height, canvas.width, mode)
+			player = new Player(mode)
+			brick = new Brick()
+		} else if (name === 'hard') {
+			mode = {
+				name: 'hard',
+				dx: 8,
+				dy: -8,
+				lives: 2,
+			}
+			ball = new Ball(canvas.height, canvas.width, mode)
+			player = new Player(mode)
+			brick = new Brick()
+		} else {
+			mode = {
+				name: 'veryHard',
+				dx: 10,
+				dy: -10,
+				lives: 2,
+			}
+			ball = new Ball(canvas.height, canvas.width, mode)
+			player = new Player(mode)
+			brick = new Brick()
+		}
+	}
 }
 
 // pause flag
@@ -145,51 +190,6 @@ const hardMode = document.querySelector<HTMLButtonElement>('.hard-mode-btn')
 const veryHardMode = document.querySelector<HTMLButtonElement>(
 	'.veryHard-mode-btn'
 )
-
-function selectGameMode(e) {
-	const { name } = e.target
-	if (name === 'easy') {
-		mode = {
-			name: 'easy',
-			dx: 4,
-			dy: -4,
-			lives: 3,
-		}
-		ball = new Ball(canvas.height, canvas.width, mode)
-		player = new Player(mode)
-		brick = new Brick()
-	} else if (name === 'medium') {
-		mode = {
-			name: 'medium',
-			dx: 6,
-			dy: -6,
-			lives: 3,
-		}
-		ball = new Ball(canvas.height, canvas.width, mode)
-		player = new Player(mode)
-		brick = new Brick()
-	} else if (name === 'hard') {
-		mode = {
-			name: 'hard',
-			dx: 8,
-			dy: -8,
-			lives: 2,
-		}
-		ball = new Ball(canvas.height, canvas.width, mode)
-		player = new Player(mode)
-		brick = new Brick()
-	} else {
-		mode = {
-			name: 'veryHard',
-			dx: 10,
-			dy: -10,
-			lives: 2,
-		}
-		ball = new Ball(canvas.height, canvas.width, mode)
-		player = new Player(mode)
-		brick = new Brick()
-	}
-}
 
 const canvas = new Canvas()
 let ball = new Ball(canvas.height, canvas.width, mode)
