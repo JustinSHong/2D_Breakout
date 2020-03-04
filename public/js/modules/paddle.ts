@@ -1,6 +1,12 @@
 import { ICanvas } from './canvas'
 
-class Paddle {
+export interface IPaddle {
+	canvas: ICanvas
+	drawPaddle(canvas: ICanvas): void
+	update(x: number): void
+}
+
+class Paddle implements IPaddle {
 	constructor(
 		public canvas: ICanvas,
 		private paddleColor: string,
