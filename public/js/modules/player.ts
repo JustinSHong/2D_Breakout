@@ -1,6 +1,16 @@
 import { ICanvas } from './canvas'
 
-class Player {
+export interface IPlayer {
+	lives: number
+	score: number
+	opponentScore: number
+	opponentLives: number
+	mode: any
+	drawScore(canvas: ICanvas): void
+	drawLives(canvas: ICanvas): void
+}
+
+class Player implements IPlayer {
 	constructor(
 		public lives: number,
 		public score: number,
