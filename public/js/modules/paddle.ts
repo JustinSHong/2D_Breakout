@@ -2,6 +2,8 @@ import { ICanvas } from './canvas'
 
 export interface IPaddle {
 	canvas: ICanvas
+	paddleWidth: number
+	paddleX: number
 	drawPaddle(canvas: ICanvas): void
 	update(x: number): void
 }
@@ -11,8 +13,8 @@ class Paddle implements IPaddle {
 		public canvas: ICanvas,
 		private paddleColor: string,
 		private paddleHeight: number,
-		private paddleWidth: number,
-		private paddleX: number
+		public paddleWidth: number,
+		public paddleX: number
 	) {
 		// paddle properties
 		this.paddleColor = '#0095DD'
