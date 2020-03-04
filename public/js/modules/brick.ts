@@ -5,6 +5,7 @@ export interface IBrick {
 	brickRowCount: number
 	brickWidth: number
 	brickHeight: number
+	bricks: IBrickObject[][]
 	drawBricks: (canvas: ICanvas) => void
 }
 
