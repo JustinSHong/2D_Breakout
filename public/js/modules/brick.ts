@@ -1,6 +1,6 @@
 import { ICanvas } from './canvas'
 
-interface IBrick {
+export interface IBrick {
 	brickColumnCount: number
 	brickRowCount: number
 	brickWidth: number
