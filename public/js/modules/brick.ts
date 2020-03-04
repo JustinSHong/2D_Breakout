@@ -16,17 +16,17 @@ interface IBrickObject {
 }
 
 class Brick implements IBrick {
-	constructor(
-		private brickColor: string,
-		private brickPadding: number,
-		private brickOffsetTop: number,
-		private brickOffsetLeft: number,
-		public brickColumnCount: number,
-		public brickRowCount: number,
-		public brickWidth: number,
-		public brickHeight: number,
-		public bricks: IBrickObject[][]
-	) {
+	private brickColor: string
+	private brickPadding: number
+	private brickOffsetTop: number
+	private brickOffsetLeft: number
+	public brickColumnCount: number
+	public brickRowCount: number
+	public brickWidth: number
+	public brickHeight: number
+	public bricks: IBrickObject[][]
+
+	constructor() {
 		// brick properties
 		this.brickColor = '#0095DD'
 		this.brickRowCount = 10

@@ -9,13 +9,12 @@ export interface IPaddle {
 }
 
 class Paddle implements IPaddle {
-	constructor(
-		public canvas: ICanvas,
-		private paddleColor: string,
-		private paddleHeight: number,
-		public paddleWidth: number,
-		public paddleX: number
-	) {
+	private paddleColor: string
+	private paddleHeight: number
+	public paddleWidth: number
+	public paddleX: number
+
+	constructor(public canvas: ICanvas) {
 		// paddle properties
 		this.paddleColor = '#0095DD'
 		this.paddleHeight = 10

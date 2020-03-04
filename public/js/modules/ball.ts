@@ -13,16 +13,17 @@ export interface IBall {
 }
 
 class Ball implements IBall {
+	private ballColor: string
+	public ballRadius: number
+	public dx: number
+	public dy: number
+	public x: number
+	public y: number
+
 	constructor(
-		private ballColor: string,
-		public ballRadius: number,
-		public dx: number,
-		public dy: number,
 		public height: number,
-		public mode: IGameMode,
 		public width: number,
-		public x: number,
-		public y: number
+		public mode: IGameMode
 	) {
 		this.ballColor = '#0095DD'
 		this.ballRadius = 10

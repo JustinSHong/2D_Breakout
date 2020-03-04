@@ -13,12 +13,12 @@ export interface ICanvas {
 }
 
 class Canvas {
-	constructor(
-		private canvas: HTMLCanvasElement,
-		public ctx: CanvasRenderingContext2D,
-		public height: number,
-		public width: number
-	) {
+	private canvas: HTMLCanvasElement
+	public ctx: CanvasRenderingContext2D
+	public height: number
+	public width: number
+
+	constructor() {
 		this.canvas = document.getElementById('myCanvas') as HTMLCanvasElement
 		this.ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D
 		this.width = this.canvas.width

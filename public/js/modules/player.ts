@@ -11,13 +11,12 @@ export interface IPlayer {
 }
 
 class Player implements IPlayer {
-	constructor(
-		public lives: number,
-		public score: number,
-		public opponentScore: number,
-		public opponentLives: number,
-		public mode: any
-	) {
+	public lives: number
+	public score: number
+	public opponentScore: number
+	public opponentLives: number
+
+	constructor(public mode: any) {
 		this.lives = mode.lives
 		this.score = 0
 		this.opponentScore = 0
