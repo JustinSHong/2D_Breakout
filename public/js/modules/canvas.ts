@@ -19,7 +19,7 @@ class Canvas {
 		public height: number,
 		public width: number
 	) {
-		this.canvas = document.getElementById('myCanvas') as HTMLCanvasElement
+		this.canvas = document.getElementById<HTMLCanvasElement>('myCanvas')
 		this.ctx = this.canvas.getContext('2d')
 		this.width = this.canvas.width
 		this.height = this.canvas.height
