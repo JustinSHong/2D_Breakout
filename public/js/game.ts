@@ -199,12 +199,12 @@ let player = new Player(mode)
 const g = new Game() // instantiate a game
 
 // store your opponent's score
-socket.on('otherPlayerScore', function(data) {
+socket.on('otherPlayerScore', function(data: any) {
 	player.opponentScore = data
 })
 
 // store your opponent's life count
-socket.on('otherPlayerLife', function(data) {
+socket.on('otherPlayerLife', function(data: any) {
 	player.opponentLives = data
 })
 
