@@ -1,10 +1,18 @@
+import { IBall } from './ball'
+import { IBrick } from './brick'
+import { IPaddle } from './paddle'
+import { IPlayer } from './player'
+
 export interface ICanvas {
 	height: number
 	width: number
 	ctx: CanvasRenderingContext2D
+	clear(): void
+	detectBrickCollisions(ball: IBall, brick: IBrick, player: IPlayer): void
+	detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer): void
 }
 
-class Canvas implements ICanvas {
+class Canvas {
 	constructor(
 		private canvas: HTMLCanvasElement,
 		public ctx: CanvasRenderingContext2D,
@@ -22,7 +30,7 @@ class Canvas implements ICanvas {
 	}
 
 	// detect collisions against canvas edges
-	detectEdgeCollisions(ball, paddle, player) {
+	detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer) {
 		// detect collisions with top edge
 		if (ball.y + ball.dy < ball.ballRadius) {
 			ball.dy = -ball.dy
@@ -57,7 +65,7 @@ class Canvas implements ICanvas {
 		}
 	}
 
-	detectBrickCollisions(ball, brick, player) {
+	detectBrickCollisions(ball: IBall, brick: IBrick, player: IPlayer) {
 		// compare position of bricks with the ball for every frame
 		for (let col = 0; col < brick.brickColumnCount; col++) {
 			for (let row = 0; row < brick.brickRowCount; row++) {
