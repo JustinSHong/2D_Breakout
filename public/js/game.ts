@@ -4,7 +4,6 @@ import Canvas, { ICanvas } from './modules/canvas'
 import Paddle from './modules/paddle'
 import Player from './modules/player'
 
-import { IPaddle } from './modules/paddle'
 import { IPlayer } from './modules/player'
 
 // enable live reload
