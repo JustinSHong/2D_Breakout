@@ -13,7 +13,7 @@ export interface ICanvas {
 }
 
 class Canvas {
-	private canvas: HTMLCanvasElement
+	public canvas: HTMLCanvasElement
 	public ctx: CanvasRenderingContext2D
 	public height: number
 	public width: number
