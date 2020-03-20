@@ -3,7 +3,6 @@ import Brick from './modules/brick'
 import Canvas, { ICanvas } from './modules/canvas'
 import Paddle from './modules/paddle'
 import Player from './modules/player'
-import socket from './modules/client'
 
 import { IPaddle } from './modules/paddle'
 import { IPlayer } from './modules/player'
@@ -55,9 +54,6 @@ class Game {
 		player.drawLives(canvas)
 		canvas.detectBrickCollisions(ball, brick, player)
 		canvas.detectEdgeCollisions(ball, paddle, player)
-
-		socket.emit('playerScored', player) // send player data to server
-		socket.emit('playerLife', player)
 
 		// move paddle right until the right edge of the canvas
 		if (
@@ -197,15 +193,5 @@ let brick = new Brick()
 const paddle = new Paddle(canvas)
 let player = new Player(mode)
 const g = new Game() // instantiate a game
-
-// store your opponent's score
-socket.on('otherPlayerScore', function(data: any) {
-	player.opponentScore = data
-})
-
-// store your opponent's life count
-socket.on('otherPlayerLife', function(data: any) {
-	player.opponentLives = data
-})
 
 g.init() // start the game loop
