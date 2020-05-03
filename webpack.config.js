@@ -1,6 +1,6 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	entry: './public/js/game.ts',
@@ -26,8 +26,10 @@ module.exports = {
 	},
 	plugins: [
 		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
-		new htmlWebpackPlugin({
+		new HtmlWebpackPlugin({
 			template: './index.html',
+			title: '2D Breakout',
+			scriptLoading: 'defer',
 		}),
 	],
 	resolve: {
