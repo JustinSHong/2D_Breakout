@@ -6,14 +6,6 @@ import Player from './modules/player'
 
 import { IPlayer } from './modules/player'
 
-// enable live reload
-document.write(
-	'<script src="https://' +
-		(location.host || 'localhost').split(':')[0] +
-		':35729/livereload.js?snipver=1"></' +
-		'script>'
-)
-
 class Game {
 	public rightPressed: boolean
 	public leftPressed: boolean
