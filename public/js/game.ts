@@ -1,3 +1,4 @@
+import '../css/index.css'
 import Ball from './modules/ball'
 import Brick from './modules/brick'
 import Canvas, { ICanvas } from './modules/canvas'
