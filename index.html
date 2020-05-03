@@ -2,8 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8" />
-		<title>2D Pong with Vanilla JS</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= htmlWebpackPlugin.options.title %></title>
 		<link
 			rel="stylesheet"
 			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -111,6 +111,15 @@
 							>
 							to visit the Github repo
 						</p>
+						<p>
+							Controls:
+						</p>
+						<ul class="list-unstyled">
+							<li>
+								Hit the blocks with the ball using the paddle
+							</li>
+							<li>Don't let the ball fall past the paddle</li>
+						</ul>
 					</div>
 				</div>
 			</div>
@@ -131,7 +140,43 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						<p>Modal body text goes here.</p>
+						<p>Game Difficulty</p>
+						<div class="custom-control custom-switch">
+							<input
+								type="checkbox"
+								class="custom-control-input"
+								id="customSwitch1"
+							/>
+							<label
+								class="custom-control-label"
+								for="customSwitch1"
+								>Easy</label
+							>
+						</div>
+						<div class="custom-control custom-switch">
+							<input
+								type="checkbox"
+								class="custom-control-input"
+								id="customSwitch2"
+							/>
+							<label
+								class="custom-control-label"
+								for="customSwitch2"
+								>Medium</label
+							>
+						</div>
+						<div class="custom-control custom-switch">
+							<input
+								type="checkbox"
+								class="custom-control-input"
+								id="customSwitch3"
+							/>
+							<label
+								class="custom-control-label"
+								for="customSwitch3"
+								>Hard</label
+							>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button
