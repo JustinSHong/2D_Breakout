@@ -23,10 +23,7 @@ class Game {
 		// listen for mouse movement
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
 		// listen for changes in game mode
-		easyMode!.addEventListener('click', this.selectGameMode, false)
-		mediumMode!.addEventListener('click', this.selectGameMode, false)
-		hardMode!.addEventListener('click', this.selectGameMode, false)
-		veryHardMode!.addEventListener('click', this.selectGameMode, false)
+		gameMode?.addEventListener('change', this.selectGameMode, false)
 	}
 
 	// initialize the game objects and the game loop
@@ -107,9 +104,9 @@ class Game {
 		}
 	}
 
-	selectGameMode(e: MouseEvent) {
-		const { name } = <HTMLButtonElement>e.target
-		if (name === 'easy') {
+	selectGameMode(e: Event) {
+		const { value } = <HTMLSelectElement>e.target
+		if (value === 'Easy') {
 			mode = {
 				name: 'easy',
 				dx: 4,
@@ -119,7 +116,7 @@ class Game {
 			ball = new Ball(canvas.height, canvas.width, mode)
 			player = new Player(mode)
 			brick = new Brick()
-		} else if (name === 'medium') {
+		} else if (value === 'Medium') {
 			mode = {
 				name: 'medium',
 				dx: 6,
@@ -129,7 +126,7 @@ class Game {
 			ball = new Ball(canvas.height, canvas.width, mode)
 			player = new Player(mode)
 			brick = new Brick()
-		} else if (name === 'hard') {
+		} else if (value === 'Hard') {
 			mode = {
 				name: 'hard',
 				dx: 8,
@@ -153,9 +150,6 @@ class Game {
 	}
 }
 
-// pause flag
-let pause = true
-
 // < ===== STARTING THE GAME ===== >
 export interface IGameMode {
 	name: string
@@ -171,13 +165,10 @@ let mode: IGameMode = {
 	lives: 5,
 }
 
-// game mode buttons
-const easyMode = document.querySelector<HTMLButtonElement>('.easy-mode-btn')
-const mediumMode = document.querySelector<HTMLButtonElement>('.medium-mode-btn')
-const hardMode = document.querySelector<HTMLButtonElement>('.hard-mode-btn')
-const veryHardMode = document.querySelector<HTMLButtonElement>(
-	'.veryHard-mode-btn'
-)
+// pause flag
+let pause = true
+
+const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
 
 const canvas = new Canvas()
 let ball = new Ball(canvas.height, canvas.width, mode)
