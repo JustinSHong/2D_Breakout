@@ -1,22 +1,27 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	entry: './public/js/game.ts',
-	output: {
-		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist'),
+	devServer: {
+		contentBase: './dist',
 	},
+	mode: 'production',
 	module: {
 		rules: [
 			{
 				test: /\.tsx?$/,
 				use: 'ts-loader',
-				exclude: /node_modules/,
 			},
 		],
 	},
+	output: {
+		filename: 'main.js',
+		path: path.resolve(__dirname, 'dist'),
+	},
 	plugins: [
+		new CleanWebpackPlugin({ cleanStaleWebpackAssets: false }),
 		new htmlWebpackPlugin({
 			template: './index.html',
 		}),
@@ -24,5 +29,4 @@ module.exports = {
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
 	},
-	mode: 'production',
 }
