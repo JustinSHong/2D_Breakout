@@ -17,6 +17,7 @@ app.use(express.static(__dirname + '/dist'))
 
 // Root - server serves index.html
 app.get('/', (req, res) => {
+	console.log('SERVING STATIC FILE')
 	res.sendFile(__dirname + '/index.html')
 })
 
