@@ -17,7 +17,7 @@ app.use(express.static(__dirname + '/dist'))
 
 // Root - server serves index.html
 app.get('/', (req, res) => {
-	res.sendFile(__dirname + '/index.html')
+	res.sendFile(__dirname + 'dist/index.html')
 })
 
 // start server at port 5000
