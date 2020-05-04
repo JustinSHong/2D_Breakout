@@ -19,3 +19,8 @@ app.use(express.static(__dirname + '/dist'))
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/index.html')
 })
+
+// start server at port 5000
+server.listen(PORT, () => {
+	console.log(`\n==API Running on port ${PORT} ==\n`)
+})
