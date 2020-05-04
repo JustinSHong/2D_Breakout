@@ -4,6 +4,7 @@ const app = express()
 const server = require('http').Server(app)
 const helmet = require('helmet')
 const cors = require('cors')
+const path = require('path')
 
 const PORT = process.env.PORT || 8081
 
@@ -13,7 +14,7 @@ app.use(express.json())
 app.use(cors())
 
 // render the static files
-app.use(express.static(__dirname + '/dist'))
+app.use(express.static(path.join(__dirname, 'dist')))
 
 // Root - server serves index.html
 app.get('/', (req, res) => {
