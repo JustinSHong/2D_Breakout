@@ -24,6 +24,11 @@ class Game {
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
 		// listen for changes in game mode
 		gameMode?.addEventListener('change', this.selectGameMode, false)
+		// list for tool bar events
+		play?.addEventListener('click', this.mouseClickHandler, false)
+		pauseBtn?.addEventListener('click', this.mouseClickHandler, false)
+		moveLeft?.addEventListener('click', this.mouseClickHandler, false)
+		moveRight?.addEventListener('click', this.mouseClickHandler, false)
 	}
 
 	// initialize the game objects and the game loop
@@ -93,6 +98,24 @@ class Game {
 		} else if (e.keyCode === 37) {
 			// right cursor key released
 			g.leftPressed = false
+		}
+	}
+
+	mouseClickHandler(e: Event) {
+		const { id } = <HTMLButtonElement>e?.target
+		console.log('MOUSE CLICK: ', id)
+
+		if (id === 'playBtn') {
+			pause = false
+			if (pause === false) {
+				g.init()
+			}
+		} else if (id === 'pauseBtn') {
+			pause = true
+		} else if (id === 'moveLeftBtn') {
+			paddle.update(-14)
+		} else if (id === 'moveRightBtn') {
+			paddle.update(14)
 		}
 	}
 
@@ -169,6 +192,12 @@ let mode: IGameMode = {
 let pause = true
 
 const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
+
+// tool bar controls
+const play = document.querySelector<HTMLButtonElement>('#playBtn')
+const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
+const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
+const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
 
 const canvas = new Canvas()
 let ball = new Ball(canvas.height, canvas.width, mode)
