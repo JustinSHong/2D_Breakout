@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + 'dist/index.html')
 })
 
-// start server at port 5000
+// start server at port 8081
 server.listen(PORT, () => {
 	console.log(`\n==API Running on port ${PORT} ==\n`)
 })
