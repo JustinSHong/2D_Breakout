@@ -1,12 +1,4 @@
-import Canvas from '../public/js/modules/canvas'
 import Paddle from '../public/js/modules/paddle'
-
-// jest.mock('../public/js/modules/canvas', () => {
-//     ctx: jest.fn(),
-//     width: 900,
-//     height: 700
-
-// })
 
 describe('paddle', () => {
 	test('paddle should have the right properties', () => {
