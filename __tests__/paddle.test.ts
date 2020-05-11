@@ -4,8 +4,8 @@ import Paddle from '../public/js/modules/paddle'
 jest.mock('../public/js/modules/canvas')
 
 describe('paddle', () => {
+	const canvas = new MockCanvas()
 	test('paddle should have the right properties', () => {
-		const canvas = new MockCanvas()
 		const paddle = new Paddle(canvas)
 
 		expect(paddle).toHaveProperty('paddleColor')
@@ -15,12 +15,7 @@ describe('paddle', () => {
 	})
 
 	test('update() should update the paddleX value ', () => {
-		const paddle = new Paddle({
-			canvas: {},
-			ctx: jest.fn(),
-			width: 900,
-			height: 700,
-		})
+		const paddle = new Paddle(canvas)
 		const oldPaddleX = paddle.paddleX
 
 		paddle.update(10)
