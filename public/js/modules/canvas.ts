@@ -12,7 +12,7 @@ export interface ICanvas {
 	detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer): void
 }
 
-class Canvas {
+class Canvas implements ICanvas {
 	public canvas: HTMLCanvasElement
 	public ctx: CanvasRenderingContext2D
 	public height: number
