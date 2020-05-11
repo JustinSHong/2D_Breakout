@@ -13,7 +13,7 @@ export interface IBall {
 }
 
 class Ball implements IBall {
-	private ballColor: string
+	public ballColor: string
 	public ballRadius: number
 	public dx: number
 	public dy: number
