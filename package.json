@@ -8,6 +8,7 @@
 		"start": "node server.js",
 		"dev": "webpack-dev-server --open",
 		"test": "jest",
+		"test-watch": "jest --watch",
 		"watch": "webpack --watch"
 	},
 	"repository": {
