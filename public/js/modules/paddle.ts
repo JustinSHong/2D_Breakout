@@ -9,8 +9,8 @@ export interface IPaddle {
 }
 
 class Paddle implements IPaddle {
-	private paddleColor: string
-	private paddleHeight: number
+	public paddleColor: string
+	public paddleHeight: number
 	public paddleWidth: number
 	public paddleX: number
 
