@@ -1,3 +1,7 @@
 language: node_js
 node_js:
-    - node
+  - node
+deploy:
+  provider: heroku
+  app: breakout-2d
+  skip_cleanup: true
