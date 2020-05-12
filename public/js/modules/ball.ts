@@ -45,11 +45,13 @@ class Ball implements IBall {
 
 	// draw ball to the canvas
 	public drawBall(canvas: ICanvas): void {
-		canvas.ctx.beginPath()
-		canvas.ctx.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2)
-		canvas.ctx.fillStyle = this.ballColor
-		canvas.ctx.fill()
-		canvas.ctx.closePath()
+		const ctx = canvas.getCtx()
+
+		ctx.beginPath()
+		ctx.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2)
+		ctx.fillStyle = this.ballColor
+		ctx.fill()
+		ctx.closePath()
 	}
 
 	// update ball's movement
