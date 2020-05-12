@@ -1,11 +1,11 @@
 import '../css/index.css'
 
 import Canvas, { ICanvas } from './modules/canvas'
+import Paddle, { IPaddle } from './modules/paddle'
 
 import Ball from './modules/ball'
 import Brick from './modules/brick'
 import { IPlayer } from './modules/player'
-import Paddle from './modules/paddle'
 import Player from './modules/player'
 
 class Game {
@@ -13,8 +13,9 @@ class Game {
 	public leftPressed: boolean
 	public players: IPlayer[]
 
-	constructor(public canvas: ICanvas) {
+	constructor(public canvas: ICanvas, public paddle: IPaddle) {
 		this.canvas = canvas
+		this.paddle = paddle
 		this.rightPressed = false
 		this.leftPressed = false
 		this.players = [] // holds all players in the game
@@ -35,11 +36,13 @@ class Game {
 
 	// initialize the game objects and the game loop
 	init() {
-		requestAnimationFrame(() => this.draw(this.canvas))
+		requestAnimationFrame(() => this.draw(this.canvas, this.paddle))
 	}
 
 	// main draw function of the game - initiates game loop
-	draw(canvas: ICanvas) {
+	draw(canvas: ICanvas, paddle: IPaddle) {
+		const paddleX = paddle.getPaddleX()
+		const paddleWidth = paddle.getPaddleWidth()
 		// clear previous ball before drawing a new one
 		canvas.clear()
 		canvas.getCtx().beginPath()
@@ -52,12 +55,9 @@ class Game {
 		canvas.detectEdgeCollisions(ball, paddle, player)
 
 		// move paddle right until the right edge of the canvas
-		if (
-			this.rightPressed &&
-			paddle.paddleX < canvas.getWidth() - paddle.paddleWidth
-		) {
+		if (this.rightPressed && paddleX < canvas.getWidth() - paddleWidth) {
 			paddle.update(7)
-		} else if (this.leftPressed && paddle.paddleX > 0) {
+		} else if (this.leftPressed && paddleX > 0) {
 			paddle.update(-7)
 		}
 		// update ball's position
@@ -66,7 +66,7 @@ class Game {
 		if (pause === false) {
 			// animation loops
 			requestAnimationFrame(() => {
-				this.draw(canvas)
+				this.draw(canvas, paddle)
 			})
 		}
 	}
@@ -105,6 +105,7 @@ class Game {
 
 	mouseClickHandler(e: Event) {
 		const { id } = <HTMLButtonElement>e?.target
+		const paddle = this.paddle
 		console.log('MOUSE CLICK: ', id)
 
 		if (id === 'playBtn') {
@@ -125,10 +126,12 @@ class Game {
 	mouseMoveHandler(e: MouseEvent) {
 		const canvas = this.canvas.getCanvas()
 		const canvasWidth = this.canvas.getWidth()
+		const paddleWidth = this.paddle.getPaddleWidth()
 
 		let relativeX = e.clientX - canvas.offsetLeft
 		if (relativeX > 0 && relativeX < canvasWidth) {
-			paddle.paddleX = relativeX - paddle.paddleWidth / 2
+			const paddleX = relativeX - paddleWidth / 2
+			this.paddle.setPaddleX(paddleX)
 		}
 	}
 
@@ -215,6 +218,6 @@ let ball = new Ball(canvasHeight, canvasWidth, mode)
 let brick = new Brick()
 const paddle = new Paddle(canvas)
 let player = new Player(mode)
-const g = new Game(canvas) // instantiate a game
+const g = new Game(canvas, paddle) // instantiate a game
 
 g.init() // start the game loop

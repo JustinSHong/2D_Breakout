@@ -2,44 +2,71 @@ import { ICanvas } from './canvas'
 
 export interface IPaddle {
 	canvas: ICanvas
-	paddleWidth: number
-	paddleX: number
 	drawPaddle(canvas: ICanvas): void
 	update(x: number): void
+	getPaddleColor(): string
+	getPaddleHeight(): number
+	getPaddleWidth(): number
+	getPaddleX(): number
+	setPaddleX(x: number): void
 }
 
 class Paddle implements IPaddle {
-	public paddleColor: string
-	public paddleHeight: number
-	public paddleWidth: number
-	public paddleX: number
+	private paddleColor: string
+	private paddleHeight: number
+	private paddleWidth: number
+	private paddleX: number
 
 	constructor(public canvas: ICanvas) {
+		this.canvas = canvas
 		// paddle properties
 		this.paddleColor = '#0095DD'
 		this.paddleHeight = 10
 		this.paddleWidth = 75
 		// starting position
-		this.paddleX = (canvas.width - this.paddleWidth) / 2
+		this.paddleX = (this.canvas.getWidth() - this.paddleWidth) / 2
 	}
 
 	// draw paddle to the canvas
 	public drawPaddle(canvas: ICanvas) {
-		canvas.ctx.beginPath()
-		canvas.ctx.rect(
+		const canvasHeight = canvas.getHeight()
+		const ctx = this.canvas.getCtx()
+
+		ctx.beginPath()
+		ctx.rect(
 			this.paddleX,
-			canvas.height - this.paddleHeight,
+			canvasHeight - this.paddleHeight,
 			this.paddleWidth,
 			this.paddleHeight
 		)
-		canvas.ctx.fillStyle = this.paddleColor
-		canvas.ctx.fill()
-		canvas.ctx.closePath()
+		ctx.fillStyle = this.paddleColor
+		ctx.fill()
+		ctx.closePath()
 	}
 
 	// update paddle position
 	public update(x: number) {
 		this.paddleX += x
+	}
+
+	public getPaddleColor(): string {
+		return this.paddleColor
+	}
+
+	public getPaddleHeight(): number {
+		return this.paddleHeight
+	}
+
+	public getPaddleWidth(): number {
+		return this.paddleWidth
+	}
+
+	public getPaddleX(): number {
+		return this.paddleX
+	}
+
+	public setPaddleX(x: number): void {
+		this.paddleX = x
 	}
 }
 
