@@ -1,18 +1,20 @@
 import '../css/index.css'
+
+import Canvas, { ICanvas } from './modules/canvas'
+
 import Ball from './modules/ball'
 import Brick from './modules/brick'
-import Canvas, { ICanvas } from './modules/canvas'
+import { IPlayer } from './modules/player'
 import Paddle from './modules/paddle'
 import Player from './modules/player'
-
-import { IPlayer } from './modules/player'
 
 class Game {
 	public rightPressed: boolean
 	public leftPressed: boolean
 	public players: IPlayer[]
 
-	constructor() {
+	constructor(public canvas: ICanvas) {
+		this.canvas = canvas
 		this.rightPressed = false
 		this.leftPressed = false
 		this.players = [] // holds all players in the game
@@ -33,14 +35,14 @@ class Game {
 
 	// initialize the game objects and the game loop
 	init() {
-		requestAnimationFrame(() => this.draw(canvas))
+		requestAnimationFrame(() => this.draw(this.canvas))
 	}
 
 	// main draw function of the game - initiates game loop
 	draw(canvas: ICanvas) {
 		// clear previous ball before drawing a new one
 		canvas.clear()
-		canvas.ctx.beginPath()
+		canvas.getCtx().beginPath()
 		paddle.drawPaddle(canvas)
 		brick.drawBricks(canvas)
 		ball.drawBall(canvas)
@@ -52,7 +54,7 @@ class Game {
 		// move paddle right until the right edge of the canvas
 		if (
 			this.rightPressed &&
-			paddle.paddleX < canvas.width - paddle.paddleWidth
+			paddle.paddleX < canvas.getWidth() - paddle.paddleWidth
 		) {
 			paddle.update(7)
 		} else if (this.leftPressed && paddle.paddleX > 0) {
@@ -121,14 +123,20 @@ class Game {
 
 	// move paddle relative to the mouse position within canvas
 	mouseMoveHandler(e: MouseEvent) {
-		let relativeX = e.clientX - canvas.canvas.offsetLeft
-		if (relativeX > 0 && relativeX < canvas.width) {
+		const canvas = this.canvas.getCanvas()
+		const canvasWidth = this.canvas.getWidth()
+
+		let relativeX = e.clientX - canvas.offsetLeft
+		if (relativeX > 0 && relativeX < canvasWidth) {
 			paddle.paddleX = relativeX - paddle.paddleWidth / 2
 		}
 	}
 
 	selectGameMode(e: Event) {
 		const { value } = <HTMLSelectElement>e.target
+		const canvasWidth = this.canvas.getHeight()
+		const canvasHeight = this.canvas.getWidth()
+
 		if (value === 'Easy') {
 			mode = {
 				name: 'easy',
@@ -136,7 +144,7 @@ class Game {
 				dy: -4,
 				lives: 3,
 			}
-			ball = new Ball(canvas.height, canvas.width, mode)
+			ball = new Ball(canvasHeight, canvasWidth, mode)
 			player = new Player(mode)
 			brick = new Brick()
 		} else if (value === 'Medium') {
@@ -146,7 +154,7 @@ class Game {
 				dy: -6,
 				lives: 3,
 			}
-			ball = new Ball(canvas.height, canvas.width, mode)
+			ball = new Ball(canvasHeight, canvasWidth, mode)
 			player = new Player(mode)
 			brick = new Brick()
 		} else if (value === 'Hard') {
@@ -156,7 +164,7 @@ class Game {
 				dy: -8,
 				lives: 2,
 			}
-			ball = new Ball(canvas.height, canvas.width, mode)
+			ball = new Ball(canvasHeight, canvasWidth, mode)
 			player = new Player(mode)
 			brick = new Brick()
 		} else {
@@ -166,7 +174,7 @@ class Game {
 				dy: -10,
 				lives: 2,
 			}
-			ball = new Ball(canvas.height, canvas.width, mode)
+			ball = new Ball(canvasHeight, canvasWidth, mode)
 			player = new Player(mode)
 			brick = new Brick()
 		}
@@ -200,10 +208,13 @@ const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
 const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
 
 const canvas = new Canvas()
-let ball = new Ball(canvas.height, canvas.width, mode)
+const canvasHeight = canvas.getHeight()
+const canvasWidth = canvas.getWidth()
+
+let ball = new Ball(canvasHeight, canvasWidth, mode)
 let brick = new Brick()
 const paddle = new Paddle(canvas)
 let player = new Player(mode)
-const g = new Game() // instantiate a game
+const g = new Game(canvas) // instantiate a game
 
 g.init() // start the game loop

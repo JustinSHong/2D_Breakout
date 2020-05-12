@@ -4,19 +4,20 @@ import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 
 export interface ICanvas {
-	height: number
-	width: number
-	ctx: CanvasRenderingContext2D
 	clear(): void
 	detectBrickCollisions(ball: IBall, brick: IBrick, player: IPlayer): void
 	detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer): void
+	getCanvas(): HTMLCanvasElement
+	getCtx(): CanvasRenderingContext2D
+	getHeight(): number
+	getWidth(): number
 }
 
 class Canvas implements ICanvas {
-	public canvas: HTMLCanvasElement
-	public ctx: CanvasRenderingContext2D
-	public height: number
-	public width: number
+	private canvas: HTMLCanvasElement
+	private ctx: CanvasRenderingContext2D
+	readonly height: number
+	readonly width: number
 
 	constructor() {
 		this.canvas = document.getElementById('myCanvas') as HTMLCanvasElement
@@ -25,12 +26,16 @@ class Canvas implements ICanvas {
 		this.height = this.canvas.height
 	}
 
-	clear() {
+	public clear(): void {
 		this.ctx.clearRect(0, 0, this.width, this.height)
 	}
 
 	// detect collisions against canvas edges
-	detectEdgeCollisions(ball: IBall, paddle: IPaddle, player: IPlayer) {
+	public detectEdgeCollisions(
+		ball: IBall,
+		paddle: IPaddle,
+		player: IPlayer
+	): void {
 		// detect collisions with top edge
 		if (ball.y + ball.dy < ball.ballRadius) {
 			ball.dy = -ball.dy
@@ -65,7 +70,11 @@ class Canvas implements ICanvas {
 		}
 	}
 
-	detectBrickCollisions(ball: IBall, brick: IBrick, player: IPlayer) {
+	public detectBrickCollisions(
+		ball: IBall,
+		brick: IBrick,
+		player: IPlayer
+	): void {
 		// compare position of bricks with the ball for every frame
 		for (let col = 0; col < brick.brickColumnCount; col++) {
 			for (let row = 0; row < brick.brickRowCount; row++) {
@@ -96,6 +105,22 @@ class Canvas implements ICanvas {
 				}
 			}
 		}
+	}
+
+	public getCanvas(): HTMLCanvasElement {
+		return this.canvas
+	}
+
+	public getCtx(): CanvasRenderingContext2D {
+		return this.ctx
+	}
+
+	public getHeight(): number {
+		return this.height
+	}
+
+	public getWidth(): number {
+		return this.width
 	}
 }
 

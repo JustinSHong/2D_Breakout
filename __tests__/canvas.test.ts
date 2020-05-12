@@ -10,5 +10,19 @@ describe('canvas', () => {
 		expect(canvas).toHaveProperty('ctx')
 		expect(canvas).toHaveProperty('width')
 		expect(canvas).toHaveProperty('height')
+		expect(canvas).toHaveProperty('getCanvas')
+		expect(canvas).toHaveProperty('getCtx')
+		expect(canvas).toHaveProperty('getHeight')
+		expect(canvas).toHaveProperty('getWidth')
+	})
+
+	test('getters', () => {
+		const canvas = new MockCanvas()
+		const canvas1 = new MockCanvas()
+
+		expect(canvas.getCanvas()).toEqual(canvas1.getCanvas())
+		expect(canvas.getCtx()).toEqual(canvas1.getCtx())
+		expect(canvas.getHeight()).toBe(700)
+		expect(canvas.getWidth()).toBe(900)
 	})
 })

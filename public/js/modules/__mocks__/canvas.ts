@@ -8,6 +8,18 @@ const MockCanvas = jest.fn().mockImplementation(() => {
 		ctx: canvas.getContext('2d'),
 		width: canvas.width,
 		height: canvas.height,
+		getCanvas: function() {
+			return this.canvas
+		},
+		getCtx: function() {
+			return this.ctx
+		},
+		getHeight: function() {
+			return this.height
+		},
+		getWidth: function() {
+			return this.width
+		},
 	}
 })
 
