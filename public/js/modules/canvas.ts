@@ -75,28 +75,31 @@ class Canvas implements ICanvas {
 		brick: IBrick,
 		player: IPlayer
 	): void {
+		const brickColumnCount = brick.getBrickColumnCount()
+		const brickRowCount = brick.getBrickRowCount()
+		const bricks = brick.getBricks()
+		const brickHeight = brick.getBrickHeight()
+		const brickWidth = brick.getBrickWidth()
+
 		// compare position of bricks with the ball for every frame
-		for (let col = 0; col < brick.brickColumnCount; col++) {
-			for (let row = 0; row < brick.brickRowCount; row++) {
-				let b = brick.bricks[col][row]
+		for (let col = 0; col < brickColumnCount; col++) {
+			for (let row = 0; row < brickRowCount; row++) {
+				let b = bricks[col][row]
 
 				if (b.status === 1) {
 					// a collision with a brick occurs when the center of the ball is inside a brick's coordinates
 					// if a collision occurs, change the movement of the ball, a brick's status, score
 					if (
 						ball.x > b.x && // x position of the ball is greater than the x position of the brick
-						ball.x < b.x + brick.brickWidth && // x position of the ball is less than the x position of the brick plus its width
+						ball.x < b.x + brickWidth && // x position of the ball is less than the x position of the brick plus its width
 						ball.y > b.y && // y position of the ball is greater than the y position of the brick
-						ball.y < b.y + brick.brickHeight // y position of the ball is less than the y position of the brick plus its height
+						ball.y < b.y + brickHeight // y position of the ball is less than the y position of the brick plus its height
 					) {
 						ball.dy = -ball.dy
 						ball.changeColor()
 						b.status = 0
 						player.score++
-						if (
-							player.score ==
-							brick.brickRowCount * brick.brickColumnCount
-						) {
+						if (player.score == brickRowCount * brickColumnCount) {
 							// display winning msg when score is equal to the number of bricks
 							alert('You Win! Congrats!')
 							document.location.reload()

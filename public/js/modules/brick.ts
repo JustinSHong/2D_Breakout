@@ -1,12 +1,12 @@
 import { ICanvas } from './canvas'
 
 export interface IBrick {
-	brickColumnCount: number
-	brickRowCount: number
-	brickWidth: number
-	brickHeight: number
-	bricks: IBrickObject[][]
-	drawBricks: (canvas: ICanvas) => void
+	drawBricks(canvas: ICanvas): void
+	getBrickColumnCount(): number
+	getBrickRowCount(): number
+	getBrickWidth(): number
+	getBrickHeight(): number
+	getBricks(): IBrickObject[][]
 }
 
 interface IBrickObject {
@@ -20,11 +20,11 @@ class Brick implements IBrick {
 	private brickPadding: number
 	private brickOffsetTop: number
 	private brickOffsetLeft: number
-	public brickColumnCount: number
-	public brickRowCount: number
-	public brickWidth: number
-	public brickHeight: number
-	public bricks: IBrickObject[][]
+	private brickColumnCount: number
+	private brickRowCount: number
+	private brickWidth: number
+	private brickHeight: number
+	private bricks: IBrickObject[][]
 
 	constructor() {
 		// brick properties
@@ -49,6 +49,8 @@ class Brick implements IBrick {
 
 	// draw brick grid to the canvas
 	public drawBricks(canvas: ICanvas) {
+		const ctx = canvas.getCtx()
+
 		for (let col = 0; col < this.brickColumnCount; col++) {
 			for (let row = 0; row < this.brickRowCount; row++) {
 				let brick = this.bricks[col][row]
@@ -62,19 +64,39 @@ class Brick implements IBrick {
 						this.brickOffsetTop // offset Y position from previous brick
 					brick.x = brickX
 					brick.y = brickY
-					canvas.ctx.beginPath()
-					canvas.ctx.rect(
+					ctx.beginPath()
+					ctx.rect(
 						brick.x,
 						brick.y,
 						this.brickWidth,
 						this.brickHeight
 					)
-					canvas.ctx.fillStyle = this.brickColor
-					canvas.ctx.fill()
-					canvas.ctx.closePath()
+					ctx.fillStyle = this.brickColor
+					ctx.fill()
+					ctx.closePath()
 				}
 			}
 		}
+	}
+
+	getBrickColumnCount(): number {
+		return this.brickColumnCount
+	}
+
+	getBrickRowCount(): number {
+		return this.brickRowCount
+	}
+
+	getBrickWidth(): number {
+		return this.brickWidth
+	}
+
+	getBrickHeight(): number {
+		return this.brickHeight
+	}
+
+	getBricks(): IBrickObject[][] {
+		return this.bricks
 	}
 }
 
