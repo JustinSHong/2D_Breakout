@@ -36,15 +36,15 @@ class Canvas implements ICanvas {
 		paddle: IPaddle,
 		player: IPlayer
 	): void {
+		const paddleX = paddle.getPaddleX()
+		const paddleWidth = paddle.getPaddleWidth()
+
 		// detect collisions with top edge
 		if (ball.y + ball.dy < ball.ballRadius) {
 			ball.dy = -ball.dy
 			ball.changeColor()
 		} else if (ball.y + ball.dy > this.height - ball.ballRadius) {
-			if (
-				ball.x > paddle.paddleX &&
-				ball.x < paddle.paddleX + paddle.paddleWidth
-			) {
+			if (ball.x > paddleX && ball.x < paddleX + paddleWidth) {
 				// ball collides with the paddle
 				ball.dy = -ball.dy
 				ball.changeColor()
@@ -56,7 +56,7 @@ class Canvas implements ICanvas {
 				} else {
 					ball.x = this.width / 2
 					ball.y = this.height - 30
-					paddle.paddleX = (this.width - paddle.paddleWidth) / 2
+					paddle.setPaddleX((this.width - paddleWidth) / 2)
 				}
 			}
 		}
