@@ -38,6 +38,7 @@ class Canvas implements ICanvas {
 	): void {
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
+		const playerLives = player.getLives()
 
 		// detect collisions with top edge
 		if (ball.y + ball.dy < ball.ballRadius) {
@@ -49,8 +50,9 @@ class Canvas implements ICanvas {
 				ball.dy = -ball.dy
 				ball.changeColor()
 			} else {
-				player.lives--
-				if (player.lives === 0) {
+				// player.lives--
+				player.setLives(playerLives - 1)
+				if (playerLives === 0) {
 					alert('Game Over')
 					document.location.reload()
 				} else {
@@ -80,6 +82,7 @@ class Canvas implements ICanvas {
 		const bricks = brick.getBricks()
 		const brickHeight = brick.getBrickHeight()
 		const brickWidth = brick.getBrickWidth()
+		const playerScore = player.getScore()
 
 		// compare position of bricks with the ball for every frame
 		for (let col = 0; col < brickColumnCount; col++) {
@@ -98,8 +101,9 @@ class Canvas implements ICanvas {
 						ball.dy = -ball.dy
 						ball.changeColor()
 						b.status = 0
-						player.score++
-						if (player.score == brickRowCount * brickColumnCount) {
+						// player.score++
+						player.setScore(playerScore + 1)
+						if (playerScore == brickRowCount * brickColumnCount) {
 							// display winning msg when score is equal to the number of bricks
 							alert('You Win! Congrats!')
 							document.location.reload()
