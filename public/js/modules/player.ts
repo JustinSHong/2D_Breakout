@@ -19,22 +19,24 @@ class Player implements IPlayer {
 	}
 
 	// draw current score to the canvas
-	public drawScore(canvas: ICanvas) {
+	public drawScore(canvas: ICanvas): number {
 		const ctx = canvas.getCtx()
 
 		ctx.font = '24px Arial'
 		ctx.fillStyle = '#0095DD'
 		ctx.fillText('Score: ' + this.score, 8, 20)
+		return this.score
 	}
 
 	// draw current number of lives to the canvas
-	public drawLives(canvas: ICanvas) {
+	public drawLives(canvas: ICanvas): number {
 		const ctx = canvas.getCtx()
 		const canvasWidth = canvas.getWidth()
 
 		ctx.font = '24px Arial'
 		ctx.fillStyle = '#0095DD'
 		ctx.fillText('Lives: ' + this.lives, canvasWidth - 90, 20)
+		return this.lives
 	}
 
 	public getLives(): number {
@@ -43,10 +45,6 @@ class Player implements IPlayer {
 
 	public getScore(): number {
 		return this.score
-	}
-
-	public setLives(lives: number): void {
-		this.lives = lives
 	}
 
 	public setScore(score: number): void {
