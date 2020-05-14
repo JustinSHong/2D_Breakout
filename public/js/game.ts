@@ -44,7 +44,7 @@ export class Game {
 	}
 
 	// initialize the game objects and the game loop
-	init() {
+	public init() {
 		requestAnimationFrame(() =>
 			this.draw(
 				this.ball,
@@ -57,7 +57,7 @@ export class Game {
 	}
 
 	// main draw function of the game - initiates game loop
-	draw(
+	public draw(
 		ball: IBall,
 		brick: IBrick,
 		canvas: ICanvas,
@@ -101,7 +101,7 @@ export class Game {
 	}
 
 	// check if a key was pressed
-	keyDownHandler(e: KeyboardEvent) {
+	public keyDownHandler = (e: KeyboardEvent) => {
 		if (e.keyCode === 39) {
 			// right cursor key pressed
 			this.rightPressed = true
@@ -111,9 +111,6 @@ export class Game {
 		} else if (e.keyCode === 80) {
 			// pause key pressed
 			this.pauseGame()
-			if (this.pause === false) {
-				this.init()
-			}
 		} else if (e.keyCode === 81) {
 			alert('You quit. Game Over!')
 			document.location.reload()
@@ -121,7 +118,7 @@ export class Game {
 	}
 
 	// check if a key was released
-	keyUpHandler(e: KeyboardEvent) {
+	public keyUpHandler = (e: KeyboardEvent) => {
 		// reset key state to default
 		if (e.keyCode === 39) {
 			// right cursor key released
@@ -132,15 +129,13 @@ export class Game {
 		}
 	}
 
-	mouseClickHandler(e: Event) {
+	public mouseClickHandler = (e: Event) => {
 		const { id } = <HTMLButtonElement>e?.target
 		const paddle = this.paddle
 
 		if (id === 'playBtn') {
 			this.resumeGame()
-			if (this.pause === false) {
-				this.init()
-			}
+			this.init()
 		} else if (id === 'pauseBtn') {
 			this.pause = true
 		} else if (id === 'moveLeftBtn') {
@@ -151,7 +146,7 @@ export class Game {
 	}
 
 	// move paddle relative to the mouse position within canvas
-	mouseMoveHandler(e: MouseEvent) {
+	public mouseMoveHandler = (e: MouseEvent) => {
 		const canvas = this.canvas.getCanvas()
 		const canvasWidth = this.canvas.getWidth()
 		const paddleWidth = this.paddle.getPaddleWidth()
@@ -163,17 +158,17 @@ export class Game {
 		}
 	}
 
-	pauseGame(): boolean {
+	public pauseGame = (): boolean => {
 		this.pause = true
 		return this.pause
 	}
 
-	resumeGame(): boolean {
+	public resumeGame = (): boolean => {
 		this.pause = false
 		return this.pause
 	}
 
-	selectGameMode(e: Event) {
+	public selectGameMode(e: Event) {
 		const { value } = <HTMLSelectElement>e.target
 		const canvasWidth = this.canvas.getHeight()
 		const canvasHeight = this.canvas.getWidth()
