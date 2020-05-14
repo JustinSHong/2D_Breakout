@@ -107,7 +107,7 @@ class Canvas implements ICanvas {
 						ballY > b.y && // y position of the ball is greater than the y position of the brick
 						ballY < b.y + brickHeight // y position of the ball is less than the y position of the brick plus its height
 					) {
-						ball.setBallDy(ballDy)
+						ball.setBallDy(-ballDy)
 						ball.changeColor()
 						b.status = 0
 						// player.score++
