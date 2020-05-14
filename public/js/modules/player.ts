@@ -5,7 +5,6 @@ export interface IPlayer {
 	drawLives(canvas: ICanvas): void
 	getLives(): number
 	getScore(): number
-	setLives(lives: number): void
 	setScore(score: number): void
 }
 
