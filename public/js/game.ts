@@ -1,24 +1,33 @@
 import '../css/index.css'
 
+import Ball, { IBall } from './modules/ball'
+import Brick, { IBrick } from './modules/brick'
 import Canvas, { ICanvas } from './modules/canvas'
 import Paddle, { IPaddle } from './modules/paddle'
 
-import Ball from './modules/ball'
-import Brick from './modules/brick'
 import { IPlayer } from './modules/player'
 import Player from './modules/player'
 
-class Game {
-	public rightPressed: boolean
-	public leftPressed: boolean
-	public players: IPlayer[]
+export class Game {
+	private rightPressed: boolean
+	private leftPressed: boolean
+	private pause: boolean
 
-	constructor(public canvas: ICanvas, public paddle: IPaddle) {
+	constructor(
+		public ball: IBall,
+		public brick: IBrick,
+		public canvas: ICanvas,
+		public paddle: IPaddle,
+		public player: IPlayer
+	) {
+		this.ball = ball
+		this.brick = brick
 		this.canvas = canvas
 		this.paddle = paddle
 		this.rightPressed = false
 		this.leftPressed = false
-		this.players = [] // holds all players in the game
+		this.player = player
+		this.pause = true
 
 		// listen for key press and key release
 		window.addEventListener('keydown', this.keyDownHandler, false)
@@ -36,11 +45,25 @@ class Game {
 
 	// initialize the game objects and the game loop
 	init() {
-		requestAnimationFrame(() => this.draw(this.canvas, this.paddle))
+		requestAnimationFrame(() =>
+			this.draw(
+				this.ball,
+				this.brick,
+				this.canvas,
+				this.paddle,
+				this.player
+			)
+		)
 	}
 
 	// main draw function of the game - initiates game loop
-	draw(canvas: ICanvas, paddle: IPaddle) {
+	draw(
+		ball: IBall,
+		brick: IBrick,
+		canvas: ICanvas,
+		paddle: IPaddle,
+		player: IPlayer
+	) {
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
 		// clear previous ball before drawing a new one
@@ -63,10 +86,16 @@ class Game {
 		// update ball's position
 		ball.update()
 
-		if (pause === false) {
+		if (this.pause === false) {
 			// animation loops
 			requestAnimationFrame(() => {
-				this.draw(canvas, paddle)
+				this.draw(
+					this.ball,
+					this.brick,
+					this.canvas,
+					this.paddle,
+					this.player
+				)
 			})
 		}
 	}
@@ -75,15 +104,15 @@ class Game {
 	keyDownHandler(e: KeyboardEvent) {
 		if (e.keyCode === 39) {
 			// right cursor key pressed
-			g.rightPressed = true
+			this.rightPressed = true
 		} else if (e.keyCode === 37) {
 			// left cursor key pressed
-			g.leftPressed = true
+			this.leftPressed = true
 		} else if (e.keyCode === 80) {
 			// pause key pressed
-			pause = !pause
-			if (pause === false) {
-				g.init()
+			this.pauseGame()
+			if (this.pause === false) {
+				this.init()
 			}
 		} else if (e.keyCode === 81) {
 			alert('You quit. Game Over!')
@@ -96,25 +125,24 @@ class Game {
 		// reset key state to default
 		if (e.keyCode === 39) {
 			// right cursor key released
-			g.rightPressed = false
+			this.rightPressed = false
 		} else if (e.keyCode === 37) {
 			// right cursor key released
-			g.leftPressed = false
+			this.leftPressed = false
 		}
 	}
 
 	mouseClickHandler(e: Event) {
 		const { id } = <HTMLButtonElement>e?.target
 		const paddle = this.paddle
-		console.log('MOUSE CLICK: ', id)
 
 		if (id === 'playBtn') {
-			pause = false
-			if (pause === false) {
-				g.init()
+			this.resumeGame()
+			if (this.pause === false) {
+				this.init()
 			}
 		} else if (id === 'pauseBtn') {
-			pause = true
+			this.pause = true
 		} else if (id === 'moveLeftBtn') {
 			paddle.update(-14)
 		} else if (id === 'moveRightBtn') {
@@ -135,6 +163,16 @@ class Game {
 		}
 	}
 
+	pauseGame(): boolean {
+		this.pause = true
+		return this.pause
+	}
+
+	resumeGame(): boolean {
+		this.pause = false
+		return this.pause
+	}
+
 	selectGameMode(e: Event) {
 		const { value } = <HTMLSelectElement>e.target
 		const canvasWidth = this.canvas.getHeight()
@@ -147,9 +185,9 @@ class Game {
 				dy: -4,
 				lives: 3,
 			}
-			ball = new Ball(canvasHeight, canvasWidth, mode)
-			player = new Player(mode)
-			brick = new Brick()
+			this.ball = new Ball(canvasHeight, canvasWidth, mode)
+			this.player = new Player(mode)
+			this.brick = new Brick()
 		} else if (value === 'Medium') {
 			mode = {
 				name: 'medium',
@@ -157,9 +195,9 @@ class Game {
 				dy: -6,
 				lives: 3,
 			}
-			ball = new Ball(canvasHeight, canvasWidth, mode)
-			player = new Player(mode)
-			brick = new Brick()
+			this.ball = new Ball(canvasHeight, canvasWidth, mode)
+			this.player = new Player(mode)
+			this.brick = new Brick()
 		} else if (value === 'Hard') {
 			mode = {
 				name: 'hard',
@@ -167,9 +205,9 @@ class Game {
 				dy: -8,
 				lives: 2,
 			}
-			ball = new Ball(canvasHeight, canvasWidth, mode)
-			player = new Player(mode)
-			brick = new Brick()
+			this.ball = new Ball(canvasHeight, canvasWidth, mode)
+			this.player = new Player(mode)
+			this.brick = new Brick()
 		} else {
 			mode = {
 				name: 'veryHard',
@@ -177,9 +215,9 @@ class Game {
 				dy: -10,
 				lives: 2,
 			}
-			ball = new Ball(canvasHeight, canvasWidth, mode)
-			player = new Player(mode)
-			brick = new Brick()
+			this.ball = new Ball(canvasHeight, canvasWidth, mode)
+			this.player = new Player(mode)
+			this.brick = new Brick()
 		}
 	}
 }
@@ -199,9 +237,6 @@ let mode: IGameMode = {
 	lives: 5,
 }
 
-// pause flag
-let pause = true
-
 const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
 
 // tool bar controls
@@ -218,6 +253,6 @@ let ball = new Ball(canvasHeight, canvasWidth, mode)
 let brick = new Brick()
 const paddle = new Paddle(canvas)
 let player = new Player(mode)
-const g = new Game(canvas, paddle) // instantiate a game
+const g = new Game(ball, brick, canvas, paddle, player) // instantiate a game
 
 g.init() // start the game loop
