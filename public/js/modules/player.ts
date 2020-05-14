@@ -5,6 +5,7 @@ export interface IPlayer {
 	drawLives(canvas: ICanvas): void
 	getLives(): number
 	getScore(): number
+	setLives(lives: number): void
 	setScore(score: number): void
 }
 
@@ -44,6 +45,10 @@ class Player implements IPlayer {
 
 	public getScore(): number {
 		return this.score
+	}
+
+	public setLives(lives: number): void {
+		this.lives = lives
 	}
 
 	public setScore(score: number): void {

@@ -18,5 +18,8 @@ describe('player', () => {
 
 		player.setScore(100)
 		expect(player.getScore()).toBe(100)
+
+		player.setLives(5)
+		expect(player.getLives()).toBe(5)
 	})
 })
