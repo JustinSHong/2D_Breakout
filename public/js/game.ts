@@ -135,9 +135,8 @@ export class Game {
 
 		if (id === 'playBtn') {
 			this.resumeGame()
-			this.init()
 		} else if (id === 'pauseBtn') {
-			this.pause = true
+			this.pauseGame()
 		} else if (id === 'moveLeftBtn') {
 			paddle.update(-14)
 		} else if (id === 'moveRightBtn') {
@@ -165,6 +164,7 @@ export class Game {
 
 	public resumeGame = (): boolean => {
 		this.pause = false
+		this.init()
 		return this.pause
 	}
 
