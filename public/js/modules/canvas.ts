@@ -36,18 +36,23 @@ class Canvas implements ICanvas {
 		paddle: IPaddle,
 		player: IPlayer
 	): void {
+		const ballX = ball.getBallX()
+		const ballY = ball.getBallY()
+		const ballDx = ball.getBallDx()
+		const ballDy = ball.getBallDy()
+		const ballRadius = ball.getBallRadius()
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
 		const playerLives = player.getLives()
 
 		// detect collisions with top edge
-		if (ball.y + ball.dy < ball.ballRadius) {
-			ball.dy = -ball.dy
+		if (ballY + ballDy < ballRadius) {
+			ball.setBallDy(-ballDy)
 			ball.changeColor()
-		} else if (ball.y + ball.dy > this.height - ball.ballRadius) {
-			if (ball.x > paddleX && ball.x < paddleX + paddleWidth) {
+		} else if (ballY + ballDy > this.height - ballRadius) {
+			if (ballX > paddleX && ballX < paddleX + paddleWidth) {
 				// ball collides with the paddle
-				ball.dy = -ball.dy
+				ball.setBallDy(-ballDy)
 				ball.changeColor()
 			} else {
 				// player.lives--
@@ -56,18 +61,19 @@ class Canvas implements ICanvas {
 					alert('Game Over')
 					document.location.reload()
 				} else {
-					ball.x = this.width / 2
-					ball.y = this.height - 30
+					ball.setBallX(this.width / 2)
+					ball.setBallY(this.height - 30)
+
 					paddle.setPaddleX((this.width - paddleWidth) / 2)
 				}
 			}
 		}
 		// detect collision with left and right edges
 		if (
-			ball.x + ball.dx < ball.ballRadius ||
-			ball.x + ball.dx > this.width - ball.ballRadius
+			ballX + ballDx < ballRadius ||
+			ballX + ballDx > this.width - ballRadius
 		) {
-			ball.dx = -ball.dx
+			ball.setBallDx(-ballDx)
 			ball.changeColor()
 		}
 	}
@@ -77,6 +83,9 @@ class Canvas implements ICanvas {
 		brick: IBrick,
 		player: IPlayer
 	): void {
+		const ballX = ball.getBallX()
+		const ballY = ball.getBallY()
+		const ballDy = ball.getBallDy()
 		const brickColumnCount = brick.getBrickColumnCount()
 		const brickRowCount = brick.getBrickRowCount()
 		const bricks = brick.getBricks()
@@ -93,12 +102,12 @@ class Canvas implements ICanvas {
 					// a collision with a brick occurs when the center of the ball is inside a brick's coordinates
 					// if a collision occurs, change the movement of the ball, a brick's status, score
 					if (
-						ball.x > b.x && // x position of the ball is greater than the x position of the brick
-						ball.x < b.x + brickWidth && // x position of the ball is less than the x position of the brick plus its width
-						ball.y > b.y && // y position of the ball is greater than the y position of the brick
-						ball.y < b.y + brickHeight // y position of the ball is less than the y position of the brick plus its height
+						ballX > b.x && // x position of the ball is greater than the x position of the brick
+						ballX < b.x + brickWidth && // x position of the ball is less than the x position of the brick plus its width
+						ballY > b.y && // y position of the ball is greater than the y position of the brick
+						ballY < b.y + brickHeight // y position of the ball is less than the y position of the brick plus its height
 					) {
-						ball.dy = -ball.dy
+						ball.setBallDy(ballDy)
 						ball.changeColor()
 						b.status = 0
 						// player.score++

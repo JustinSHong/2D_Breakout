@@ -17,24 +17,25 @@ describe('ball', () => {
 
 	test("changeColor() should change a ball's color", () => {
 		const ball = new Ball(10, 10, { name: 'easy', dx: 1, dy: 2, lives: 3 })
-		expect(ball.ballColor).toBe('#0095DD')
+		const color = ball.getBallColor()
+		expect(color).toBe('#0095DD')
 
 		const newColor = ball.changeColor()
-		expect(ball.ballColor).not.toBe(newColor)
+		expect(color).not.toBe(newColor)
 	})
 
 	test('update() should update x and y values', () => {
 		const ball = new Ball(10, 10, { name: 'easy', dx: 1, dy: 2, lives: 3 })
-		const oldXPosition = ball.x
-		const oldYPosition = ball.y
-		expect(ball.x).not.toBe(10)
-		expect(ball.y).not.toBe(10)
+		const dx = ball.getBallDx()
+		const dy = ball.getBallDy()
+		const oldX = ball.getBallX()
+		const oldY = ball.getBallY()
 
 		ball.update()
+		const newX = ball.getBallX()
+		const newY = ball.getBallY()
 
-		expect(ball.x).not.toBe(10)
-		expect(ball.y).not.toBe(10)
-		expect(oldXPosition + ball.dx).toBe(ball.x)
-		expect(oldYPosition + ball.dy).toBe(ball.y)
+		expect(newX).toBe(oldX + dx)
+		expect(newY).toBe(oldY + dy)
 	})
 })

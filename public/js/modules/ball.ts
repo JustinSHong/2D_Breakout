@@ -2,23 +2,30 @@ import { ICanvas } from './canvas'
 import { IGameMode } from '../game'
 
 export interface IBall {
-	ballRadius: number
-	dx: number
-	dy: number
-	x: number
-	y: number
 	changeColor(): void
 	drawBall(canvas: ICanvas): void
 	update(): void
+	getBallColor(): string
+	getBallRadius(): number
+	getBallDx(): number
+	getBallDy(): number
+	getBallX(): number
+	getBallY(): number
+	setBallX(x: number): void
+	setBallY(y: number): void
+	setBallDx(dx: number): void
+	setBallDy(dy: number): void
 }
 
+// todo: restrict public members, use getters and setters
+
 class Ball implements IBall {
-	public ballColor: string
-	public ballRadius: number
-	public dx: number
-	public dy: number
-	public x: number
-	public y: number
+	private ballColor: string
+	private ballRadius: number
+	private dx: number
+	private dy: number
+	private x: number
+	private y: number
 
 	constructor(
 		public height: number,
@@ -35,12 +42,13 @@ class Ball implements IBall {
 		this.dy = mode.dy
 	}
 
-	public changeColor(): void {
+	public changeColor(): string {
 		const red = Math.random() * 256
 		const green = Math.random() * 256
 		const blue = Math.random() * 256
 		const color = `rgb(${red}, ${green}, ${blue})`
 		this.ballColor = color
+		return this.ballColor
 	}
 
 	// draw ball to the canvas
@@ -55,9 +63,50 @@ class Ball implements IBall {
 	}
 
 	// update ball's movement
-	public update(): void {
+	public update(): { x: number; y: number } {
 		this.x += this.dx
 		this.y += this.dy
+		return { x: this.x, y: this.y }
+	}
+
+	public getBallColor(): string {
+		return this.ballColor
+	}
+
+	public getBallRadius(): number {
+		return this.ballRadius
+	}
+
+	public getBallX(): number {
+		return this.x
+	}
+
+	public getBallY(): number {
+		return this.y
+	}
+
+	public getBallDx(): number {
+		return this.dx
+	}
+
+	public getBallDy(): number {
+		return this.dy
+	}
+
+	public setBallX(x: number): void {
+		this.x = x
+	}
+
+	public setBallY(y: number): void {
+		this.y = y
+	}
+
+	public setBallDx(dx: number): void {
+		this.dx = dx
+	}
+
+	public setBallDy(dy: number): void {
+		this.dy = dy
 	}
 }
 
