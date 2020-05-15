@@ -44,7 +44,7 @@ export class Game {
 	}
 
 	// initialize the game objects and the game loop
-	public init() {
+	public init(): void {
 		requestAnimationFrame(() =>
 			this.draw(
 				this.ball,
@@ -63,7 +63,7 @@ export class Game {
 		canvas: ICanvas,
 		paddle: IPaddle,
 		player: IPlayer
-	) {
+	): void {
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
 		// clear previous ball before drawing a new one
@@ -101,7 +101,7 @@ export class Game {
 	}
 
 	// check if a key was pressed
-	public keyDownHandler = (e: KeyboardEvent) => {
+	public keyDownHandler = (e: KeyboardEvent): number => {
 		if (e.keyCode === 39) {
 			// right cursor key pressed
 			this.rightPressed = true
@@ -115,10 +115,12 @@ export class Game {
 			alert('You quit. Game Over!')
 			document.location.reload()
 		}
+
+		return e.keyCode
 	}
 
 	// check if a key was released
-	public keyUpHandler = (e: KeyboardEvent) => {
+	public keyUpHandler = (e: KeyboardEvent): void => {
 		// reset key state to default
 		if (e.keyCode === 39) {
 			// right cursor key released
@@ -129,7 +131,7 @@ export class Game {
 		}
 	}
 
-	public mouseClickHandler = (e: Event) => {
+	public mouseClickHandler = (e: Event): void => {
 		const { id } = <HTMLButtonElement>e?.target
 		const paddle = this.paddle
 
@@ -145,7 +147,7 @@ export class Game {
 	}
 
 	// move paddle relative to the mouse position within canvas
-	public mouseMoveHandler = (e: MouseEvent) => {
+	public mouseMoveHandler = (e: MouseEvent): void => {
 		const canvas = this.canvas.getCanvas()
 		const canvasWidth = this.canvas.getWidth()
 		const paddleWidth = this.paddle.getPaddleWidth()

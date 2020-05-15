@@ -81,4 +81,35 @@ describe('game', () => {
 		mockEvent = { target: { value: 'anotherMode' } }
 		expect(game.selectGameMode(mockEvent as any)).toEqual(easyMode)
 	})
+
+	test('keyDownHandler', () => {
+		const spy = jest.spyOn(game, 'keyDownHandler')
+		let mockEvent = { keyCode: 39 }
+		let code = game.keyDownHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(code).toBe(39)
+
+		mockEvent = { keyCode: 37 }
+		code = game.keyDownHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(code).toBe(37)
+
+		mockEvent = { keyCode: 80 }
+		code = game.keyDownHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(code).toBe(80)
+
+		mockEvent = { keyCode: 81 }
+		code = game.keyDownHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(code).toBe(81)
+	})
 })
