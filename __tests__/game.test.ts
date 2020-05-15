@@ -84,10 +84,12 @@ describe('game', () => {
 
 	test('keyDownHandler', () => {
 		const spy = jest.spyOn(game, 'keyDownHandler')
+		const spy2 = jest.spyOn(game, 'pauseGame')
 		let mockEvent = { keyCode: 39 }
 		let code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(1)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(code).toBe(39)
 
@@ -95,6 +97,7 @@ describe('game', () => {
 		code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(2)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(code).toBe(37)
 
@@ -102,15 +105,21 @@ describe('game', () => {
 		code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(3)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(spy2).toHaveBeenCalled()
+		expect(spy2).toHaveBeenCalledTimes(1)
 		expect(code).toBe(80)
 
 		mockEvent = { keyCode: 81 }
 		code = game.keyDownHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(4)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(code).toBe(81)
+
+		spy2.mockClear()
 	})
 
 	test('keyUpHandler', () => {
@@ -119,6 +128,7 @@ describe('game', () => {
 		let code = game.keyUpHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(1)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(code).toBe(39)
 
@@ -126,7 +136,54 @@ describe('game', () => {
 		code = game.keyUpHandler(mockEvent as any)
 
 		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(2)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(code).toBe(37)
+	})
+
+	test('mouseClickHandler', () => {
+		const spy = jest.spyOn(game, 'mouseClickHandler')
+		const spy2 = jest.spyOn(game, 'pauseGame')
+		const spy3 = jest.spyOn(game.paddle, 'update')
+
+		let mockEvent = { target: { id: 'playBtn' } }
+		let id = game.mouseClickHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(1)
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(id).toBe('playBtn')
+
+		mockEvent = { target: { id: 'pauseBtn' } }
+		id = game.mouseClickHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(2)
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(spy2).toHaveBeenCalled()
+		expect(spy2).toHaveBeenCalledTimes(1)
+		expect(id).toBe('pauseBtn')
+
+		mockEvent = { target: { id: 'moveLeftBtn' } }
+		id = game.mouseClickHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(3)
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(spy3).toHaveBeenCalled()
+		expect(spy3).toHaveBeenCalledTimes(1)
+		expect(spy3).toHaveBeenCalledWith(-14)
+		expect(id).toBe('moveLeftBtn')
+
+		mockEvent = { target: { id: 'moveRightBtn' } }
+		id = game.mouseClickHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(4)
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(spy3).toHaveBeenCalled()
+		expect(spy3).toHaveBeenCalledTimes(2)
+		expect(spy3).toHaveBeenCalledWith(-14)
+		expect(id).toBe('moveRightBtn')
 	})
 })

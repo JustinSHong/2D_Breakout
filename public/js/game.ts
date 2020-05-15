@@ -133,7 +133,7 @@ export class Game {
 		return e.keyCode
 	}
 
-	public mouseClickHandler = (e: Event): void => {
+	public mouseClickHandler = (e: Event): string => {
 		const { id } = <HTMLButtonElement>e?.target
 		const paddle = this.paddle
 
@@ -146,6 +146,8 @@ export class Game {
 		} else if (id === 'moveRightBtn') {
 			paddle.update(14)
 		}
+
+		return id
 	}
 
 	// move paddle relative to the mouse position within canvas
