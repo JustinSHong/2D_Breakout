@@ -9,15 +9,14 @@ jest.mock('../public/js/modules/canvas')
 
 describe('game', () => {
 	const canvas = new MockCanvas()
+	const mode = { name: 'very easy', dx: 1.5, dy: -1.5, lives: 5 }
+	const ball = new Ball(canvas.height, canvas.width, mode)
+	const brick = new Brick()
+	const paddle = new Paddle(canvas)
+	const player = new Player(mode)
+	const game = new Game(ball, brick, canvas, paddle, player)
 
 	test('game should have the right properties', () => {
-		const mode = { name: 'very easy', dx: 1.5, dy: -1.5, lives: 5 }
-		const ball = new Ball(canvas.height, canvas.width, mode)
-		const brick = new Brick()
-		const paddle = new Paddle(canvas)
-		const player = new Player(mode)
-		const game = new Game(ball, brick, canvas, paddle, player)
-
 		expect(game).toHaveProperty('ball')
 		expect(game).toHaveProperty('brick')
 		expect(game).toHaveProperty('canvas')
@@ -35,5 +34,10 @@ describe('game', () => {
 		expect(game).toHaveProperty('pauseGame')
 		expect(game).toHaveProperty('resumeGame')
 		expect(game).toHaveProperty('selectGameMode')
+	})
+
+	test('pause and resume', () => {
+		expect(game.pauseGame()).toBe(true)
+		expect(game.resumeGame()).toBe(false)
 	})
 })
