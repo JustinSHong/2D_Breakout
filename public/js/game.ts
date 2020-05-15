@@ -168,7 +168,7 @@ export class Game {
 		return this.pause
 	}
 
-	public selectGameMode(e: Event) {
+	public selectGameMode(e: Event): IGameMode {
 		const { value } = <HTMLSelectElement>e.target
 		const canvasWidth = this.canvas.getHeight()
 		const canvasHeight = this.canvas.getWidth()
@@ -203,7 +203,7 @@ export class Game {
 			this.ball = new Ball(canvasHeight, canvasWidth, mode)
 			this.player = new Player(mode)
 			this.brick = new Brick()
-		} else {
+		} else if (value === 'VeryHard') {
 			mode = {
 				name: 'veryHard',
 				dx: 10,
@@ -213,7 +213,15 @@ export class Game {
 			this.ball = new Ball(canvasHeight, canvasWidth, mode)
 			this.player = new Player(mode)
 			this.brick = new Brick()
+		} else {
+			mode = {
+				name: 'easy',
+				dx: 4,
+				dy: -4,
+				lives: 3,
+			}
 		}
+		return mode
 	}
 }
 
