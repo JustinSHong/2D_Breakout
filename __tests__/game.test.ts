@@ -112,4 +112,21 @@ describe('game', () => {
 		expect(spy).toHaveBeenCalledWith(mockEvent)
 		expect(code).toBe(81)
 	})
+
+	test('keyUpHandler', () => {
+		const spy = jest.spyOn(game, 'keyUpHandler')
+		let mockEvent = { keyCode: 39 }
+		let code = game.keyUpHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(code).toBe(39)
+
+		mockEvent = { keyCode: 37 }
+		code = game.keyUpHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(code).toBe(37)
+	})
 })

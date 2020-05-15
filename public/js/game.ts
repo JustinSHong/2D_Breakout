@@ -120,7 +120,7 @@ export class Game {
 	}
 
 	// check if a key was released
-	public keyUpHandler = (e: KeyboardEvent): void => {
+	public keyUpHandler = (e: KeyboardEvent): number => {
 		// reset key state to default
 		if (e.keyCode === 39) {
 			// right cursor key released
@@ -129,6 +129,8 @@ export class Game {
 			// right cursor key released
 			this.leftPressed = false
 		}
+
+		return e.keyCode
 	}
 
 	public mouseClickHandler = (e: Event): void => {
