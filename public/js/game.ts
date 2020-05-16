@@ -39,6 +39,7 @@ export class Game {
 		// list for tool bar events
 		play?.addEventListener('click', this.mouseClickHandler, false)
 		pauseBtn?.addEventListener('click', this.mouseClickHandler, false)
+		reset?.addEventListener('click', this.mouseClickHandler, false)
 		moveLeft?.addEventListener('click', this.mouseClickHandler, false)
 		moveRight?.addEventListener('click', this.mouseClickHandler, false)
 	}
@@ -145,6 +146,9 @@ export class Game {
 			paddle.update(-14)
 		} else if (id === 'moveRightBtn') {
 			paddle.update(14)
+		} else if (id === 'resetBtn') {
+			// reset game
+			console.log('PRESSED RESET')
 		}
 
 		return id
@@ -244,6 +248,7 @@ const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
 // tool bar controls
 const play = document.querySelector<HTMLButtonElement>('#playBtn')
 const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
+const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
 const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
 const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
 
