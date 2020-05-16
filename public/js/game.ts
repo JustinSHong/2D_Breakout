@@ -147,8 +147,7 @@ export class Game {
 		} else if (id === 'moveRightBtn') {
 			paddle.update(14)
 		} else if (id === 'resetBtn') {
-			// reset game
-			console.log('PRESSED RESET')
+			document.location.reload()
 		}
 
 		return id
@@ -223,7 +222,6 @@ export class Game {
 		this.ball = new Ball(canvasHeight, canvasWidth, mode)
 		this.player = new Player(mode)
 
-		console.log('mode: ', mode)
 		return mode
 	}
 }
