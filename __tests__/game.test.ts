@@ -145,6 +145,7 @@ describe('game', () => {
 		const spy = jest.spyOn(game, 'mouseClickHandler')
 		const spy2 = jest.spyOn(game, 'pauseGame')
 		const spy3 = jest.spyOn(game.paddle, 'update')
+		const spy4 = jest.spyOn(game, 'resumeGame')
 
 		let mockEvent = { target: { id: 'playBtn' } }
 		let id = game.mouseClickHandler(mockEvent as any)
@@ -152,6 +153,8 @@ describe('game', () => {
 		expect(spy).toHaveBeenCalled()
 		expect(spy).toHaveBeenCalledTimes(1)
 		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(spy4).toHaveBeenCalled()
+		expect(spy4).toHaveBeenCalledTimes(1)
 		expect(id).toBe('playBtn')
 
 		mockEvent = { target: { id: 'pauseBtn' } }
