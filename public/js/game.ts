@@ -113,7 +113,7 @@ export class Game {
 			// pause key pressed
 			this.pauseGame()
 		} else if (e.keyCode === 81) {
-			alert('You quit. Game Over!')
+			// alert('You quit. Game Over!')
 			document.location.reload()
 		}
 
