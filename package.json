@@ -7,7 +7,7 @@
 		"build": "npx webpack --config webpack.config.js",
 		"start": "node server.js",
 		"dev": "webpack-dev-server --open",
-		"test": "jest",
+		"test": "jest --verbose=false",
 		"test-watch": "jest --watch",
 		"watch": "webpack --watch"
 	},

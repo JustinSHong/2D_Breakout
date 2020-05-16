@@ -69,7 +69,7 @@ describe('game', () => {
 		}
 		expect(game.selectGameMode(mockEvent as any)).toEqual(hardMode)
 
-		mockEvent = { target: { value: 'VeryHard' } }
+		mockEvent = { target: { value: 'Very Hard' } }
 		const veryHardMode = {
 			name: 'veryHard',
 			dx: 10,
@@ -79,7 +79,13 @@ describe('game', () => {
 		expect(game.selectGameMode(mockEvent as any)).toEqual(veryHardMode)
 
 		mockEvent = { target: { value: 'anotherMode' } }
-		expect(game.selectGameMode(mockEvent as any)).toEqual(easyMode)
+		const defaultMode = {
+			name: 'very easy',
+			dx: 1.5,
+			dy: -1.5,
+			lives: 5,
+		}
+		expect(game.selectGameMode(mockEvent as any)).toEqual(defaultMode)
 	})
 
 	test('keyDownHandler', () => {
