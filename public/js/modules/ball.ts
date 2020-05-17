@@ -1,6 +1,4 @@
 import { ICanvas } from './canvas'
-import { IGameMode } from '../game'
-
 export interface IBall {
 	changeColor(): void
 	drawBall(canvas: ICanvas): void
@@ -27,19 +25,16 @@ class Ball implements IBall {
 	private x: number
 	private y: number
 
-	constructor(
-		public height: number,
-		public width: number,
-		public mode: IGameMode
-	) {
+	constructor(public height: number, public width: number, public mode: any) {
 		this.ballColor = '#0095DD'
 		this.ballRadius = 10
+		this.mode = mode.getMode()
 		// starting position
 		this.x = width / 2
 		this.y = height - 30
 		// velocity - change in position
-		this.dx = mode.dx
-		this.dy = mode.dy
+		this.dx = this.mode.dx
+		this.dy = this.mode.dy
 	}
 
 	public changeColor(): string {

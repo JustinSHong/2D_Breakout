@@ -3,7 +3,9 @@ import '../css/index.css'
 import Ball, { IBall } from './modules/ball'
 import Brick, { IBrick } from './modules/brick'
 import Canvas, { ICanvas } from './modules/canvas'
+import Mode, { IGameMode } from './modules/mode'
 import Paddle, { IPaddle } from './modules/paddle'
+import { easyMode, hardMode, mediumMode, veryHardMode } from './constants'
 
 import { IPlayer } from './modules/player'
 import Player from './modules/player'
@@ -17,6 +19,7 @@ export class Game {
 		public ball: IBall,
 		public brick: IBrick,
 		public canvas: ICanvas,
+		public mode: IGameMode,
 		public paddle: IPaddle,
 		public player: IPlayer
 	) {
@@ -26,6 +29,7 @@ export class Game {
 		this.paddle = paddle
 		this.rightPressed = false
 		this.leftPressed = false
+		this.mode = mode
 		this.player = player
 		this.pause = true
 
@@ -183,64 +187,23 @@ export class Game {
 		const canvasHeight = this.canvas.getWidth()
 
 		if (value === 'Easy') {
-			mode = {
-				name: 'easy',
-				dx: 4,
-				dy: -4,
-				lives: 3,
-			}
+			this.mode.setMode(easyMode)
 		} else if (value === 'Medium') {
-			mode = {
-				name: 'medium',
-				dx: 6,
-				dy: -6,
-				lives: 3,
-			}
+			this.mode.setMode(mediumMode)
 		} else if (value === 'Hard') {
-			mode = {
-				name: 'hard',
-				dx: 8,
-				dy: -8,
-				lives: 2,
-			}
+			this.mode.setMode(hardMode)
 		} else if (value === 'Very Hard') {
-			mode = {
-				name: 'veryHard',
-				dx: 10,
-				dy: -10,
-				lives: 2,
-			}
-		} else {
-			mode = {
-				name: 'very easy',
-				dx: 1.5,
-				dy: -1.5,
-				lives: 5,
-			}
+			this.mode.setMode(veryHardMode)
 		}
 
-		this.ball = new Ball(canvasHeight, canvasWidth, mode)
-		this.player = new Player(mode)
+		this.ball = new Ball(canvasHeight, canvasWidth, this.mode)
+		this.player = new Player(this.mode)
 
-		return mode
+		return this.mode
 	}
 }
 
 // < ===== STARTING THE GAME ===== >
-export interface IGameMode {
-	name: string
-	dx: number
-	dy: number
-	lives: number
-}
-
-let mode: IGameMode = {
-	name: 'very easy',
-	dx: 1.5,
-	dy: -1.5,
-	lives: 5,
-}
-
 const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
 
 // tool bar controls
@@ -250,14 +213,16 @@ const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
 const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
 const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
 
+// game objects
 const canvas = new Canvas()
 const canvasHeight = canvas.getHeight()
 const canvasWidth = canvas.getWidth()
+const mode = new Mode()
 
 let ball = new Ball(canvasHeight, canvasWidth, mode)
 let brick = new Brick()
 const paddle = new Paddle(canvas)
 let player = new Player(mode)
-const g = new Game(ball, brick, canvas, paddle, player) // instantiate a game
+const g = new Game(ball, brick, canvas, mode, paddle, player) // instantiate a game
 
 g.init() // start the game loop

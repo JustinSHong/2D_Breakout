@@ -2,6 +2,7 @@ import Ball from '../public/js/modules/ball'
 import Brick from '../public/js/modules/brick'
 import { Game } from '../public/js/game'
 import MockCanvas from '../public/js/modules/canvas'
+import Mode from '../public/js/modules/mode'
 import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
 
@@ -9,12 +10,12 @@ jest.mock('../public/js/modules/canvas')
 
 describe('game', () => {
 	const canvas = new MockCanvas()
-	const mode = { name: 'very easy', dx: 1.5, dy: -1.5, lives: 5 }
+	const mode = new Mode()
 	const ball = new Ball(canvas.height, canvas.width, mode)
+	const player = new Player(mode)
 	const brick = new Brick()
 	const paddle = new Paddle(canvas)
-	const player = new Player(mode)
-	const game = new Game(ball, brick, canvas, paddle, player)
+	const game = new Game(ball, brick, canvas, mode, paddle, player)
 
 	test('game should have the right properties', () => {
 		expect(game).toHaveProperty('ball')
@@ -77,15 +78,6 @@ describe('game', () => {
 			lives: 2,
 		}
 		expect(game.selectGameMode(mockEvent as any)).toEqual(veryHardMode)
-
-		mockEvent = { target: { value: 'anotherMode' } }
-		const defaultMode = {
-			name: 'very easy',
-			dx: 1.5,
-			dy: -1.5,
-			lives: 5,
-		}
-		expect(game.selectGameMode(mockEvent as any)).toEqual(defaultMode)
 	})
 
 	test('keyDownHandler', () => {

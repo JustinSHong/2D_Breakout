@@ -1,11 +1,13 @@
 import Ball from '../public/js/modules/ball'
 import MockCanvas from '../public/js/modules/canvas'
+import Mode from '../public/js/modules/mode'
 
 jest.mock('../public/js/modules/canvas')
 
 describe('ball', () => {
+	const mode = new Mode()
 	test('ball should have the right properties', () => {
-		const ball = new Ball(10, 10, { name: 'easy', dx: 1, dy: 2, lives: 3 })
+		const ball = new Ball(10, 10, mode)
 
 		expect(ball).toHaveProperty('ballColor')
 		expect(ball).toHaveProperty('ballRadius')
@@ -19,7 +21,7 @@ describe('ball', () => {
 	})
 
 	test("changeColor() should change a ball's color", () => {
-		const ball = new Ball(10, 10, { name: 'easy', dx: 1, dy: 2, lives: 3 })
+		const ball = new Ball(10, 10, mode)
 		const color = ball.getBallColor()
 		expect(color).toBe('#0095DD')
 
@@ -28,7 +30,7 @@ describe('ball', () => {
 	})
 
 	test('update() should update x and y values', () => {
-		const ball = new Ball(10, 10, { name: 'easy', dx: 1, dy: 2, lives: 3 })
+		const ball = new Ball(10, 10, mode)
 		const dx = ball.getBallDx()
 		const dy = ball.getBallDy()
 		const oldX = ball.getBallX()
@@ -44,12 +46,7 @@ describe('ball', () => {
 
 	test('getters and setters', () => {
 		const canvas = new MockCanvas()
-		const ball = new Ball(canvas.height, canvas.width, {
-			name: 'easy',
-			dx: 1,
-			dy: 2,
-			lives: 3,
-		})
+		const ball = new Ball(canvas.height, canvas.width, mode)
 		const color = ball.getBallColor()
 		const radius = ball.getBallRadius()
 		const x = ball.getBallX()
