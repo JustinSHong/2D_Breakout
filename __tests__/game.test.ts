@@ -5,12 +5,13 @@ import MockCanvas from '../public/js/modules/canvas'
 import Mode from '../public/js/modules/mode'
 import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
+import { veryEasyMode } from '../public/js/constants'
 
 jest.mock('../public/js/modules/canvas')
 
 describe('game', () => {
 	const canvas = new MockCanvas()
-	const mode = new Mode()
+	const mode = new Mode(veryEasyMode)
 	const ball = new Ball(canvas.height, canvas.width, mode)
 	const player = new Player(mode)
 	const brick = new Brick()

@@ -16,11 +16,11 @@ class Mode {
 	private lives: number
 	private name: string
 
-	constructor() {
-		this.dx = 1.5
-		this.dy = -1.5
-		this.lives = 5
-		this.name = 'veryEasy'
+	constructor(mode: IMode) {
+		this.dx = mode.dx
+		this.dy = mode.dy
+		this.lives = mode.lives
+		this.name = mode.name
 	}
 
 	public getMode(): IMode {

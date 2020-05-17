@@ -1,11 +1,13 @@
 import Ball from '../public/js/modules/ball'
 import MockCanvas from '../public/js/modules/canvas'
 import Mode from '../public/js/modules/mode'
+import { veryEasyMode } from '../public/js/constants'
 
 jest.mock('../public/js/modules/canvas')
 
 describe('ball', () => {
-	const mode = new Mode()
+	const mode = new Mode(veryEasyMode)
+
 	test('ball should have the right properties', () => {
 		const ball = new Ball(10, 10, mode)
 

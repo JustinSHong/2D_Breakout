@@ -26,3 +26,10 @@ export const veryHardMode = {
 	dy: -10,
 	lives: 2,
 }
+
+export const veryEasyMode = {
+	dx: 1.5,
+	dy: -1.5,
+	lives: 5,
+	name: 'veryEasy',
+}

@@ -1,7 +1,8 @@
 import Mode from '../public/js/modules/mode'
+import { veryEasyMode } from '../public/js/constants'
 
 describe('mode', () => {
-	const mode = new Mode()
+	const mode = new Mode(veryEasyMode)
 
 	test('mode should have the right properties', () => {
 		expect(mode).toHaveProperty('dx')
