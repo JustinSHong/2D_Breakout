@@ -16,11 +16,15 @@ const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
 const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
 const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
 const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
+const settingsModalLink = document.querySelector<HTMLDivElement>(
+	'#settingsModalLink'
+)
 
 class Game {
 	private rightPressed: boolean
 	private leftPressed: boolean
 	private pause: boolean
+	private requestId: number
 
 	constructor(
 		public ball: IBall,
@@ -39,6 +43,7 @@ class Game {
 		this.mode = mode
 		this.player = player
 		this.pause = true
+		this.requestId = 0
 
 		// listen for key press and key release
 		window.addEventListener('keydown', this.keyDownHandler, false)
@@ -53,11 +58,16 @@ class Game {
 		reset?.addEventListener('click', this.mouseClickHandler, false)
 		moveLeft?.addEventListener('click', this.mouseClickHandler, false)
 		moveRight?.addEventListener('click', this.mouseClickHandler, false)
+		settingsModalLink?.addEventListener(
+			'click',
+			this.mouseClickHandler,
+			false
+		)
 	}
 
 	// initialize the game objects and the game loop
 	public init(): void {
-		requestAnimationFrame(() =>
+		this.requestId = requestAnimationFrame(() =>
 			this.draw(
 				this.ball,
 				this.brick,
@@ -99,8 +109,9 @@ class Game {
 		ball.update()
 
 		if (this.pause === false) {
+			console.log('GAME IS NOT PAUSED')
 			// animation loops
-			requestAnimationFrame(() => {
+			this.requestId = requestAnimationFrame(() => {
 				this.draw(
 					this.ball,
 					this.brick,
@@ -109,6 +120,9 @@ class Game {
 					this.player
 				)
 			})
+		} else {
+			console.log('GAME IS PAUSED')
+			cancelAnimationFrame(this.requestId)
 		}
 	}
 
@@ -146,7 +160,8 @@ class Game {
 	}
 
 	public mouseClickHandler = (e: Event): string => {
-		const { id } = <HTMLButtonElement>e?.target
+		const { id } = <HTMLElement>e?.target
+		console.log('MOUSE CLICKED: ', e)
 		const paddle = this.paddle
 
 		if (id === 'playBtn') {
@@ -159,6 +174,9 @@ class Game {
 			paddle.update(14)
 		} else if (id === 'resetBtn') {
 			document.location.reload()
+		} else if (id === 'settingsModalLink') {
+			console.log('GAME PAUSED - SETTINGS ARE CHANGING')
+			this.pauseGame()
 		}
 
 		return id
