@@ -8,7 +8,7 @@ import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 import Player from './player'
 
-// modals
+// modal links
 const controlsModalLink = document.querySelector<HTMLAnchorElement>(
 	'#controlsModalLink'
 )
@@ -53,7 +53,7 @@ class Game {
 		window.addEventListener('keyup', this.keyUpHandler, false)
 		// listen for mouse movement
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
-		// listen for modals opening or closing
+		// listen for clicks on modal links
 		controlsModalLink?.addEventListener(
 			'click',
 			this.mouseClickHandler,
@@ -65,6 +65,13 @@ class Game {
 			this.mouseClickHandler,
 			false
 		)
+		// modals opening or closing
+		$('#controlsModal').on('hidden.bs.modal', () => {
+			this.resumeGame()
+		})
+		$('#settingsModal').on('hidden.bs.modal', () => {
+			this.resumeGame()
+		})
 		// list for tool bar events
 		play?.addEventListener('click', this.mouseClickHandler, false)
 		pauseBtn?.addEventListener('click', this.mouseClickHandler, false)
@@ -117,7 +124,6 @@ class Game {
 		ball.update()
 
 		if (this.pause === false) {
-			console.log('GAME IS NOT PAUSED')
 			// animation loops
 			this.requestId = requestAnimationFrame(() => {
 				this.draw(
@@ -129,7 +135,6 @@ class Game {
 				)
 			})
 		} else {
-			console.log('GAME IS PAUSED')
 			cancelAnimationFrame(this.requestId)
 		}
 	}
@@ -169,7 +174,6 @@ class Game {
 
 	public mouseClickHandler = (e: Event): string => {
 		const { id } = <HTMLElement>e?.target
-		console.log('MOUSE CLICKED: ', e)
 		const paddle = this.paddle
 
 		if (id === 'playBtn') {
@@ -183,10 +187,8 @@ class Game {
 		} else if (id === 'resetBtn') {
 			document.location.reload()
 		} else if (id === 'settingsModalLink') {
-			console.log('GAME PAUSED - SETTINGS ARE CHANGING')
 			this.pauseGame()
 		} else if (id === 'controlsModalLink') {
-			console.log('GAME PAUSED - CONTROLS ARE BEING READ')
 			this.pauseGame()
 		}
 
