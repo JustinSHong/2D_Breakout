@@ -28,6 +28,7 @@ class Game {
 	private rightPressed: boolean
 	private leftPressed: boolean
 	private pause: boolean
+	private playPressed: boolean
 	private requestId: number
 
 	constructor(
@@ -46,6 +47,7 @@ class Game {
 		this.leftPressed = false
 		this.mode = mode
 		this.player = player
+		this.playPressed = false
 		this.pause = true
 		this.requestId = 0
 
@@ -211,12 +213,18 @@ class Game {
 
 	public pauseGame = (): boolean => {
 		this.pause = true
+		this.playPressed = false
 		return this.pause
 	}
 
 	public resumeGame = (): boolean => {
 		this.pause = false
-		this.init()
+		if (!this.playPressed) {
+			this.init()
+		} else {
+			console.log('play btn was already pressed')
+		}
+		this.playPressed = true
 		return this.pause
 	}
 
