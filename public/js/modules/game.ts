@@ -8,17 +8,20 @@ import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 import Player from './player'
 
+// modals
+const controlsModalLink = document.querySelector<HTMLAnchorElement>(
+	'#controlsModalLink'
+)
 const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
-
+const settingsModalLink = document.querySelector<HTMLAnchorElement>(
+	'#settingsModalLink'
+)
 // tool bar controls
 const play = document.querySelector<HTMLButtonElement>('#playBtn')
 const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
 const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
 const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
 const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
-const settingsModalLink = document.querySelector<HTMLDivElement>(
-	'#settingsModalLink'
-)
 
 class Game {
 	private rightPressed: boolean
@@ -50,19 +53,24 @@ class Game {
 		window.addEventListener('keyup', this.keyUpHandler, false)
 		// listen for mouse movement
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
-		// listen for changes in game mode
+		// listen for modals opening or closing
+		controlsModalLink?.addEventListener(
+			'click',
+			this.mouseClickHandler,
+			false
+		)
 		gameMode?.addEventListener('change', this.selectGameMode, false)
+		settingsModalLink?.addEventListener(
+			'click',
+			this.mouseClickHandler,
+			false
+		)
 		// list for tool bar events
 		play?.addEventListener('click', this.mouseClickHandler, false)
 		pauseBtn?.addEventListener('click', this.mouseClickHandler, false)
 		reset?.addEventListener('click', this.mouseClickHandler, false)
 		moveLeft?.addEventListener('click', this.mouseClickHandler, false)
 		moveRight?.addEventListener('click', this.mouseClickHandler, false)
-		settingsModalLink?.addEventListener(
-			'click',
-			this.mouseClickHandler,
-			false
-		)
 	}
 
 	// initialize the game objects and the game loop
@@ -176,6 +184,9 @@ class Game {
 			document.location.reload()
 		} else if (id === 'settingsModalLink') {
 			console.log('GAME PAUSED - SETTINGS ARE CHANGING')
+			this.pauseGame()
+		} else if (id === 'controlsModalLink') {
+			console.log('GAME PAUSED - CONTROLS ARE BEING READ')
 			this.pauseGame()
 		}
 
