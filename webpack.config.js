@@ -3,7 +3,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-	entry: './public/js/game.ts',
+	entry: './public/js/index.ts',
 	devServer: {
 		contentBase: './dist',
 	},

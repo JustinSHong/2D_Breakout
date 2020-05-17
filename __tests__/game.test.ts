@@ -1,6 +1,6 @@
 import Ball from '../public/js/modules/ball'
 import Brick from '../public/js/modules/brick'
-import { Game } from '../public/js/game'
+import Game from '../public/js/modules/game'
 import MockCanvas from '../public/js/modules/canvas'
 import Mode from '../public/js/modules/mode'
 import Paddle from '../public/js/modules/paddle'

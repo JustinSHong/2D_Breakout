@@ -1,16 +1,23 @@
-import '../css/index.css'
+import Ball, { IBall } from './ball'
+import { easyMode, hardMode, mediumMode, veryHardMode } from '../constants'
 
-import Ball, { IBall } from './modules/ball'
-import Brick, { IBrick } from './modules/brick'
-import Canvas, { ICanvas } from './modules/canvas'
-import Mode, { IGameMode } from './modules/mode'
-import Paddle, { IPaddle } from './modules/paddle'
-import { easyMode, hardMode, mediumMode, veryHardMode } from './constants'
+import { IBrick } from './brick'
+import { ICanvas } from './canvas'
+import { IGameMode } from './mode'
+import { IPaddle } from './paddle'
+import { IPlayer } from './player'
+import Player from './player'
 
-import { IPlayer } from './modules/player'
-import Player from './modules/player'
+const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
 
-export class Game {
+// tool bar controls
+const play = document.querySelector<HTMLButtonElement>('#playBtn')
+const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
+const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
+const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
+const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
+
+class Game {
 	private rightPressed: boolean
 	private leftPressed: boolean
 	private pause: boolean
@@ -203,26 +210,4 @@ export class Game {
 	}
 }
 
-// < ===== STARTING THE GAME ===== >
-const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
-
-// tool bar controls
-const play = document.querySelector<HTMLButtonElement>('#playBtn')
-const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
-const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
-const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
-const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
-
-// game objects
-const canvas = new Canvas()
-const canvasHeight = canvas.getHeight()
-const canvasWidth = canvas.getWidth()
-const mode = new Mode()
-
-let ball = new Ball(canvasHeight, canvasWidth, mode)
-let brick = new Brick()
-const paddle = new Paddle(canvas)
-let player = new Player(mode)
-const g = new Game(ball, brick, canvas, mode, paddle, player) // instantiate a game
-
-g.init() // start the game loop
+export default Game
