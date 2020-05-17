@@ -8,18 +8,16 @@ import Mode from './modules/mode'
 import Paddle from './modules/paddle'
 import Player from './modules/player'
 
-// < ===== STARTING THE GAME ===== >
-
-// game objects
+// canvas
 const canvas = new Canvas()
 const canvasHeight = canvas.getHeight()
 const canvasWidth = canvas.getWidth()
 const mode = new Mode()
-
-let ball = new Ball(canvasHeight, canvasWidth, mode)
-let brick = new Brick()
+// game objects
+const ball = new Ball(canvasHeight, canvasWidth, mode)
+const brick = new Brick()
 const paddle = new Paddle(canvas)
-let player = new Player(mode)
+const player = new Player(mode)
 const g = new Game(ball, brick, canvas, mode, paddle, player) // instantiate a game
 
 g.init() // start the game loop
