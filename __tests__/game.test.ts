@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import Ball from '../public/js/modules/ball'
 import Brick from '../public/js/modules/brick'
 import Game from '../public/js/modules/game'
@@ -11,7 +10,6 @@ import { veryEasyMode } from '../public/js/constants'
 jest.mock('../public/js/modules/canvas')
 
 describe('game', () => {
-	global.$ = $
 	const canvas = new MockCanvas()
 	const mode = new Mode(veryEasyMode)
 	const ball = new Ball(canvas.height, canvas.width, mode)

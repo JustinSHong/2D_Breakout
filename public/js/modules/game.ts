@@ -1,3 +1,4 @@
+import $ from 'jquery'
 import Ball, { IBall } from './ball'
 import { easyMode, hardMode, mediumMode, veryHardMode } from '../constants'
 
