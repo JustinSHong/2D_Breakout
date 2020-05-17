@@ -48,6 +48,10 @@ p {
 	align-items: center;
 }
 
+.btn-toolbar {
+	margin-top: 10px;
+}
+
 .easy-mode-btn,
 .medium-mode-btn,
 .hard-mode-btn,
@@ -81,5 +85,5 @@ p {
 canvas {
 	background: #eee;
 	display: block;
-	margin: 20px auto 20px auto;
+	margin: 20px auto 10px auto;
 }
