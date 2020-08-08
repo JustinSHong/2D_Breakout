@@ -114,6 +114,7 @@ class Game {
 		ball.drawBall(canvas)
 		player.drawScore(canvas)
 		player.drawLives(canvas)
+		this.drawCurrentGameMode(this.mode)
 		canvas.detectBrickCollisions(ball, brick, player)
 		canvas.detectEdgeCollisions(ball, paddle, player)
 
@@ -140,6 +141,14 @@ class Game {
 		} else {
 			cancelAnimationFrame(this.requestId)
 		}
+	}
+
+	public drawCurrentGameMode(mode: IGameMode): void {
+		const ctx = this.canvas.getCtx()
+		const canvasWidth = this.canvas.getWidth()
+		ctx.font = '24px Arial'
+		ctx.fillStyle = '#0095DD'
+		ctx.fillText('Mode: ' + mode.getMode().name, canvasWidth / 2 - 90, 20)
 	}
 
 	// check if a key was pressed
