@@ -186,7 +186,42 @@ describe('application', () => {
 		)
 	})
 
-	test('it should have a tool bar for game controls', () => {})
+	test('it should have a tool bar for game controls', () => {
+		const toolBar = document.querySelector('.btn-toolbar')
+		const playBtn = toolBar?.children[0]
+		const pauseBtn = toolBar?.children[1]
+		const resetBtn = toolBar?.children[2]
+		const moveLeftBtn = toolBar?.children[3]
+		const moveRightBtn = toolBar?.children[4]
+
+		expect(toolBar).toBeTruthy()
+		expect(toolBar?.getAttribute('role')).toBe('toolbar')
+
+		expect(playBtn).toBeTruthy()
+		expect(playBtn instanceof HTMLButtonElement).toBe(true)
+		expect(playBtn?.textContent).toBe('Play')
+		expect(playBtn?.getAttribute('type')).toBe('button')
+
+		expect(pauseBtn).toBeTruthy()
+		expect(pauseBtn instanceof HTMLButtonElement).toBe(true)
+		expect(pauseBtn?.textContent).toBe('Pause')
+		expect(pauseBtn?.getAttribute('type')).toBe('button')
+
+		expect(resetBtn).toBeTruthy()
+		expect(resetBtn instanceof HTMLButtonElement).toBe(true)
+		expect(resetBtn?.textContent).toBe('Reset')
+		expect(resetBtn?.getAttribute('type')).toBe('button')
+
+		expect(moveLeftBtn).toBeTruthy()
+		expect(moveLeftBtn instanceof HTMLButtonElement).toBe(true)
+		expect(moveLeftBtn?.textContent).toBe('Move Left')
+		expect(moveLeftBtn?.getAttribute('type')).toBe('button')
+
+		expect(moveRightBtn).toBeTruthy()
+		expect(moveRightBtn instanceof HTMLButtonElement).toBe(true)
+		expect(moveRightBtn?.textContent).toBe('Move Right')
+		expect(moveRightBtn?.getAttribute('type')).toBe('button')
+	})
 
 	test('it should have a canvas', () => {})
 })
