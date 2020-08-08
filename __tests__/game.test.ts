@@ -10,6 +10,8 @@ import { veryEasyMode } from '../public/js/constants'
 jest.mock('../public/js/modules/canvas')
 
 describe('game', () => {
+	window.alert = () => {}
+
 	const canvas = new MockCanvas()
 	const mode = new Mode(veryEasyMode)
 	const ball = new Ball(canvas.height, canvas.width, mode)
@@ -29,6 +31,7 @@ describe('game', () => {
 		expect(game).toHaveProperty('pause')
 		expect(game).toHaveProperty('init')
 		expect(game).toHaveProperty('draw')
+		expect(game).toHaveProperty('drawCurrentGameMode')
 		expect(game).toHaveProperty('keyDownHandler')
 		expect(game).toHaveProperty('keyUpHandler')
 		expect(game).toHaveProperty('mouseClickHandler')
