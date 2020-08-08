@@ -223,5 +223,12 @@ describe('application', () => {
 		expect(moveRightBtn?.getAttribute('type')).toBe('button')
 	})
 
-	test('it should have a canvas', () => {})
+	test('it should have a canvas', () => {
+		const canvas = document.getElementsByTagName('canvas')[0]
+
+		expect(canvas).toBeTruthy()
+		expect(canvas.getAttribute('id')).toBe('myCanvas')
+		expect(canvas.getAttribute('width')).toBe('900')
+		expect(canvas.getAttribute('height')).toBe('550')
+	})
 })
