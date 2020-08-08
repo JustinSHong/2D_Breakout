@@ -55,6 +55,7 @@ describe('application', () => {
 		const body = document.querySelector('.modal-body')
 		const bodyTitle = body?.children[0]
 		const bodyList = body?.children[1]
+		const repoLink = document.querySelector('#githubRepoLink')
 
 		expect(aboutModal).toBeTruthy()
 		expect(aboutModal?.getAttribute('id')).toBe('aboutModal')
@@ -87,6 +88,11 @@ describe('application', () => {
 		expect(bodyList?.children[3]).toBeTruthy()
 		expect(bodyList?.children[3] instanceof HTMLLIElement).toBe(true)
 		expect(bodyList?.children[3].textContent).toBe('Node.js / Express')
+
+		expect(repoLink).toBeTruthy()
+		expect(repoLink?.getAttribute('href')).toBe(
+			'https://github.com/JustinSHong/2D_Breakout'
+		)
 	})
 
 	test('it should have a Settings modal', () => {
