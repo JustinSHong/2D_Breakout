@@ -57,6 +57,7 @@ describe('application', () => {
 		const bodyList = body?.children[1]
 
 		expect(aboutModal).toBeTruthy()
+		expect(aboutModal?.getAttribute('id')).toBe('aboutModal')
 		expect(header).toBeTruthy()
 		expect(header instanceof HTMLHeadingElement).toBe(true)
 		expect(header?.textContent).toBe('About')
@@ -88,9 +89,68 @@ describe('application', () => {
 		expect(bodyList?.children[3].textContent).toBe('Node.js / Express')
 	})
 
-	test('it should have a Settings modal', () => {})
+	test('it should have a Settings modal', () => {
+		const settingsModal = document.querySelector('#settingsModal')
+		const header = document.querySelectorAll('.modal-title')[1]
+		const closeButton = document.querySelector('.close')
+		const body = document.querySelector('.form-group')
+		const select = body?.children[1]
 
-	test('it should have a Controls modal', () => {})
+		expect(settingsModal).toBeTruthy()
+		expect(settingsModal?.getAttribute('id')).toBe('settingsModal')
+		expect(header).toBeTruthy()
+		expect(header instanceof HTMLHeadingElement).toBe(true)
+		expect(header?.textContent).toBe('Settings')
+
+		expect(closeButton).toBeTruthy()
+		expect(closeButton instanceof HTMLButtonElement).toBe(true)
+		expect(closeButton?.getAttribute('type')).toBe('button')
+		expect(closeButton?.getAttribute('data-dismiss')).toBe('modal')
+
+		expect(body?.children[0]).toBeTruthy()
+		expect(body?.children[0] instanceof HTMLLabelElement).toBe(true)
+		expect(body?.children[0].textContent).toBe('Game Modes')
+		expect(body?.children[0].getAttribute('for')).toBe('gameModeSelect')
+
+		expect(select).toBeTruthy()
+		expect(select instanceof HTMLSelectElement).toBe(true)
+		expect(select?.getAttribute('name')).toBe('gameModeSelect')
+		expect(select?.getAttribute('id')).toBe('gameModeSelect')
+
+		expect(select?.children[0]).toBeTruthy()
+		expect(select?.children[0] instanceof HTMLOptionElement).toBe(true)
+		expect(select?.children[0].textContent).toBe('Easy')
+		expect(select?.children[0].getAttribute('name')).toBe('easy')
+		expect(select?.children[0].getAttribute('id')).toBe('easy-mode-btn')
+
+		expect(select?.children[1]).toBeTruthy()
+		expect(select?.children[1] instanceof HTMLOptionElement).toBe(true)
+		expect(select?.children[1].textContent).toBe('Medium')
+		expect(select?.children[1].getAttribute('name')).toBe('medium')
+		expect(select?.children[1].getAttribute('id')).toBe('medium-mode-btn')
+
+		expect(select?.children[2]).toBeTruthy()
+		expect(select?.children[2] instanceof HTMLOptionElement).toBe(true)
+		expect(select?.children[2].textContent).toBe('Hard')
+		expect(select?.children[2].getAttribute('name')).toBe('hard')
+		expect(select?.children[2].getAttribute('id')).toBe('hard-mode-btn')
+
+		expect(select?.children[3]).toBeTruthy()
+		expect(select?.children[3] instanceof HTMLOptionElement).toBe(true)
+		expect(select?.children[3].textContent).toBe('Very Hard')
+		expect(select?.children[3].getAttribute('name')).toBe('veryHard')
+		expect(select?.children[3].getAttribute('id')).toBe('veryHard-mode-btn')
+	})
+
+	test('it should have a Controls modal', () => {
+		const controlsTable = document.querySelector('.table')
+		const controlsTableHeader = controlsTable?.children[0]
+		const controlsTableBody = controlsTable?.children[1]
+
+		expect(controlsTable).toBeTruthy()
+		expect(controlsTableHeader).toBeTruthy()
+		expect(controlsTableBody).toBeTruthy()
+	})
 
 	test('it should have a tool bar for game controls', () => {})
 
