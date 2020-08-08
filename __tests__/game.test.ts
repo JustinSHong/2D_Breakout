@@ -66,7 +66,7 @@ describe('game', () => {
 		const hardMode = {
 			name: 'hard',
 			dx: 3,
-			dy: -3.5,
+			dy: -3,
 			lives: 3,
 		}
 		expect(game.selectGameMode(mockEvent as any)).toEqual(hardMode)
