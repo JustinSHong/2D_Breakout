@@ -2,7 +2,26 @@ body {
 	display: block;
 	max-width: 100%;
 	margin: 0 auto;
-	font-size: 16px;
+	font-size: 16px;;
+}
+
+body nav.navbar {
+	background-color: #1976d2 !important;
+}
+
+a.navbar-brand, a.nav-item {
+	color: #EEE !important;
+}
+
+.navbar-dark, .navbar-toggler-icon {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='#EEE' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+button.btn, button.btn-secondary {
+	background-color: #dc004e !important;
+	border-color: #dc004e;
+	box-shadow: none !important;
+	width: 140px;
 }
 
 .container {
