@@ -143,13 +143,47 @@ describe('application', () => {
 	})
 
 	test('it should have a Controls modal', () => {
+		const controlsModal = document.querySelector('#controlsModal')
 		const controlsTable = document.querySelector('.table')
 		const controlsTableHeader = controlsTable?.children[0]
+		const controlsTableColOne = controlsTableHeader?.children[0].children[0]
+		const controlsTableColTwo = controlsTableHeader?.children[0].children[1]
 		const controlsTableBody = controlsTable?.children[1]
 
+		expect(controlsModal).toBeTruthy()
 		expect(controlsTable).toBeTruthy()
-		expect(controlsTableHeader).toBeTruthy()
+		expect(controlsTableColOne).toBeTruthy()
+		expect(controlsTableColOne instanceof HTMLTableCellElement).toBe(true)
+		expect(controlsTableColOne?.textContent).toBe('Key')
+		expect(controlsTableColTwo).toBeTruthy()
+		expect(controlsTableColTwo instanceof HTMLTableCellElement).toBe(true)
+		expect(controlsTableColTwo?.textContent).toBe('Description')
+
 		expect(controlsTableBody).toBeTruthy()
+		expect(controlsTableBody?.children[0].children[0]).toBeTruthy()
+		expect(controlsTableBody?.children[0].children[0].textContent).toBe('P')
+		expect(controlsTableBody?.children[0].children[1]).toBeTruthy()
+		expect(controlsTableBody?.children[0].children[1].textContent).toBe(
+			'Pause the action'
+		)
+		expect(controlsTableBody?.children[1].children[0]).toBeTruthy()
+		expect(controlsTableBody?.children[1].children[0].textContent).toBe('Q')
+		expect(controlsTableBody?.children[1].children[1]).toBeTruthy()
+		expect(controlsTableBody?.children[1].children[1].textContent).toBe(
+			'Quit or Reset'
+		)
+		expect(controlsTableBody?.children[2].children[1]).toBeTruthy()
+		expect(controlsTableBody?.children[2].children[1].textContent).toBe(
+			'Move paddle left with back arrow'
+		)
+		expect(controlsTableBody?.children[3].children[1]).toBeTruthy()
+		expect(controlsTableBody?.children[3].children[1].textContent).toBe(
+			'Move paddle right with right arrow'
+		)
+		expect(controlsTableBody?.children[4].children[1]).toBeTruthy()
+		expect(controlsTableBody?.children[4].children[1].textContent).toBe(
+			'Move paddle left and right with mouse'
+		)
 	})
 
 	test('it should have a tool bar for game controls', () => {})
