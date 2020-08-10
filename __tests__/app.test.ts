@@ -237,4 +237,39 @@ describe('application', () => {
 		expect(canvas.getAttribute('width')).toBe('900')
 		expect(canvas.getAttribute('height')).toBe('550')
 	})
+
+	test('it should have a table to show user scores', () => {
+		const table = document.getElementById('scoreBoard')
+		const tableHead = table?.children[0]
+		const tableBody = table?.children[1]
+
+		// table headers
+		expect(table).toBeTruthy()
+		expect(tableHead).toBeTruthy()
+		expect(tableHead?.children[0].children[0]).toBeTruthy()
+		expect(tableHead?.children[0].children[0].textContent).toBe('Attempts')
+		expect(tableHead?.children[0].children[1]).toBeTruthy()
+		expect(tableHead?.children[0].children[1].textContent).toBe('Score')
+		expect(tableHead?.children[0].children[2]).toBeTruthy()
+		expect(tableHead?.children[0].children[2].textContent).toBe('Mode')
+		expect(tableHead?.children[0].children[3]).toBeTruthy()
+		expect(tableHead?.children[0].children[3].textContent).toBe('Timestamp')
+
+		// example entry
+		expect(tableBody).toBeTruthy()
+		expect(tableBody?.children[0].children[0]).toBeTruthy()
+		expect(tableBody?.children[0].children[0].textContent).toBe('0')
+		expect(tableBody?.children[0].children[1]).toBeTruthy()
+		expect(tableBody?.children[0].children[1].textContent).toBe(
+			'Your score'
+		)
+		expect(tableBody?.children[0].children[2]).toBeTruthy()
+		expect(tableBody?.children[0].children[2].textContent).toBe(
+			'Mode you played'
+		)
+		expect(tableBody?.children[0].children[3]).toBeTruthy()
+		expect(tableBody?.children[0].children[3].textContent).toBe(
+			'When you played'
+		)
+	})
 })
