@@ -12,10 +12,13 @@ describe('functions related to score creation', () => {
 	})
 
 	test('createScore()', () => {
-		const score = createScore(100)
+		const score = createScore(100, 'veryEasy')
 
 		expect(score).not.toBe(null)
 		expect(score.score).toBe(100)
+		expect(score.mode).toBe('veryEasy')
 		expect(score.timestamp).toBe(createScoreTimestamp())
 	})
+
+	test('drawScoreBoardEntry', () => {})
 })
