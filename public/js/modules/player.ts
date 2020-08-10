@@ -1,9 +1,11 @@
 import { ICanvas } from './canvas'
+import { IMode } from './mode'
 
 export interface IPlayer {
 	drawScore(canvas: ICanvas): void
 	drawLives(canvas: ICanvas): void
 	getLives(): number
+	getMode(): IMode
 	getScore(): number
 	setLives(lives: number): void
 	setScore(score: number): void
@@ -15,6 +17,7 @@ class Player implements IPlayer {
 
 	constructor(public mode: any) {
 		this.lives = mode.lives
+		this.mode = mode
 		this.score = 0
 	}
 
@@ -41,6 +44,10 @@ class Player implements IPlayer {
 
 	public getLives(): number {
 		return this.lives
+	}
+
+	public getMode(): IMode {
+		return this.mode
 	}
 
 	public getScore(): number {
