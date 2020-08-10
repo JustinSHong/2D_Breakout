@@ -1,27 +1,26 @@
 // use localStorage as a source of truth for game scores
 
 interface Score {
+	mode: string
 	score: number
 	timestamp: string
 }
 
-// generate timestamp
-// draw table rows with score data
-// add score to table
-
 export const createScoreTimestamp = (): string => {
 	const date = new Date()
 
-	return `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`
+	return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`
 }
 
-export const createScore = (score: number): Score => {
+export const createScore = (score: number, mode: string): Score => {
 	const timestamp = createScoreTimestamp()
 	const userScore: Score = {
+		mode,
 		score,
 		timestamp,
 	}
-	console.log('local storage size: ', localStorage.length)
+
+	console.log('userScore: ', userScore)
 
 	return userScore
 }
@@ -33,11 +32,29 @@ export const setScore = (userScore: Score): void => {
 export const getScores = (): Score[] => {
 	let scores: Score[] = []
 
-	for (let i = 0; i < localStorage.length; i++) {
+	for (let i = 1; i < localStorage.length; i++) {
 		const score: Score = JSON.parse(localStorage.getItem(`${i}`) as any)
 		scores.push(score)
 	}
 
-	console.log('scores: ', scores)
 	return scores
+}
+
+export const drawScoreBoardEntry = (): void => {
+	const scores = getScores()
+
+	const table = document.getElementsByTagName('tbody')[1]
+
+	scores.forEach((entry, index) => {
+		let tr = table?.insertRow()
+		let attempts = tr.insertCell(0)
+		let score = tr.insertCell(1)
+		let mode = tr.insertCell(2)
+		let timestamp = tr.insertCell(3)
+
+		attempts.appendChild(document.createTextNode(`${index + 1}`))
+		score.appendChild(document.createTextNode(`${entry.score}`))
+		mode.appendChild(document.createTextNode(`${entry.mode}`))
+		timestamp.appendChild(document.createTextNode(`${entry.timestamp}`))
+	})
 }
