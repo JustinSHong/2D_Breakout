@@ -33,7 +33,7 @@
 
 	<body>
 		<!-- Navigation -->
-		<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-light sticky-top">
 			<a
 				class="navbar-brand"
 				href="https://github.com/JustinSHong/2D_Breakout"
@@ -222,25 +222,40 @@
 		</div>
 		<!-- Game Information -->
 		<main>
-			<!-- Show current game mode -->
-			<h2 class="selected-mode"></h2>
 			<!-- Toolbar -->
 			<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-				  <button type="button" class="btn btn-secondary btn-lg mr-2" id="playBtn">Play</button>
-				  <button type="button" class="btn btn-secondary btn-lg mr-2" id="pauseBtn">Pause</button>
-				  <button type="button" class="btn btn-secondary btn-lg mr-2" id="resetBtn">Reset</button>
-				  <button type="button" class="btn btn-secondary btn-lg mr-2" id="moveLeftBtn">Move Left</button>
-				  <button type="button" class="btn btn-secondary btn-lg" id="moveRightBtn">Move Right</button>
+				<button type="button" class="btn btn-secondary btn-lg mr-2" id="playBtn">Play</button>
+				<button type="button" class="btn btn-secondary btn-lg mr-2" id="pauseBtn">Pause</button>
+				<button type="button" class="btn btn-secondary btn-lg mr-2" id="resetBtn">Reset</button>
+				<button type="button" class="btn btn-secondary btn-lg mr-2" id="moveLeftBtn">Move Left</button>
+				<button type="button" class="btn btn-secondary btn-lg" id="moveRightBtn">Move Right</button>
 			</div>
 			<!-- Game Canvas -->
 			<canvas
-				tabindex="1"
+			tabindex="1"
 				id="myCanvas"
 				width="900"
 				height="550"
 			></canvas>
 			<!-- LeaderBoard -->
-			<section></section>
+			<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">Attempts</th>
+						<th scope="col">Score</th>
+						<th scope="col">Mode</th>
+						<th scope="col">Timestamp</th>
+					</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<th scope="row">0</th>
+					<td>Your score</td>
+					<td>Mode you played</td>
+                	<td>When you played</td>
+				</tr>
+				</tbody>
+			</table>
 		</main>
 	</body>
 </html>
