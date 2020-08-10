@@ -19,6 +19,4 @@ describe('functions related to score creation', () => {
 		expect(score.mode).toBe('veryEasy')
 		expect(score.timestamp).toBe(createScoreTimestamp())
 	})
-
-	test('drawScoreBoardEntry', () => {})
 })
