@@ -2,6 +2,7 @@ import { IBall } from './ball'
 import { IBrick } from './brick'
 import { IPaddle } from './paddle'
 import { IPlayer } from './player'
+import { createScore, setScore } from '../services/score'
 
 export interface ICanvas {
 	clear(): void
@@ -59,6 +60,9 @@ class Canvas implements ICanvas {
 				player.setLives(playerLives - 1)
 				if (playerLives === 0) {
 					alert('Game Over')
+					setScore(
+						createScore(player.getScore(), player.getMode().name)
+					)
 					document.location.reload()
 				} else {
 					ball.setBallX(this.width / 2)
