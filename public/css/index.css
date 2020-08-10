@@ -111,27 +111,27 @@ canvas {
 	margin: 20px auto 10px auto;
 }
 
-.table {
+#scoreBoard {
 	max-width: 900px;
 	margin-top: 40px;
 	margin-bottom: 40px;
 	letter-spacing: 1px;
 }
 
-.table thead th {
+#scoreBoard thead th {
 	background-color: #dc004e;
 	border-bottom: none;
 	color: white;
 }
 
-.table th {
+#scoreBoard th {
 	border-top: none;
 }
 
-.table tr {
+#scoreBoard tr {
 	color: white;
 }
 
-.table tr td {
+#scoreBoard tr td {
 	border-top: none;
 }
