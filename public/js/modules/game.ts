@@ -8,6 +8,7 @@ import { IGameMode } from './mode'
 import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 import Player from './player'
+import { createScore, setScore, drawScoreBoardEntry } from '../services/score'
 
 // modal links
 const controlsModalLink = document.querySelector<HTMLAnchorElement>(
@@ -81,6 +82,8 @@ class Game {
 		reset?.addEventListener('click', this.mouseClickHandler, false)
 		moveLeft?.addEventListener('click', this.mouseClickHandler, false)
 		moveRight?.addEventListener('click', this.mouseClickHandler, false)
+
+		drawScoreBoardEntry()
 	}
 
 	// initialize the game objects and the game loop
@@ -106,7 +109,7 @@ class Game {
 	): void {
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
-		// clear previous ball before drawing a new one
+		// clear canvas before drawing
 		canvas.clear()
 		canvas.getCtx().beginPath()
 		paddle.drawPaddle(canvas)
@@ -153,6 +156,9 @@ class Game {
 
 	// check if a key was pressed
 	public keyDownHandler = (e: KeyboardEvent): number => {
+		const playerScore = this.player.getScore()
+		const mode = this.mode.getMode().name
+
 		if (e.keyCode === 39) {
 			// right cursor key pressed
 			this.rightPressed = true
@@ -164,6 +170,8 @@ class Game {
 			this.pauseGame()
 		} else if (e.keyCode === 81) {
 			alert('You quit. Game Over!')
+			setScore(createScore(playerScore, mode))
+
 			document.location.reload()
 		}
 
@@ -255,6 +263,7 @@ class Game {
 		this.ball = new Ball(canvasHeight, canvasWidth, this.mode)
 		this.player = new Player(this.mode)
 
+		this.drawCurrentGameMode(this.mode)
 		return this.mode
 	}
 }
