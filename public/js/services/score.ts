@@ -20,8 +20,6 @@ export const createScore = (score: number, mode: string): Score => {
 		timestamp,
 	}
 
-	console.log('userScore: ', userScore)
-
 	return userScore
 }
 
@@ -42,8 +40,6 @@ export const getScores = (): Score[] => {
 
 export const drawScoreBoardEntry = (): void => {
 	const scores = getScores()
-
-	console.log('scores: ', scores)
 
 	const table = document.getElementsByTagName('tbody')[1]
 
