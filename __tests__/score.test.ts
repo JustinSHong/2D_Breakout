@@ -4,7 +4,8 @@ describe('functions related to score creation', () => {
 	test('createScoreTimeStamp()', () => {
 		const timestamp = createScoreTimestamp()
 		const date = new Date()
-		const expected = `${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`
+		const expected = `${date.getMonth() +
+			1}/${date.getDate()}/${date.getFullYear()}`
 
 		expect(timestamp).toBeTruthy()
 		expect(typeof timestamp).toBe('string')
