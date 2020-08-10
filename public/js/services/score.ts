@@ -32,7 +32,7 @@ export const setScore = (userScore: Score): void => {
 export const getScores = (): Score[] => {
 	let scores: Score[] = []
 
-	for (let i = 1; i < localStorage.length; i++) {
+	for (let i = 0; i < localStorage.length; i++) {
 		const score: Score = JSON.parse(localStorage.getItem(`${i}`) as any)
 		scores.push(score)
 	}
@@ -43,18 +43,22 @@ export const getScores = (): Score[] => {
 export const drawScoreBoardEntry = (): void => {
 	const scores = getScores()
 
+	console.log('scores: ', scores)
+
 	const table = document.getElementsByTagName('tbody')[1]
 
 	scores.forEach((entry, index) => {
-		let tr = table?.insertRow()
-		let attempts = tr.insertCell(0)
-		let score = tr.insertCell(1)
-		let mode = tr.insertCell(2)
-		let timestamp = tr.insertCell(3)
+		if (entry != null) {
+			let tr = table?.insertRow()
+			let attempts = tr.insertCell(0)
+			let score = tr.insertCell(1)
+			let mode = tr.insertCell(2)
+			let timestamp = tr.insertCell(3)
 
-		attempts.appendChild(document.createTextNode(`${index + 1}`))
-		score.appendChild(document.createTextNode(`${entry.score}`))
-		mode.appendChild(document.createTextNode(`${entry.mode}`))
-		timestamp.appendChild(document.createTextNode(`${entry.timestamp}`))
+			attempts.appendChild(document.createTextNode(`${index}`))
+			score.appendChild(document.createTextNode(`${entry.score}`))
+			mode.appendChild(document.createTextNode(`${entry.mode}`))
+			timestamp.appendChild(document.createTextNode(`${entry.timestamp}`))
+		}
 	})
 }
