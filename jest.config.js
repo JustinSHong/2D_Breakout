@@ -6,4 +6,5 @@ module.exports = {
 			'<rootDir>/__mocks__/fileMock.js',
 		'\\.(css|less)$': '<rootDir>/public/css/__mocks__/styleMock.js',
 	},
+	setupFiles: ['./jest.setup.js'],
 }

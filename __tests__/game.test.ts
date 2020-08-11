@@ -12,6 +12,10 @@ jest.mock('../public/js/modules/canvas')
 describe('game', () => {
 	window.alert = () => {}
 
+	beforeEach(() => {
+		jest.clearAllMocks()
+	})
+
 	const canvas = new MockCanvas()
 	const mode = new Mode(veryEasyMode)
 	const ball = new Ball(canvas.height, canvas.width, mode)

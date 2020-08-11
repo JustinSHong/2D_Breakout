@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import Ball, { IBall } from './ball'
 import { easyMode, hardMode, mediumMode, veryHardMode } from '../constants'
 
@@ -18,6 +17,13 @@ const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
 const settingsModalLink = document.querySelector<HTMLAnchorElement>(
 	'#settingsModalLink'
 )
+const gameEndModalTitle = document.querySelector<HTMLDivElement>(
+	'#gameEndModalTitle'
+)
+const gameEndModalBody = document.querySelector<HTMLDivElement>(
+	'#gameEndModalBody'
+)
+
 // tool bar controls
 const play = document.querySelector<HTMLButtonElement>('#playBtn')
 const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
@@ -69,12 +75,14 @@ class Game {
 			this.mouseClickHandler,
 			false
 		)
-		// modals opening or closing
 		$('#controlsModal').on('hidden.bs.modal', () => {
 			this.resumeGame()
 		})
 		$('#settingsModal').on('hidden.bs.modal', () => {
 			this.resumeGame()
+		})
+		$('#gameEndModal').on('hidden.bs.modal', () => {
+			document.location.reload()
 		})
 		// list for tool bar events
 		play?.addEventListener('click', this.mouseClickHandler, false)
@@ -169,10 +177,8 @@ class Game {
 			// pause key pressed
 			this.pauseGame()
 		} else if (e.keyCode === 81) {
-			alert('You quit. Game Over!')
+			this.showGameEndModal('Game Over', 'You quit. Game Over!')
 			setScore(createScore(playerScore, mode))
-
-			document.location.reload()
 		}
 
 		return e.keyCode
@@ -265,6 +271,16 @@ class Game {
 
 		this.drawCurrentGameMode(this.mode)
 		return this.mode
+	}
+
+	// tells user they either won, quit, or the game is over
+	public showGameEndModal = (title: string, message: string): void => {
+		gameEndModalTitle ? (gameEndModalTitle.textContent = title) : null
+		gameEndModalBody
+			? (gameEndModalBody.innerHTML = `<p>${message}</p>`)
+			: null
+		$('#gameEndModal').modal('toggle')
+		this.pauseGame()
 	}
 }
 
