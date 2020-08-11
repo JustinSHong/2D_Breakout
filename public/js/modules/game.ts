@@ -12,15 +12,15 @@ import {
 	mediumMode,
 	veryHardMode,
 	controlsModalLink,
-	gameMode,
+	gameModeSelect,
 	settingsModalLink,
 	gameEndModalTitle,
 	gameEndModalBody,
-	play,
+	playBtn,
 	pauseBtn,
-	reset,
-	moveLeft,
-	moveRight,
+	resetBtn,
+	moveLeftBtn,
+	moveRightBtn,
 } from '../constants'
 import { createScore, setScore, drawScoreBoardEntry } from '../services/score'
 
@@ -62,7 +62,7 @@ class Game {
 			this.mouseClickHandler,
 			false
 		)
-		gameMode?.addEventListener('change', this.selectGameMode, false)
+		gameModeSelect?.addEventListener('change', this.selectGameMode, false)
 		settingsModalLink?.addEventListener(
 			'click',
 			this.mouseClickHandler,
@@ -78,11 +78,11 @@ class Game {
 			document.location.reload()
 		})
 		// list for tool bar events
-		play?.addEventListener('click', this.mouseClickHandler, false)
+		playBtn?.addEventListener('click', this.mouseClickHandler, false)
 		pauseBtn?.addEventListener('click', this.mouseClickHandler, false)
-		reset?.addEventListener('click', this.mouseClickHandler, false)
-		moveLeft?.addEventListener('click', this.mouseClickHandler, false)
-		moveRight?.addEventListener('click', this.mouseClickHandler, false)
+		resetBtn?.addEventListener('click', this.mouseClickHandler, false)
+		moveLeftBtn?.addEventListener('click', this.mouseClickHandler, false)
+		moveRightBtn?.addEventListener('click', this.mouseClickHandler, false)
 
 		drawScoreBoardEntry()
 	}
