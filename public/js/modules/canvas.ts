@@ -59,11 +59,9 @@ class Canvas implements ICanvas {
 				// player.lives--
 				player.setLives(playerLives - 1)
 				if (playerLives === 0) {
-					alert('Game Over')
 					setScore(
 						createScore(player.getScore(), player.getMode().name)
 					)
-					document.location.reload()
 				} else {
 					ball.setBallX(this.width / 2)
 					ball.setBallY(this.height - 30)
