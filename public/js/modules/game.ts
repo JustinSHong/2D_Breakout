@@ -108,9 +108,12 @@ class Game {
 		paddle: IPaddle,
 		player: IPlayer
 	): void {
+		const brickRowCount = brick.getBrickRowCount()
+		const brickColumnCount = brick.getBrickColumnCount()
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
 		const playerLives = player.getLives()
+		const playerScore = player.getScore()
 		// clear canvas before drawing
 		canvas.clear()
 		canvas.getCtx().beginPath()
@@ -126,6 +129,11 @@ class Game {
 		// game over
 		if (playerLives === 0) {
 			this.showGameEndModal('Game Over', 'You lost. Game Over!')
+		}
+
+		// player wins - all bricks broken
+		if (playerScore == brickRowCount * brickColumnCount) {
+			this.showGameEndModal('You Win', 'You Win! Congrats!')
 		}
 
 		// move paddle right until the right edge of the canvas
