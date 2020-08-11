@@ -33,3 +33,31 @@ export const veryEasyMode = {
 	lives: 5,
 	name: 'veryEasy',
 }
+
+// modals
+export const controlsModalLink = document.querySelector<HTMLAnchorElement>(
+	'#controlsModalLink'
+)
+export const gameMode = document.querySelector<HTMLSelectElement>(
+	'#gameModeSelect'
+)
+export const settingsModalLink = document.querySelector<HTMLAnchorElement>(
+	'#settingsModalLink'
+)
+export const gameEndModalTitle = document.querySelector<HTMLDivElement>(
+	'#gameEndModalTitle'
+)
+export const gameEndModalBody = document.querySelector<HTMLDivElement>(
+	'#gameEndModalBody'
+)
+
+// tool bar controls
+export const play = document.querySelector<HTMLButtonElement>('#playBtn')
+export const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
+export const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
+export const moveLeft = document.querySelector<HTMLButtonElement>(
+	'#moveLeftBtn'
+)
+export const moveRight = document.querySelector<HTMLButtonElement>(
+	'#moveRightBtn'
+)

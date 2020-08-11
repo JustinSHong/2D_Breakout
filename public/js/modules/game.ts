@@ -1,5 +1,4 @@
 import Ball, { IBall } from './ball'
-import { easyMode, hardMode, mediumMode, veryHardMode } from '../constants'
 
 import { IBrick } from './brick'
 import { ICanvas } from './canvas'
@@ -7,29 +6,23 @@ import { IGameMode } from './mode'
 import { IPaddle } from './paddle'
 import { IPlayer } from './player'
 import Player from './player'
+import {
+	easyMode,
+	hardMode,
+	mediumMode,
+	veryHardMode,
+	controlsModalLink,
+	gameMode,
+	settingsModalLink,
+	gameEndModalTitle,
+	gameEndModalBody,
+	play,
+	pauseBtn,
+	reset,
+	moveLeft,
+	moveRight,
+} from '../constants'
 import { createScore, setScore, drawScoreBoardEntry } from '../services/score'
-
-// modal links
-const controlsModalLink = document.querySelector<HTMLAnchorElement>(
-	'#controlsModalLink'
-)
-const gameMode = document.querySelector<HTMLSelectElement>('#gameModeSelect')
-const settingsModalLink = document.querySelector<HTMLAnchorElement>(
-	'#settingsModalLink'
-)
-const gameEndModalTitle = document.querySelector<HTMLDivElement>(
-	'#gameEndModalTitle'
-)
-const gameEndModalBody = document.querySelector<HTMLDivElement>(
-	'#gameEndModalBody'
-)
-
-// tool bar controls
-const play = document.querySelector<HTMLButtonElement>('#playBtn')
-const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
-const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
-const moveLeft = document.querySelector<HTMLButtonElement>('#moveLeftBtn')
-const moveRight = document.querySelector<HTMLButtonElement>('#moveRightBtn')
 
 class Game {
 	private rightPressed: boolean
@@ -117,6 +110,7 @@ class Game {
 	): void {
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
+		const playerLives = player.getLives()
 		// clear canvas before drawing
 		canvas.clear()
 		canvas.getCtx().beginPath()
@@ -128,6 +122,11 @@ class Game {
 		this.drawCurrentGameMode(this.mode)
 		canvas.detectBrickCollisions(ball, brick, player)
 		canvas.detectEdgeCollisions(ball, paddle, player)
+
+		// game over
+		if (playerLives === 0) {
+			this.showGameEndModal('Game Over', 'You lost. Game Over!')
+		}
 
 		// move paddle right until the right edge of the canvas
 		if (this.rightPressed && paddleX < canvas.getWidth() - paddleWidth) {
