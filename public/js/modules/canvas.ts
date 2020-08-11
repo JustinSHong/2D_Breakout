@@ -56,7 +56,6 @@ class Canvas implements ICanvas {
 				ball.setBallDy(-ballDy)
 				ball.changeColor()
 			} else {
-				// player.lives--
 				player.setLives(playerLives - 1)
 				if (playerLives === 0) {
 					setScore(
@@ -114,11 +113,6 @@ class Canvas implements ICanvas {
 						b.status = 0
 						// player.score++
 						player.setScore(playerScore + 1)
-						if (playerScore == brickRowCount * brickColumnCount) {
-							// display winning msg when score is equal to the number of bricks
-							alert('You Win! Congrats!')
-							document.location.reload()
-						}
 					}
 				}
 			}
