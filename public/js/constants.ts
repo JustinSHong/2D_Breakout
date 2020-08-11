@@ -38,7 +38,7 @@ export const veryEasyMode = {
 export const controlsModalLink = document.querySelector<HTMLAnchorElement>(
 	'#controlsModalLink'
 )
-export const gameMode = document.querySelector<HTMLSelectElement>(
+export const gameModeSelect = document.querySelector<HTMLSelectElement>(
 	'#gameModeSelect'
 )
 export const settingsModalLink = document.querySelector<HTMLAnchorElement>(
@@ -52,12 +52,12 @@ export const gameEndModalBody = document.querySelector<HTMLDivElement>(
 )
 
 // tool bar controls
-export const play = document.querySelector<HTMLButtonElement>('#playBtn')
+export const playBtn = document.querySelector<HTMLButtonElement>('#playBtn')
 export const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
-export const reset = document.querySelector<HTMLButtonElement>('#resetBtn')
-export const moveLeft = document.querySelector<HTMLButtonElement>(
+export const resetBtn = document.querySelector<HTMLButtonElement>('#resetBtn')
+export const moveLeftBtn = document.querySelector<HTMLButtonElement>(
 	'#moveLeftBtn'
 )
-export const moveRight = document.querySelector<HTMLButtonElement>(
+export const moveRightBtn = document.querySelector<HTMLButtonElement>(
 	'#moveRightBtn'
 )
