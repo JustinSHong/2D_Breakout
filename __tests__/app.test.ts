@@ -30,11 +30,13 @@ describe('application', () => {
 		expect(navBarItem[0].textContent).toBe('About')
 		expect(navBarItem[0].getAttribute('data-toggle')).toBe('modal')
 		expect(navBarItem[0].getAttribute('data-target')).toBe('#aboutModal')
+		expect(navBarItem[0].getAttribute('id')).toBe('aboutModalLink')
 		// nav bar item - Controls
 		expect(navBarItem[1] instanceof HTMLAnchorElement).toBe(true)
 		expect(navBarItem[1].textContent).toBe('Controls')
 		expect(navBarItem[1].getAttribute('data-toggle')).toBe('modal')
 		expect(navBarItem[1].getAttribute('data-target')).toBe('#controlsModal')
+		expect(navBarItem[1].getAttribute('id')).toBe('controlsModalLink')
 		// nav bar item - Github Repo
 		expect(navBarItem[2] instanceof HTMLAnchorElement).toBe(true)
 		expect(navBarItem[2].textContent).toBe('Github Repo')
@@ -46,6 +48,7 @@ describe('application', () => {
 		expect(navBarItem[3].textContent).toBe('Settings')
 		expect(navBarItem[3].getAttribute('data-toggle')).toBe('modal')
 		expect(navBarItem[3].getAttribute('data-target')).toBe('#settingsModal')
+		expect(navBarItem[3].getAttribute('id')).toBe('settingsModalLink')
 	})
 
 	test('it should have an About modal', () => {

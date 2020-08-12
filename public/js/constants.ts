@@ -35,6 +35,9 @@ export const veryEasyMode = {
 }
 
 // modals
+export const aboutModalLink = document.querySelector<HTMLAnchorElement>(
+	'#aboutModalLink'
+)
 export const controlsModalLink = document.querySelector<HTMLAnchorElement>(
 	'#controlsModalLink'
 )

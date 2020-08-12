@@ -13,6 +13,7 @@ import {
 	veryHardMode,
 	controlsModalLink,
 	gameModeSelect,
+	aboutModalLink,
 	settingsModalLink,
 	gameEndModalTitle,
 	gameEndModalBody,
@@ -57,6 +58,7 @@ class Game {
 		// listen for mouse movement
 		window.addEventListener('mousemove', this.mouseMoveHandler, false)
 		// listen for clicks on modal links
+		aboutModalLink?.addEventListener('click', this.mouseClickHandler, false)
 		controlsModalLink?.addEventListener(
 			'click',
 			this.mouseClickHandler,
@@ -68,6 +70,9 @@ class Game {
 			this.mouseClickHandler,
 			false
 		)
+		$('#aboutModal').on('hidden.bs.modal', () => {
+			this.resumeGame()
+		})
 		$('#controlsModal').on('hidden.bs.modal', () => {
 			this.resumeGame()
 		})
@@ -219,12 +224,13 @@ class Game {
 			paddle.update(14)
 		} else if (id === 'resetBtn') {
 			document.location.reload()
-		} else if (id === 'settingsModalLink') {
-			this.pauseGame()
-		} else if (id === 'controlsModalLink') {
+		} else if (
+			id === 'settingsModalLink' ||
+			id === 'controlsModalLink' ||
+			id === 'aboutModalLink'
+		) {
 			this.pauseGame()
 		}
-
 		return id
 	}
 
