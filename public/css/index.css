@@ -63,6 +63,30 @@ p {
 	margin-bottom: 0;
 }
 
+.modal-content .modal-header {
+	background-color: #dc004e;
+	border-bottom: none;
+	color: #eee;
+}
+
+.modal-content .close {
+	color: #eee;
+}
+
+.modal-content .modal-body,
+.controlsTable {
+	background-color: #272c34;
+	color: #eee;
+}
+
+#controlsModal .controlsTableHeader {
+	border-top: none;
+}
+
+#controlsModal .modal-body {
+	padding: 0;
+}
+
 .btn-container {
 	display: flex;
 	flex-direction: column;
