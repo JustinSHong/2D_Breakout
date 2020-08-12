@@ -160,10 +160,10 @@ describe('application', () => {
 		expect(controlsTable).toBeTruthy()
 		expect(controlsTableColOne).toBeTruthy()
 		expect(controlsTableColOne instanceof HTMLTableCellElement).toBe(true)
-		expect(controlsTableColOne?.textContent).toBe('Key')
+		expect(controlsTableColOne?.textContent).toContain('Key')
 		expect(controlsTableColTwo).toBeTruthy()
 		expect(controlsTableColTwo instanceof HTMLTableCellElement).toBe(true)
-		expect(controlsTableColTwo?.textContent).toBe('Description')
+		expect(controlsTableColTwo?.textContent).toContain('Description')
 
 		expect(controlsTableBody).toBeTruthy()
 		expect(controlsTableBody?.children[0].children[0]).toBeTruthy()
@@ -187,9 +187,9 @@ describe('application', () => {
 			'Move paddle right with right arrow'
 		)
 		expect(controlsTableBody?.children[4].children[1]).toBeTruthy()
-		expect(controlsTableBody?.children[4].children[1].textContent).toBe(
-			'Move paddle left and right with mouse'
-		)
+		expect(
+			controlsTableBody?.children[4].children[1].textContent
+		).toContain('Move paddle left and right with mouse')
 	})
 
 	test('it should have a tool bar for game controls', () => {
@@ -205,27 +205,27 @@ describe('application', () => {
 
 		expect(playBtn).toBeTruthy()
 		expect(playBtn instanceof HTMLButtonElement).toBe(true)
-		expect(playBtn?.textContent).toBe('Play')
+		expect(playBtn?.textContent).toContain('Play')
 		expect(playBtn?.getAttribute('type')).toBe('button')
 
 		expect(pauseBtn).toBeTruthy()
 		expect(pauseBtn instanceof HTMLButtonElement).toBe(true)
-		expect(pauseBtn?.textContent).toBe('Pause')
+		expect(pauseBtn?.textContent).toContain('Pause')
 		expect(pauseBtn?.getAttribute('type')).toBe('button')
 
 		expect(resetBtn).toBeTruthy()
 		expect(resetBtn instanceof HTMLButtonElement).toBe(true)
-		expect(resetBtn?.textContent).toBe('Reset')
+		expect(resetBtn?.textContent).toContain('Reset')
 		expect(resetBtn?.getAttribute('type')).toBe('button')
 
 		expect(moveLeftBtn).toBeTruthy()
 		expect(moveLeftBtn instanceof HTMLButtonElement).toBe(true)
-		expect(moveLeftBtn?.textContent).toBe('Move Left')
+		expect(moveLeftBtn?.textContent).toContain('Move Left')
 		expect(moveLeftBtn?.getAttribute('type')).toBe('button')
 
 		expect(moveRightBtn).toBeTruthy()
 		expect(moveRightBtn instanceof HTMLButtonElement).toBe(true)
-		expect(moveRightBtn?.textContent).toBe('Move Right')
+		expect(moveRightBtn?.textContent).toContain('Move Right')
 		expect(moveRightBtn?.getAttribute('type')).toBe('button')
 	})
 
