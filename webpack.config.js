@@ -1,6 +1,7 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	entry: './public/js/index.ts',
@@ -16,7 +17,7 @@ module.exports = {
 			},
 			{
 				test: /\.css$/,
-				use: ['style-loader', 'css-loader'],
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
 			},
 		],
 	},
@@ -31,6 +32,7 @@ module.exports = {
 			title: '2D Breakout',
 			scriptLoading: 'defer',
 		}),
+		new MiniCssExtractPlugin(),
 	],
 	resolve: {
 		extensions: ['.tsx', '.ts', '.js'],
