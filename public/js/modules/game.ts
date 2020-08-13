@@ -177,9 +177,6 @@ class Game {
 
 	// check if a key was pressed
 	public keyDownHandler = (e: KeyboardEvent): number => {
-		const playerScore = this.player.getScore()
-		const mode = this.mode.getMode().name
-
 		if (e.keyCode === 39) {
 			// right cursor key pressed
 			this.rightPressed = true
@@ -191,7 +188,6 @@ class Game {
 			this.pauseGame()
 		} else if (e.keyCode === 81) {
 			this.showGameEndModal('Game Over', 'You quit. Game Over!')
-			setScore(createScore(playerScore, mode))
 		}
 
 		return e.keyCode
@@ -246,7 +242,6 @@ class Game {
 
 		let relativeX = e.clientX - canvas.offsetLeft
 		if (relativeX > 0 && relativeX < canvasWidth) {
-			console.log('mouse move')
 			const paddleX = relativeX - paddleWidth / 2
 			this.paddle.setPaddleX(paddleX)
 		}
@@ -293,6 +288,7 @@ class Game {
 
 	// tells user they either won, quit, or the game is over
 	public showGameEndModal = (title: string, message: string): void => {
+		setScore(createScore(this.player.getScore(), this.mode.getMode().name))
 		gameEndModalTitle ? (gameEndModalTitle.textContent = title) : null
 		gameEndModalBody
 			? (gameEndModalBody.innerHTML = `<p>${message}</p>`)
