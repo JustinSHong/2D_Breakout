@@ -2,7 +2,6 @@ import { IBall } from './ball'
 import { IBrick } from './brick'
 import { IPaddle } from './paddle'
 import { IPlayer } from './player'
-import { createScore, setScore } from '../services/score'
 
 export interface ICanvas {
 	clear(): void
@@ -56,17 +55,11 @@ class Canvas implements ICanvas {
 				ball.setBallDy(-ballDy)
 				ball.changeColor()
 			} else {
+				// ball misses the paddle
 				player.setLives(playerLives - 1)
-				if (playerLives === 0) {
-					setScore(
-						createScore(player.getScore(), player.getMode().name)
-					)
-				} else {
-					ball.setBallX(this.width / 2)
-					ball.setBallY(this.height - 30)
-
-					paddle.setPaddleX((this.width - paddleWidth) / 2)
-				}
+				ball.setBallX(this.width / 2)
+				ball.setBallY(this.height - 30)
+				paddle.setPaddleX((this.width - paddleWidth) / 2)
 			}
 		}
 		// detect collision with left and right edges
