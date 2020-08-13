@@ -42,6 +42,7 @@ class Canvas implements ICanvas {
 		const ballDy = ball.getBallDy()
 		const ballRadius = ball.getBallRadius()
 		const paddleX = paddle.getPaddleX()
+		const paddleHeight = paddle.getPaddleHeight()
 		const paddleWidth = paddle.getPaddleWidth()
 		const playerLives = player.getLives()
 
@@ -49,8 +50,8 @@ class Canvas implements ICanvas {
 		if (ballY + ballDy < ballRadius) {
 			ball.setBallDy(-ballDy)
 			ball.changeColor()
-		} else if (ballY + ballDy > this.height - ballRadius) {
-			if (ballX > paddleX && ballX < paddleX + paddleWidth) {
+		} else if (ballY + ballDy >= this.height - paddleHeight) {
+			if (ballX >= paddleX && ballX <= paddleX + paddleWidth) {
 				// ball collides with the paddle
 				ball.setBallDy(-ballDy)
 				ball.changeColor()
@@ -59,7 +60,7 @@ class Canvas implements ICanvas {
 				player.setLives(playerLives - 1)
 				ball.setBallX(this.width / 2)
 				ball.setBallY(this.height - 30)
-				paddle.setPaddleX((this.width - paddleWidth) / 2)
+				ball.setBallDy(-ballDy)
 			}
 		}
 		// detect collision with left and right edges
