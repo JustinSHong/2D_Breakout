@@ -70,6 +70,7 @@ class Game {
 			this.mouseClickHandler,
 			false
 		)
+		// bootstrap events
 		$('#aboutModal').on('hidden.bs.modal', () => {
 			this.resumeGame()
 		})
@@ -88,7 +89,7 @@ class Game {
 		resetBtn?.addEventListener('click', this.mouseClickHandler, false)
 		moveLeftBtn?.addEventListener('click', this.mouseClickHandler, false)
 		moveRightBtn?.addEventListener('click', this.mouseClickHandler, false)
-
+		// draw scoreboard on page load
 		drawScoreBoardEntry()
 	}
 
@@ -236,12 +237,16 @@ class Game {
 
 	// move paddle relative to the mouse position within canvas
 	public mouseMoveHandler = (e: MouseEvent): void => {
+		if (this.pause) {
+			return
+		}
 		const canvas = this.canvas.getCanvas()
 		const canvasWidth = this.canvas.getWidth()
 		const paddleWidth = this.paddle.getPaddleWidth()
 
 		let relativeX = e.clientX - canvas.offsetLeft
 		if (relativeX > 0 && relativeX < canvasWidth) {
+			console.log('mouse move')
 			const paddleX = relativeX - paddleWidth / 2
 			this.paddle.setPaddleX(paddleX)
 		}
