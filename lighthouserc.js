@@ -1,5 +1,7 @@
 module.exports = {
 	ci: {
-		upload: 'temporary-public-storage',
+		upload: {
+			target: 'temporary-public-storage',
+		},
 	},
 }
