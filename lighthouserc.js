@@ -5,7 +5,7 @@ module.exports = {
 			checks: ['githubToken'],
 		},
 		collect: {
-			url: ['http://localhost:8081/'],
+			url: ['http://localhost:8080/'],
 			startServerCommand: 'node server.js',
 			numberOfRuns: 5,
 		},
