@@ -9,7 +9,6 @@ module.exports = {
 			numberOfRuns: 5,
 			settings: {
 				emulatedFormFactor: 'none',
-				useThrottling:
 			},
 		},
 		upload: {
