@@ -3,7 +3,7 @@ node_js:
     - node
 jobs:
     include:
-        - stage: "tests"
+        - stage: "Tests"
           name: "unit tests"
           script: yarn test
         - stage: "Lighthouse"
@@ -16,7 +16,7 @@ jobs:
           before_script: yarn build
           script: lhci autorun
         - stage: "Deploy"
-          script: skip
+          script: "skip"
           deploy:
             provider: heroku
             app: breakout-2d
