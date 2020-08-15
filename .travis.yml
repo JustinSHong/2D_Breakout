@@ -13,7 +13,7 @@ jobs:
             chrome: stable
           before_install:
             - yarn global add @lhci/cli@0.4.x
-          script: yarn build
+          before_script: yarn build
           script: lhci autorun
         - stage: "Deploy"
           deploy:
