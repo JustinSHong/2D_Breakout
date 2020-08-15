@@ -8,7 +8,8 @@ module.exports = {
 			staticDistDir: './dist',
 			numberOfRuns: 5,
 			settings: {
-				emulatedFormFactor: 'desktop',
+				emulatedFormFactor: 'none',
+				useThrottling:
 			},
 		},
 		upload: {
