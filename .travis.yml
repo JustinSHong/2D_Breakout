@@ -16,6 +16,7 @@ jobs:
           before_script: yarn build
           script: lhci autorun
         - stage: "Deploy"
+          script: skip
           deploy:
             provider: heroku
             app: breakout-2d

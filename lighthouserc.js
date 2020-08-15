@@ -5,7 +5,7 @@ module.exports = {
 			checks: ['githubToken'],
 		},
 		collect: {
-			staticDistDir: './',
+			staticDistDir: './dist',
 			numberOfRuns: 5,
 		},
 		upload: {
