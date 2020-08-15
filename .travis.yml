@@ -6,7 +6,7 @@ jobs:
         - stage: "Tests"
           name: "unit tests"
           script: yarn test
-        - stage: "Lighthouse"
+        - stage: "Lighthouse-Mobile"
           name: "Mobile"
           addons: 
             chrome: stable
@@ -14,6 +14,7 @@ jobs:
           before_script: yarn build
           script: yarn lhc-mobile
           before
+        - stage: "Lighthouse-Desktop"
           name: "Desktop"
           addons:
             chrome: stable
