@@ -7,9 +7,6 @@ module.exports = {
 		collect: {
 			staticDistDir: './dist',
 			numberOfRuns: 5,
-			settings: {
-				emulatedFormFactor: 'none',
-			},
 		},
 		upload: {
 			target: 'temporary-public-storage',
