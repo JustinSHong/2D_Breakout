@@ -1,10 +1,12 @@
 const { merge } = require('webpack-merge')
-const commonConfig = require('./base.config.js')
+const commonConfig = require('./webpjs')
 
 module.exports = merge(commonConfig, {
+	mode: 'development',
 	devServer: {
-		contentBase: './dist',
+		contentBase: './public',
+		compress: true,
+		hot: true,
 	},
 	devtool: 'inline-source-map',
-	mode: 'development',
 })
