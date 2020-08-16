@@ -12,7 +12,9 @@ module.exports = {
 			},
 		},
 		upload: {
-			target: 'temporary-public-storage',
+			target: 'lhci',
+			serverBaseUrl: env.LHCI_URL,
+			token: env.LHCI_TOKEN,,
 		},
 		assert: {
 			assertions: {

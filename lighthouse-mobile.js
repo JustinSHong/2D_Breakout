@@ -1,3 +1,5 @@
+const { EnvironmentPlugin } = require('webpack')
+
 module.exports = {
 	ci: {
 		healthcheck: {
@@ -9,7 +11,9 @@ module.exports = {
 			numberOfRuns: 5,
 		},
 		upload: {
-			target: 'temporary-public-storage',
+			target: 'lhci',
+			serverBaseUrl: env.LHCI_URL,
+			token: env.LHCI_TOKEN,
 		},
 		assert: {
 			assertions: {
