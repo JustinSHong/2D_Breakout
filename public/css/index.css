@@ -48,6 +48,10 @@ section.game-modes {
 	width: 350px;
 }
 
+#githubRepoLink {
+	color: #eee;
+}
+
 ul {
 	width: 50%;
 	margin: 20px auto;
