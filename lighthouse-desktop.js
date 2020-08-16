@@ -7,12 +7,16 @@ module.exports = {
 		collect: {
 			staticDistDir: './dist',
 			numberOfRuns: 5,
+			startServerCommand: 'node server.js',
 			settings: {
 				emulatedFormFactor: 'desktop',
 			},
 		},
 		upload: {
-			target: 'temporary-public-storage',
+			target: 'lhci',
+			serverBaseUrl: 'https://aqueous-caverns-79659.herokuapp.com/',
+			token: '4021253d-9a78-45b0-968f-8f3b51b6f07e',
+			ignoreDuplicateBuildFailure: true,
 		},
 		assert: {
 			assertions: {
