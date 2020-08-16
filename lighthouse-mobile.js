@@ -8,7 +8,7 @@ module.exports = {
 		},
 		collect: {
 			staticDistDir: './dist',
-			url: ['http://localhost/index.html'],
+			startServerCommand: 'node server.js',
 			numberOfRuns: 5,
 		},
 		upload: {

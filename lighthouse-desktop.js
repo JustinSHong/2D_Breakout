@@ -5,9 +5,8 @@ module.exports = {
 			checks: ['githubToken'],
 		},
 		collect: {
-			staticDistDir: './dist',
-			url: ['http://localhost/index.html'],
-			numberOfRuns: 5,
+            numberOfRuns: 5,
+            startServerCommand: 'node server.js'
 			settings: {
 				emulatedFormFactor: 'desktop',
 			},
