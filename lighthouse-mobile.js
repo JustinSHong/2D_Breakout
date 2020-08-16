@@ -12,8 +12,8 @@ module.exports = {
 		},
 		upload: {
 			target: 'lhci',
-			serverBaseUrl: $LHCI_URL,
-			token: $LHCI_TOKEN,
+			serverBaseUrl: '$LHCI_URL',
+			token: '$LHCI_TOKEN',
 		},
 		assert: {
 			assertions: {
