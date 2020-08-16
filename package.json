@@ -7,8 +7,8 @@
 		"build": "npx webpack --config webpack.config.js",
 		"start": "node server.js",
 		"dev": "webpack-dev-server --open",
-		"lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js --no-sandbox --headless --disable-gpu",
-		"lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js --no-sandbox --headless --disable-gpu",
+		"lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js",
+		"lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "webpack --watch"

@@ -5,7 +5,6 @@ module.exports = {
 			checks: ['githubToken'],
 		},
 		collect: {
-			url: ['https://breakout-2d.herokuapp.com/'],
 			numberOfRuns: 5,
 			settings: {
 				emulatedFormFactor: 'desktop',
@@ -19,8 +18,8 @@ module.exports = {
 		assert: {
 			assertions: {
 				'categories:performance': ['error', { minScore: 0.7 }],
-				'categories:accessibility': ['error', { minScore: 0.9 }],
-				'categories:best-practices': ['error', { minScore: 0.9 }],
+				'categories:accessibility': ['error', { minScore: 0.7 }],
+				'categories:best-practices': ['error', { minScore: 0.7 }],
 				'categories:seo': ['error', { minScore: 0.9 }],
 			},
 		},
