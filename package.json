@@ -7,8 +7,8 @@
 		"build": "npx webpack --config webpack.config.js",
 		"start": "node server.js",
 		"dev": "webpack-dev-server --open",
-		"lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js",
-		"lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js",
+		"lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js --disable-dev-shm-usage",
+		"lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js --disable-dev-shm-usage",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "webpack --watch"
