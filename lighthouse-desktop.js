@@ -5,7 +5,7 @@ module.exports = {
 			checks: ['githubToken'],
 		},
 		collect: {
-			staticDistDir: './dist',
+			url: ['https://breakout-2d.herokuapp.com/'],
 			numberOfRuns: 5,
 			settings: {
 				emulatedFormFactor: 'desktop',
