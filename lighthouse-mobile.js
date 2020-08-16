@@ -12,8 +12,8 @@ module.exports = {
 		},
 		upload: {
 			target: 'lhci',
-			serverBaseUrl: process.env.LHCI_URL,
-			token: process.env.LHCI_TOKEN,
+			serverBaseUrl: 'https://frozen-citadel-11584.herokuapp.com/',
+			token: '68dd7f42-2b5a-41e8-8160-0fd14b022e47',
 		},
 		assert: {
 			assertions: {
