@@ -64,3 +64,37 @@ export const moveLeftBtn = document.querySelector<HTMLButtonElement>(
 export const moveRightBtn = document.querySelector<HTMLButtonElement>(
 	'#moveRightBtn'
 )
+
+// themes
+
+// --charcoal: #264653ff;
+// --persian-green: #2a9d8fff;
+// --orange-yellow-crayola: #e9c46aff;
+// --sandy-brown: #f4a261ff;
+// --burnt-sienna: #e76f51ff;
+export const pastelOne = {}
+
+// --imperial-red: #e63946ff;
+// --honeydew: #f1faeeff;
+// --powder-blue: #a8dadcff;
+// --celadon-blue: #457b9dff;
+// --prussian-blue: #1d3557ff;
+export const pastelTwo = {}
+
+// --prussian-blue: #003049ff;
+// --maximum-red: #d62828ff;
+// --orange: #f77f00ff;
+// --maximum-yellow-red: #fcbf49ff;
+// --lemon-meringue: #eae2b7ff;
+export const pastelThree = {}
+
+// theme inputs
+export const pastelOneRadio = document.querySelector<HTMLInputElement>(
+	'#pastelOneRadio'
+)
+export const pastelTwoRadio = document.querySelector<HTMLInputElement>(
+	'#pastelTwoRadio'
+)
+export const pastelThreeRadio = document.querySelector<HTMLInputElement>(
+	'#pastelThreeRadio'
+)
