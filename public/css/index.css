@@ -6,6 +6,7 @@ body {
 	font-size: 16px;
 }
 
+/* navigation bar styles */
 body nav.navbar {
 	background-color: #1976d2 !important;
 }
@@ -23,6 +24,7 @@ button.btn-secondary {
 	width: 140px;
 }
 
+/* container styles */
 .container {
 	display: flex;
 	flex-direction: row;
@@ -39,6 +41,7 @@ main {
 	overflow: auto;
 }
 
+/* about, rules, game-modes modal styles */
 section.about,
 section.rules,
 section.game-modes {
@@ -86,6 +89,7 @@ p {
 	padding: 0;
 }
 
+/* toolbar button styles */
 .btn-container {
 	display: flex;
 	flex-direction: column;
@@ -99,6 +103,7 @@ p {
 	margin-bottom: 20px;
 }
 
+/* game mode button styles */
 .easy-mode-btn,
 .medium-mode-btn,
 .hard-mode-btn,
@@ -129,11 +134,13 @@ p {
 	background-color: #dd2c00;
 }
 
+/* canvas styles */
 canvas {
 	display: block;
 	margin: 20px auto 10px auto;
 }
 
+/* scoreboard styles */
 #scoreBoard {
 	max-width: 900px;
 	margin-top: 40px;
@@ -157,4 +164,50 @@ canvas {
 
 #scoreBoard tr td {
 	border-top: none;
+}
+
+/* theme styles */
+#themeOne-container,
+#themeTwo-container,
+#themeThree-container {
+	height: 40px;
+}
+
+.pastelColorContainer {
+	display: block;
+	width: 25%;
+	height: 15px;
+}
+
+#pastelOneRadio-color-1 {
+	background-color: #264653ff;
+	margin-left: 15px;
+}
+#pastelOneRadio-color-2 {
+	background-color: #2a9d8fff;
+}
+#pastelOneRadio-color-3 {
+	background-color: #e9c46aff;
+}
+
+#pastelTwoRadio-color-1 {
+	background-color: #e63946ff;
+	margin-left: 15px;
+}
+#pastelTwoRadio-color-2 {
+	background-color: #f1faeeff;
+}
+#pastelTwoRadio-color-3 {
+	background-color: #a8dadcff;
+}
+
+#pastelThreeRadio-color-1 {
+	background-color: #003049ff;
+	margin-left: 15px;
+}
+#pastelThreeRadio-color-2 {
+	background-color: #d62828ff;
+}
+#pastelThreeRadio-color-3 {
+	background-color: #f77f00ff;
 }
