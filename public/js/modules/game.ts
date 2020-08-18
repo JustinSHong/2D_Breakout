@@ -22,8 +22,12 @@ import {
 	resetBtn,
 	moveLeftBtn,
 	moveRightBtn,
+	pastelOneRadio,
+	pastelTwoRadio,
+	pastelThreeRadio,
 } from '../constants'
 import { createScore, setScore, drawScoreBoardEntry } from '../services/score'
+import { changeGameTheme } from '../services/theme'
 
 class Game {
 	private rightPressed: boolean
@@ -89,6 +93,14 @@ class Game {
 		resetBtn?.addEventListener('click', this.mouseClickHandler, false)
 		moveLeftBtn?.addEventListener('click', this.mouseClickHandler, false)
 		moveRightBtn?.addEventListener('click', this.mouseClickHandler, false)
+		// listen for theme changes
+		pastelOneRadio?.addEventListener('click', this.mouseClickHandler, false)
+		pastelTwoRadio?.addEventListener('click', this.mouseClickHandler, false)
+		pastelThreeRadio?.addEventListener(
+			'click',
+			this.mouseClickHandler,
+			false
+		)
 		// draw scoreboard on page load
 		drawScoreBoardEntry()
 	}
@@ -213,8 +225,6 @@ class Game {
 
 		if (id === 'playBtn') {
 			this.resumeGame()
-		} else if (id === 'pauseBtn') {
-			this.pauseGame()
 		} else if (id === 'moveLeftBtn') {
 			paddle.update(-14)
 		} else if (id === 'moveRightBtn') {
@@ -224,9 +234,16 @@ class Game {
 		} else if (
 			id === 'settingsModalLink' ||
 			id === 'controlsModalLink' ||
-			id === 'aboutModalLink'
+			id === 'aboutModalLink' ||
+			id === 'pauseBtn'
 		) {
 			this.pauseGame()
+		} else if (
+			id === 'pastelOneRadio' ||
+			id === 'pastelTwoRadio' ||
+			id === 'pastelThreeRadio'
+		) {
+			changeGameTheme(id)
 		}
 		return id
 	}
