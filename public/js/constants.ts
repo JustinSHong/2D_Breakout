@@ -72,23 +72,44 @@ export const moveRightBtn = document.querySelector<HTMLButtonElement>(
 // --orange-yellow-crayola: #e9c46aff;
 // --sandy-brown: #f4a261ff;
 // --burnt-sienna: #e76f51ff;
-export const pastelOne = {}
+const pastelOne = {
+	charcoal: '#264653ff',
+	'persian-green': '#2a9d8fff',
+	'orange-yellow-crayola': '#e9c46aff',
+}
 
 // --imperial-red: #e63946ff;
 // --honeydew: #f1faeeff;
 // --powder-blue: #a8dadcff;
 // --celadon-blue: #457b9dff;
 // --prussian-blue: #1d3557ff;
-export const pastelTwo = {}
+const pastelTwo = {
+	'imperial-red': '#e63946ff',
+	honeydew: '#f1faeeff',
+	'powder-blue': '#a8dadcff',
+}
 
 // --prussian-blue: #003049ff;
 // --maximum-red: #d62828ff;
 // --orange: #f77f00ff;
 // --maximum-yellow-red: #fcbf49ff;
 // --lemon-meringue: #eae2b7ff;
-export const pastelThree = {}
+const pastelThree = {
+	'prussian-blue': '#003049ff',
+	'maximum-red': '#d62828ff',
+	orange: '#f77f00ff',
+}
+
+export const pastelDict: { [id: string]: { [id: string]: string } } = {
+	pastelOneRadio: pastelOne,
+	pastelTwoRadio: pastelTwo,
+	pastelThreeRadio: pastelThree,
+}
 
 // theme inputs
+export const numberOfThemes = document.querySelectorAll<HTMLInputElement>(
+	'[type=radio]'
+).length
 export const pastelOneRadio = document.querySelector<HTMLInputElement>(
 	'#pastelOneRadio'
 )
