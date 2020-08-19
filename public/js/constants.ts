@@ -72,10 +72,19 @@ export const moveRightBtn = document.querySelector<HTMLButtonElement>(
 // --orange-yellow-crayola: #e9c46aff;
 // --sandy-brown: #f4a261ff;
 // --burnt-sienna: #e76f51ff;
+// const pastelOne = {
+// 	charcoal: '#264653ff',
+// 	'persian-green': '#2a9d8fff',
+// 	'orange-yellow-crayola': '#e9c46aff',
+// }
+
 const pastelOne = {
-	charcoal: '#264653ff',
-	'persian-green': '#2a9d8fff',
-	'orange-yellow-crayola': '#e9c46aff',
+	navBarStyle: 'background-color: #2a9d8fff !important',
+	modalHeaderStyle: 'background-color: #e76f51ff !important',
+	modalBodyStyle: 'background-color: #264653ff',
+	bodyStyle: 'background-color: #264653ff',
+	buttonStyle:
+		'background-color: #e76f51ff !important; border-color: #e76f51ff !important',
 }
 
 // --imperial-red: #e63946ff;

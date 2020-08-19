@@ -1,11 +1,39 @@
-import { pastelOne, pastelTwo, pastelThree } from '../constants'
+import { pastelDict } from '../constants'
 
-interface Theme {
-	[color: string]: string
+const setTheme = (id: string, theme: { [key: string]: string }): string => {
+	const {
+		navBarStyle,
+		modalHeaderStyle,
+		modalBodyStyle,
+		bodyStyle,
+		buttonStyle,
+	} = theme
+
+	const navbar = document.querySelector('body nav.navbar')
+	const modalHeaders = document.querySelectorAll(
+		'.modal-content .modal-header'
+	)
+	const modalBodies = document.querySelectorAll('.modal-content .modal-body')
+	const body = document.querySelector('body')
+	const toolbarButtons = document.querySelectorAll('button.btn')
+
+	navbar?.setAttribute('style', navBarStyle)
+	modalHeaders.forEach(header => {
+		header.setAttribute('style', modalHeaderStyle)
+	})
+	modalBodies.forEach(body => {
+		body.setAttribute('style', modalBodyStyle)
+	})
+	body?.setAttribute('style', bodyStyle)
+	toolbarButtons.forEach(btn => {
+		btn.setAttribute('style', buttonStyle)
+	})
+	return id
 }
 
-export const changeGameTheme = (theme: Theme): void => {
-	console.log('CHOSEN THEME: ', theme)
+export const changeGameTheme = (id: string): { [key: string]: string } => {
+	const theme = pastelDict[id]
+	setTheme(id, theme)
 
-	// change theme here
+	return theme
 }
