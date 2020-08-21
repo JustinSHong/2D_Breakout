@@ -25,6 +25,7 @@ import {
 	pastelOneRadio,
 	pastelTwoRadio,
 	pastelThreeRadio,
+	pastelDefaultRadio,
 } from '../constants'
 import { createScore, setScore, drawScoreBoardEntry } from '../services/score'
 import { changeGameTheme } from '../services/theme'
@@ -97,6 +98,11 @@ class Game {
 		pastelOneRadio?.addEventListener('click', this.mouseClickHandler, false)
 		pastelTwoRadio?.addEventListener('click', this.mouseClickHandler, false)
 		pastelThreeRadio?.addEventListener(
+			'click',
+			this.mouseClickHandler,
+			false
+		)
+		pastelDefaultRadio?.addEventListener(
 			'click',
 			this.mouseClickHandler,
 			false
@@ -241,7 +247,8 @@ class Game {
 		} else if (
 			id === 'pastelOneRadio' ||
 			id === 'pastelTwoRadio' ||
-			id === 'pastelThreeRadio'
+			id === 'pastelThreeRadio' ||
+			id === 'pastelDefaultRadio'
 		) {
 			changeGameTheme(id)
 		}
