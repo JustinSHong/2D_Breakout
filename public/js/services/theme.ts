@@ -40,7 +40,6 @@ const setTheme = (id: string, theme: { [key: string]: string }): string => {
 	})
 
 	const tableHeader = document.querySelectorAll('#scoreBoard thead th')
-	console.log('table header: ', tableHeader)
 	tableHeader.forEach(th => {
 		th.setAttribute('style', tableHeaderStyle)
 	})

@@ -212,3 +212,14 @@ canvas {
 #pastelThreeRadio-color-3 {
 	background-color: #003049ff;
 }
+
+#pastelDefaultRadio-color-1 {
+	background-color: #1976d2;
+	margin-left: 15px;
+}
+#pastelDefaultRadio-color-2 {
+	background-color: #dc004e;
+}
+#pastelDefaultRadio-color-3 {
+	background-color: #272c34;
+}

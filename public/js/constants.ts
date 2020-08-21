@@ -66,12 +66,16 @@ export const moveRightBtn = document.querySelector<HTMLButtonElement>(
 )
 
 // themes
-
-// --charcoal: #264653ff;
-// --persian-green: #2a9d8fff;
-// --orange-yellow-crayola: #e9c46aff;
-// --sandy-brown: #f4a261ff;
-// --burnt-sienna: #e76f51ff;
+const pastelDefault = {
+	navBarStyle: 'background-color: #1976d2 !important',
+	navBarLinkStyle: 'color: #eee',
+	modalHeaderStyle: 'background-color: #dc004e !important',
+	modalBodyStyle: 'background-color: #272c34',
+	bodyStyle: 'background-color: #272c34',
+	buttonStyle:
+		'background-color: #dc004e !important; border-color: #dc004e !important',
+	tableHeaderStyle: 'background-color: #dc004e',
+}
 
 const pastelOne = {
 	navBarStyle: 'background-color: #2a9d8fff !important',
@@ -83,12 +87,6 @@ const pastelOne = {
 	tableHeaderStyle: 'background-color: #e76f51ff',
 }
 
-// --imperial-red: #e63946ff;
-// --honeydew: #f1faeeff;
-// --powder-blue: #a8dadcff;
-// --celadon-blue: #457b9dff;
-// --prussian-blue: #1d3557ff;
-
 const pastelTwo = {
 	navBarStyle: 'background-color: #a8dadcff !important',
 	navBarLinkStyle: 'color: #000 !important',
@@ -99,12 +97,6 @@ const pastelTwo = {
 		'background-color: #e63946ff !important; border-color: #e63946ff !important',
 	tableHeaderStyle: 'background-color: #e63946ff',
 }
-
-// --prussian-blue: #003049ff;
-// --maximum-red: #d62828ff;
-// --orange: #f77f00ff;
-// --maximum-yellow-red: #fcbf49ff;
-// --lemon-meringue: #eae2b7ff;
 
 const pastelThree = {
 	navBarStyle: 'background-color: #fcbf49ff !important',
@@ -121,6 +113,7 @@ export const pastelDict: { [id: string]: { [id: string]: string } } = {
 	pastelOneRadio: pastelOne,
 	pastelTwoRadio: pastelTwo,
 	pastelThreeRadio: pastelThree,
+	pastelDefaultRadio: pastelDefault,
 }
 
 // theme inputs
@@ -135,4 +128,7 @@ export const pastelTwoRadio = document.querySelector<HTMLInputElement>(
 )
 export const pastelThreeRadio = document.querySelector<HTMLInputElement>(
 	'#pastelThreeRadio'
+)
+export const pastelDefaultRadio = document.querySelector<HTMLInputElement>(
+	'#pastelDefaultRadio'
 )
