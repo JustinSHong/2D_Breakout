@@ -174,40 +174,41 @@ canvas {
 }
 
 .pastelColorContainer {
+	border: 1px solid #eee;
 	display: block;
 	width: 30%;
 	height: 15px;
 }
 
 #pastelOneRadio-color-1 {
-	background-color: #264653ff;
+	background-color: #2a9d8fff;
 	margin-left: 15px;
 }
 #pastelOneRadio-color-2 {
-	background-color: #2a9d8fff;
+	background-color: #e76f51ff;
 }
 #pastelOneRadio-color-3 {
-	background-color: #e9c46aff;
+	background-color: #264653ff;
 }
 
 #pastelTwoRadio-color-1 {
-	background-color: #e63946ff;
+	background-color: #a8dadcff;
 	margin-left: 15px;
 }
 #pastelTwoRadio-color-2 {
-	background-color: #f1faeeff;
+	background-color: #e63946ff;
 }
 #pastelTwoRadio-color-3 {
-	background-color: #a8dadcff;
+	background-color: #1d3557ff;
 }
 
 #pastelThreeRadio-color-1 {
-	background-color: #003049ff;
+	background-color: #fcbf49ff;
 	margin-left: 15px;
 }
 #pastelThreeRadio-color-2 {
 	background-color: #d62828ff;
 }
 #pastelThreeRadio-color-3 {
-	background-color: #f77f00ff;
+	background-color: #003049ff;
 }
