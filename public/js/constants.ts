@@ -72,11 +72,6 @@ export const moveRightBtn = document.querySelector<HTMLButtonElement>(
 // --orange-yellow-crayola: #e9c46aff;
 // --sandy-brown: #f4a261ff;
 // --burnt-sienna: #e76f51ff;
-// const pastelOne = {
-// 	charcoal: '#264653ff',
-// 	'persian-green': '#2a9d8fff',
-// 	'orange-yellow-crayola': '#e9c46aff',
-// }
 
 const pastelOne = {
 	navBarStyle: 'background-color: #2a9d8fff !important',
@@ -85,6 +80,7 @@ const pastelOne = {
 	bodyStyle: 'background-color: #264653ff',
 	buttonStyle:
 		'background-color: #e76f51ff !important; border-color: #e76f51ff !important',
+	tableHeaderStyle: 'background-color: #e76f51ff',
 }
 
 // --imperial-red: #e63946ff;
@@ -92,10 +88,16 @@ const pastelOne = {
 // --powder-blue: #a8dadcff;
 // --celadon-blue: #457b9dff;
 // --prussian-blue: #1d3557ff;
+
 const pastelTwo = {
-	'imperial-red': '#e63946ff',
-	honeydew: '#f1faeeff',
-	'powder-blue': '#a8dadcff',
+	navBarStyle: 'background-color: #a8dadcff !important',
+	navBarLinkStyle: 'color: #000 !important',
+	modalHeaderStyle: 'background-color: #e63946ff !important',
+	modalBodyStyle: 'background-color: #1d3557ff',
+	bodyStyle: 'background-color: #1d3557ff',
+	buttonStyle:
+		'background-color: #e63946ff !important; border-color: #e63946ff !important',
+	tableHeaderStyle: 'background-color: #e63946ff',
 }
 
 // --prussian-blue: #003049ff;
@@ -103,10 +105,16 @@ const pastelTwo = {
 // --orange: #f77f00ff;
 // --maximum-yellow-red: #fcbf49ff;
 // --lemon-meringue: #eae2b7ff;
+
 const pastelThree = {
-	'prussian-blue': '#003049ff',
-	'maximum-red': '#d62828ff',
-	orange: '#f77f00ff',
+	navBarStyle: 'background-color: #fcbf49ff !important',
+	navBarLinkStyle: 'color: #000 !important',
+	modalHeaderStyle: 'background-color: #d62828ff !important',
+	modalBodyStyle: 'background-color: #003049ff',
+	bodyStyle: 'background-color: #003049ff',
+	buttonStyle:
+		'background-color: #d62828ff !important; border-color: #d62828ff',
+	tableHeaderStyle: 'background-color: #d62828ff',
 }
 
 export const pastelDict: { [id: string]: { [id: string]: string } } = {
