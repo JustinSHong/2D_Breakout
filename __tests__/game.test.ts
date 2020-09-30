@@ -179,54 +179,5 @@ describe('game', () => {
 		expect(spy2).toHaveBeenCalled()
 		expect(spy2).toHaveBeenCalledTimes(1)
 		expect(id).toBe('pauseBtn')
-
-		mockEvent = { target: { id: 'moveLeftBtn' } }
-		id = game.mouseClickHandler(mockEvent as any)
-
-		expect(spy).toHaveBeenCalled()
-		expect(spy).toHaveBeenCalledTimes(3)
-		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(spy3).toHaveBeenCalled()
-		expect(spy3).toHaveBeenCalledTimes(1)
-		expect(spy3).toHaveBeenCalledWith(-14)
-		expect(id).toBe('moveLeftBtn')
-
-		mockEvent = { target: { id: 'moveRightBtn' } }
-		id = game.mouseClickHandler(mockEvent as any)
-
-		expect(spy).toHaveBeenCalled()
-		expect(spy).toHaveBeenCalledTimes(4)
-		expect(spy).toHaveBeenCalledWith(mockEvent)
-		expect(spy3).toHaveBeenCalled()
-		expect(spy3).toHaveBeenCalledTimes(2)
-		expect(spy3).toHaveBeenCalledWith(-14)
-		expect(id).toBe('moveRightBtn')
 	})
-
-	// describe('game initialization', () => {
-	// 	let dom: any
-	// 	let container: any
-	// 	beforeEach(() => {
-	// 		dom = new JSDOM(html, { pretendToBeVisual: true })
-	// 		container = dom.window.document.body
-	// 	})
-	// 	test('drawBricks should be called on game start', () => {
-	// 		const canvas = new MockCanvas()
-	// 		const canvasHeight = canvas.getHeight()
-	// 		const canvasWidth = canvas.getWidth()
-	// 		const mode = new Mode(veryEasyMode)
-
-	// 		const ball = new Ball(canvasHeight, canvasWidth, mode)
-	// 		const brick = new Brick()
-	// 		const paddle = new Paddle(canvas)
-	// 		const player = new Player(mode)
-	// 		const game = new Game(ball, brick, canvas, mode, paddle, player)
-
-	// 		const spy = jest.spyOn(brick, 'drawBricks')
-
-	// 		// game.draw(ball, brick, canvas, paddle, player)
-	// 		expect(spy).toHaveBeenCalled()
-	// 		expect(spy).toHaveBeenCalledTimes(1)
-	// 	})
-	// })
 })

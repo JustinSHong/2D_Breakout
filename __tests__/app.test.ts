@@ -200,8 +200,6 @@ describe('application', () => {
 		const playBtn = toolBar?.children[0]
 		const pauseBtn = toolBar?.children[1]
 		const resetBtn = toolBar?.children[2]
-		const moveLeftBtn = toolBar?.children[3]
-		const moveRightBtn = toolBar?.children[4]
 
 		expect(toolBar).toBeTruthy()
 		expect(toolBar?.getAttribute('role')).toBe('toolbar')
@@ -220,16 +218,6 @@ describe('application', () => {
 		expect(resetBtn instanceof HTMLButtonElement).toBe(true)
 		expect(resetBtn?.textContent).toContain('Reset')
 		expect(resetBtn?.getAttribute('type')).toBe('button')
-
-		expect(moveLeftBtn).toBeTruthy()
-		expect(moveLeftBtn instanceof HTMLButtonElement).toBe(true)
-		expect(moveLeftBtn?.textContent).toContain('Move Left')
-		expect(moveLeftBtn?.getAttribute('type')).toBe('button')
-
-		expect(moveRightBtn).toBeTruthy()
-		expect(moveRightBtn instanceof HTMLButtonElement).toBe(true)
-		expect(moveRightBtn?.textContent).toContain('Move Right')
-		expect(moveRightBtn?.getAttribute('type')).toBe('button')
 	})
 
 	test('it should have a canvas', () => {

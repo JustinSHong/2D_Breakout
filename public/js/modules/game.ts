@@ -20,8 +20,6 @@ import {
 	playBtn,
 	pauseBtn,
 	resetBtn,
-	moveLeftBtn,
-	moveRightBtn,
 	pastelOneRadio,
 	pastelTwoRadio,
 	pastelThreeRadio,
@@ -92,8 +90,6 @@ class Game {
 		playBtn?.addEventListener('click', this.mouseClickHandler, false)
 		pauseBtn?.addEventListener('click', this.mouseClickHandler, false)
 		resetBtn?.addEventListener('click', this.mouseClickHandler, false)
-		moveLeftBtn?.addEventListener('click', this.mouseClickHandler, false)
-		moveRightBtn?.addEventListener('click', this.mouseClickHandler, false)
 		// listen for theme changes
 		pastelOneRadio?.addEventListener('click', this.mouseClickHandler, false)
 		pastelTwoRadio?.addEventListener('click', this.mouseClickHandler, false)
@@ -227,14 +223,9 @@ class Game {
 
 	public mouseClickHandler = (e: Event): string => {
 		const { id } = <HTMLElement>e?.target
-		const paddle = this.paddle
 
 		if (id === 'playBtn') {
 			this.resumeGame()
-		} else if (id === 'moveLeftBtn') {
-			paddle.update(-14)
-		} else if (id === 'moveRightBtn') {
-			paddle.update(14)
 		} else if (id === 'resetBtn') {
 			document.location.reload()
 		} else if (
