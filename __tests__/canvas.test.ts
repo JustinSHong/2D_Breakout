@@ -1,4 +1,11 @@
 import MockCanvas from '../public/js/modules/canvas'
+import Ball from '../public/js/modules/ball'
+import Brick from '../public/js/modules/brick'
+import Game from '../public/js/modules/game'
+import Mode from '../public/js/modules/mode'
+import Paddle from '../public/js/modules/paddle'
+import Player from '../public/js/modules/player'
+import { veryEasyMode } from '../public/js/constants'
 
 jest.mock('../public/js/modules/canvas')
 
@@ -10,6 +17,8 @@ describe('canvas', () => {
 		expect(canvas).toHaveProperty('ctx')
 		expect(canvas).toHaveProperty('width')
 		expect(canvas).toHaveProperty('height')
+		expect(canvas).toHaveProperty('clear')
+		expect(canvas).toHaveProperty('detectBrickCollisions')
 		expect(canvas).toHaveProperty('getCanvas')
 		expect(canvas).toHaveProperty('getCtx')
 		expect(canvas).toHaveProperty('getHeight')
@@ -24,5 +33,38 @@ describe('canvas', () => {
 		expect(canvas.getCtx()).toEqual(canvas1.getCtx())
 		expect(canvas.getHeight()).toBe(700)
 		expect(canvas.getWidth()).toBe(900)
+	})
+
+	describe('game interactions', () => {
+		test('canvas draw functions should be called when game starts drawing', () => {
+			const canvas = new MockCanvas()
+			const canvasHeight = canvas.getHeight()
+			const canvasWidth = canvas.getWidth()
+			const mode = new Mode(veryEasyMode)
+
+			const ball = new Ball(canvasHeight, canvasWidth, mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const player = new Player(mode)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			const spy1 = jest.spyOn(canvas, 'clear')
+			const spy2 = jest.spyOn(canvas, 'detectBrickCollisions')
+			const spy3 = jest.spyOn(canvas, 'detectEdgeCollisions')
+			const spy4 = jest.spyOn(canvas, 'getWidth')
+
+			game.draw(ball, brick, canvas, paddle, player)
+			expect(spy1).toHaveBeenCalled()
+			expect(spy1).toHaveBeenCalledTimes(1)
+
+			expect(spy2).toHaveBeenCalled()
+			expect(spy2).toHaveBeenCalledTimes(1)
+
+			expect(spy3).toHaveBeenCalled()
+			expect(spy3).toHaveBeenCalledTimes(1)
+
+			expect(spy4).toHaveBeenCalled()
+			expect(spy4).toHaveBeenCalledTimes(2)
+		})
 	})
 })
