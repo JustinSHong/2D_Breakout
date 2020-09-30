@@ -58,12 +58,6 @@ export const gameEndModalBody = document.querySelector<HTMLDivElement>(
 export const playBtn = document.querySelector<HTMLButtonElement>('#playBtn')
 export const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
 export const resetBtn = document.querySelector<HTMLButtonElement>('#resetBtn')
-export const moveLeftBtn = document.querySelector<HTMLButtonElement>(
-	'#moveLeftBtn'
-)
-export const moveRightBtn = document.querySelector<HTMLButtonElement>(
-	'#moveRightBtn'
-)
 
 // themes
 const pastelDefault = {
