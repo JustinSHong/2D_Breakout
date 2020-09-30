@@ -1,5 +1,3 @@
-// import { getByText } from '@testing-library/dom'
-// import { JSDOM } from 'jsdom'
 import Ball from '../public/js/modules/ball'
 import Brick from '../public/js/modules/brick'
 import Game from '../public/js/modules/game'
@@ -157,7 +155,6 @@ describe('game', () => {
 	test('mouseClickHandler', () => {
 		const spy = jest.spyOn(game, 'mouseClickHandler')
 		const spy2 = jest.spyOn(game, 'pauseGame')
-		const spy3 = jest.spyOn(game.paddle, 'update')
 		const spy4 = jest.spyOn(game, 'resumeGame')
 
 		let mockEvent = { target: { id: 'playBtn' } }
