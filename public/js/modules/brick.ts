@@ -48,7 +48,7 @@ class Brick implements IBrick {
 	}
 
 	// draw brick grid to the canvas
-	public drawBricks(canvas: ICanvas) {
+	public drawBricks(canvas: ICanvas): void {
 		const ctx = canvas.getCtx()
 
 		for (let col = 0; col < this.brickColumnCount; col++) {

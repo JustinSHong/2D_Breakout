@@ -28,7 +28,7 @@ class Paddle implements IPaddle {
 	}
 
 	// draw paddle to the canvas
-	public drawPaddle(canvas: ICanvas) {
+	public drawPaddle(canvas: ICanvas): void {
 		const canvasHeight = canvas.getHeight()
 		const ctx = this.canvas.getCtx()
 
@@ -45,7 +45,7 @@ class Paddle implements IPaddle {
 	}
 
 	// update paddle position
-	public update(x: number) {
+	public update(x: number): void {
 		this.paddleX += x
 	}
 

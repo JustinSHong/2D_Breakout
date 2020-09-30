@@ -8,6 +8,9 @@ const MockCanvas = jest.fn().mockImplementation(() => {
 		ctx: canvas.getContext('2d'),
 		width: canvas.width,
 		height: canvas.height,
+		clear: jest.fn(),
+		detectBrickCollisions: jest.fn(),
+		detectEdgeCollisions: jest.fn(),
 		getCanvas: function() {
 			return this.canvas
 		},
