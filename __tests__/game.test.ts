@@ -1,3 +1,5 @@
+// import { getByText } from '@testing-library/dom'
+// import { JSDOM } from 'jsdom'
 import Ball from '../public/js/modules/ball'
 import Brick from '../public/js/modules/brick'
 import Game from '../public/js/modules/game'
@@ -7,7 +9,12 @@ import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
 import { veryEasyMode } from '../public/js/constants'
 
+// const fs = require('fs')
+// const path = require('path')
+// const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8')
+
 jest.mock('../public/js/modules/canvas')
+// jest.mock('../public/js/services/score')
 
 describe('game', () => {
 	window.alert = () => {}
@@ -195,4 +202,31 @@ describe('game', () => {
 		expect(spy3).toHaveBeenCalledWith(-14)
 		expect(id).toBe('moveRightBtn')
 	})
+
+	// describe('game initialization', () => {
+	// 	let dom: any
+	// 	let container: any
+	// 	beforeEach(() => {
+	// 		dom = new JSDOM(html, { pretendToBeVisual: true })
+	// 		container = dom.window.document.body
+	// 	})
+	// 	test('drawBricks should be called on game start', () => {
+	// 		const canvas = new MockCanvas()
+	// 		const canvasHeight = canvas.getHeight()
+	// 		const canvasWidth = canvas.getWidth()
+	// 		const mode = new Mode(veryEasyMode)
+
+	// 		const ball = new Ball(canvasHeight, canvasWidth, mode)
+	// 		const brick = new Brick()
+	// 		const paddle = new Paddle(canvas)
+	// 		const player = new Player(mode)
+	// 		const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+	// 		const spy = jest.spyOn(brick, 'drawBricks')
+
+	// 		// game.draw(ball, brick, canvas, paddle, player)
+	// 		expect(spy).toHaveBeenCalled()
+	// 		expect(spy).toHaveBeenCalledTimes(1)
+	// 	})
+	// })
 })

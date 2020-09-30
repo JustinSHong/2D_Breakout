@@ -1,6 +1,10 @@
 import Ball from '../public/js/modules/ball'
+import Brick from '../public/js/modules/brick'
+import Game from '../public/js/modules/game'
 import MockCanvas from '../public/js/modules/canvas'
 import Mode from '../public/js/modules/mode'
+import Paddle from '../public/js/modules/paddle'
+import Player from '../public/js/modules/player'
 import { veryEasyMode } from '../public/js/constants'
 
 jest.mock('../public/js/modules/canvas')
@@ -20,6 +24,16 @@ describe('ball', () => {
 		expect(ball).toHaveProperty('changeColor')
 		expect(ball).toHaveProperty('drawBall')
 		expect(ball).toHaveProperty('update')
+		expect(ball).toHaveProperty('getBallColor')
+		expect(ball).toHaveProperty('getBallRadius')
+		expect(ball).toHaveProperty('getBallX')
+		expect(ball).toHaveProperty('getBallY')
+		expect(ball).toHaveProperty('getBallDx')
+		expect(ball).toHaveProperty('getBallDy')
+		expect(ball).toHaveProperty('setBallX')
+		expect(ball).toHaveProperty('setBallY')
+		expect(ball).toHaveProperty('setBallDx')
+		expect(ball).toHaveProperty('setBallDy')
 	})
 
 	test("changeColor() should change a ball's color", () => {
@@ -70,5 +84,31 @@ describe('ball', () => {
 		expect(ball.getBallY()).toBe(-y)
 		expect(ball.getBallDx()).toBe(-dx)
 		expect(ball.getBallDy()).toBe(-dy)
+	})
+
+	describe('game interactions', () => {
+		test('draw and update methods should be called while game draws', () => {
+			const canvas = new MockCanvas()
+			const canvasHeight = canvas.getHeight()
+			const canvasWidth = canvas.getWidth()
+			const mode = new Mode(veryEasyMode)
+
+			const ball = new Ball(canvasHeight, canvasWidth, mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const player = new Player(mode)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			const spy1 = jest.spyOn(ball, 'drawBall')
+			const spy2 = jest.spyOn(ball, 'update')
+
+			game.draw(ball, brick, canvas, paddle, player)
+			expect(spy1).toHaveBeenCalled()
+			expect(spy1).toHaveBeenCalledTimes(1)
+			expect(spy1).toHaveBeenCalledWith(canvas)
+
+			expect(spy2).toHaveBeenCalled()
+			expect(spy2).toHaveBeenCalledTimes(1)
+		})
 	})
 })
