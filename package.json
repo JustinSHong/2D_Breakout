@@ -9,6 +9,7 @@
 		"dev": "webpack-dev-server --open",
 		"lhc-mobile": "lhci autorun --config=./lighthouse-mobile.js",
 		"lhc-desktop": "lhci autorun --config=./lighthouse-desktop.js",
+		"lhc-no-emulation": "lhci autorun --config=./lighthouse-noEmulation-noThrottle.js",
 		"test": "jest",
 		"test-watch": "jest --watch",
 		"watch": "webpack --watch"

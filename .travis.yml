@@ -18,6 +18,12 @@ jobs:
               chrome: stable
           before_install: 'yarn global add @lhci/cli@0.4.x'
           script: yarn build && yarn lhc-desktop
+        - stage: 'Lightouse-No-Emulation-No-Throttle'
+          name: 'No-Emulation-No-Throttle'
+          addons:
+              chrome: stable
+          before_install: 'yarn global add @lhci/cli@0.4.x'
+          script: yarn build && yarn lhc-no-emulation
         - stage: 'Deploy'
           script: 'skip'
           deploy:
