@@ -6,20 +6,14 @@ import Mode from '../public/js/modules/mode'
 import Paddle from '../public/js/modules/paddle'
 import Player from '../public/js/modules/player'
 import { veryEasyMode } from '../public/js/constants'
-
-// const fs = require('fs')
-// const path = require('path')
-// const html = fs.readFileSync(path.resolve(__dirname, '../index.html'), 'utf8')
+import { changeGameTheme } from '../public/js/services/theme'
 
 jest.mock('../public/js/modules/canvas')
-// jest.mock('../public/js/services/score')
+jest.mock('../public/js/services/score')
+jest.mock('../public/js/services/theme')
 
 describe('game', () => {
 	window.alert = () => {}
-
-	beforeEach(() => {
-		jest.clearAllMocks()
-	})
 
 	const canvas = new MockCanvas()
 	const mode = new Mode(veryEasyMode)
@@ -176,5 +170,161 @@ describe('game', () => {
 		expect(spy2).toHaveBeenCalled()
 		expect(spy2).toHaveBeenCalledTimes(1)
 		expect(id).toBe('pauseBtn')
+
+		mockEvent = { target: { id: 'pastelTwoRadio' } }
+		id = game.mouseClickHandler(mockEvent as any)
+
+		expect(spy).toHaveBeenCalled()
+		expect(spy).toHaveBeenCalledTimes(3)
+		expect(spy).toHaveBeenCalledWith(mockEvent)
+		expect(spy2).toHaveBeenCalled()
+		expect(spy2).toHaveBeenCalledTimes(1)
+		expect(id).toBe('pastelTwoRadio')
+		expect(changeGameTheme).toHaveBeenCalledTimes(1)
+		expect(changeGameTheme).toHaveBeenCalledWith('pastelTwoRadio')
+	})
+
+	describe('integration tests', () => {
+		window.requestAnimationFrame = jest.fn()
+		window.cancelAnimationFrame = jest.fn()
+
+		test('drawCurrentGameMode should be called when game draws', () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+			const spy = jest.spyOn(game, 'drawCurrentGameMode')
+
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+			expect(spy).toHaveBeenCalledTimes(1)
+			expect(spy).toHaveBeenCalledWith(mode)
+
+			spy.mockClear()
+		})
+
+		test("showGameEndModal should be called with 'You Win' message when game is over", () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			player.setScore(
+				brick.getBrickRowCount() * brick.getBrickColumnCount()
+			)
+
+			const spy = jest.spyOn(game, 'showGameEndModal')
+
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+			expect(spy).toHaveBeenCalledTimes(1)
+			expect(spy).toHaveBeenCalledWith('You Win', 'You Win! Congrats!')
+
+			spy.mockRestore()
+		})
+
+		test("showGameEndModal should be called  with 'Game Over' message when game draws", () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			player.setLives(0)
+
+			const spy = jest.spyOn(game, 'showGameEndModal')
+
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+			expect(spy).toHaveBeenCalledTimes(1)
+			expect(spy).toHaveBeenCalledWith(
+				'Game Over',
+				'You lost. Game Over!'
+			)
+
+			spy.mockRestore()
+		})
+
+		test('paddle posiiton should update when user presses right arrow key', () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			const spy = jest.spyOn(paddle, 'update')
+
+			game.keyDownHandler({ keyCode: 39 } as any)
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+			expect(spy).toHaveBeenCalledTimes(1)
+			expect(spy).toHaveBeenCalledWith(7)
+		})
+
+		test('paddle position should update when user presses left arrow key', () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			const spy = jest.spyOn(paddle, 'update')
+
+			game.keyDownHandler({ keyCode: 37 } as any)
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+			expect(spy).toHaveBeenCalledTimes(1)
+			expect(spy).toHaveBeenCalledWith(-7)
+		})
+
+		test('requestAnimationFrame should be called when game is not paused', () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			const spy = jest.spyOn(window, 'requestAnimationFrame')
+
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+		})
+
+		test('cancelAnimationFrame should be called when game is paused', () => {
+			const canvas = new MockCanvas()
+			const mode = new Mode(veryEasyMode)
+			const ball = new Ball(canvas.height, canvas.width, mode)
+			const player = new Player(mode)
+			const brick = new Brick()
+			const paddle = new Paddle(canvas)
+			const game = new Game(ball, brick, canvas, mode, paddle, player)
+
+			const spy = jest.spyOn(window, 'cancelAnimationFrame')
+
+			game.pauseGame()
+			game.draw(ball, brick, canvas, paddle, player)
+
+			expect(spy).toHaveBeenCalled()
+		})
 	})
 })
