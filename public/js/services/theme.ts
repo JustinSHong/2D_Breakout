@@ -1,6 +1,6 @@
-import { pastelDict } from '../constants'
+import { IPastelDict, ITheme, pastelDict } from '../constants'
 
-const setTheme = (id: string, theme: { [key: string]: string }): string => {
+export const setTheme = (id: string, theme: ITheme): string => {
 	const {
 		navBarStyle,
 		modalHeaderStyle,
@@ -47,7 +47,7 @@ const setTheme = (id: string, theme: { [key: string]: string }): string => {
 	return id
 }
 
-export const changeGameTheme = (id: string): { [key: string]: string } => {
+export const changeGameTheme = (id: keyof IPastelDict): ITheme => {
 	const theme = pastelDict[id]
 	setTheme(id, theme)
 

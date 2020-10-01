@@ -59,8 +59,18 @@ export const playBtn = document.querySelector<HTMLButtonElement>('#playBtn')
 export const pauseBtn = document.querySelector<HTMLButtonElement>('#pauseBtn')
 export const resetBtn = document.querySelector<HTMLButtonElement>('#resetBtn')
 
+export interface ITheme {
+	navBarStyle: string
+	navBarLinkStyle?: string
+	modalHeaderStyle: string
+	modalBodyStyle: string
+	bodyStyle: string
+	buttonStyle: string
+	tableHeaderStyle: string
+}
+
 // themes
-const pastelDefault = {
+const pastelDefault: ITheme = {
 	navBarStyle: 'background-color: #1976d2 !important',
 	navBarLinkStyle: 'color: #eee',
 	modalHeaderStyle: 'background-color: #dc004e !important',
@@ -71,7 +81,7 @@ const pastelDefault = {
 	tableHeaderStyle: 'background-color: #dc004e',
 }
 
-const pastelOne = {
+const pastelOne: ITheme = {
 	navBarStyle: 'background-color: #2a9d8fff !important',
 	modalHeaderStyle: 'background-color: #e76f51ff !important',
 	modalBodyStyle: 'background-color: #264653ff',
@@ -81,7 +91,7 @@ const pastelOne = {
 	tableHeaderStyle: 'background-color: #e76f51ff',
 }
 
-const pastelTwo = {
+const pastelTwo: ITheme = {
 	navBarStyle: 'background-color: #a8dadcff !important',
 	navBarLinkStyle: 'color: #000 !important',
 	modalHeaderStyle: 'background-color: #e63946ff !important',
@@ -92,7 +102,7 @@ const pastelTwo = {
 	tableHeaderStyle: 'background-color: #e63946ff',
 }
 
-const pastelThree = {
+const pastelThree: ITheme = {
 	navBarStyle: 'background-color: #fcbf49ff !important',
 	navBarLinkStyle: 'color: #000 !important',
 	modalHeaderStyle: 'background-color: #d62828ff !important',
@@ -103,7 +113,14 @@ const pastelThree = {
 	tableHeaderStyle: 'background-color: #d62828ff',
 }
 
-export const pastelDict: { [id: string]: { [id: string]: string } } = {
+export interface IPastelDict {
+	pastelOneRadio: ITheme
+	pastelTwoRadio: ITheme
+	pastelThreeRadio: ITheme
+	pastelDefaultRadio: ITheme
+}
+
+export const pastelDict: IPastelDict = {
 	pastelOneRadio: pastelOne,
 	pastelTwoRadio: pastelTwo,
 	pastelThreeRadio: pastelThree,
