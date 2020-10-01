@@ -17,8 +17,8 @@ module.exports = {
 		},
 		upload: {
 			target: 'lhci',
-			serverBaseUrl: '',
-			token: '',
+			serverBaseUrl: 'https://mysterious-reef-20463.herokuapp.com/',
+			token: '7513efc3-46a5-408f-ab47-853288e41992',
 			ignoreDuplicateBuildFailure: true,
 		},
 		assert: {
