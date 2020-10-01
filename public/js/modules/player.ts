@@ -61,13 +61,6 @@ class Player implements IPlayer {
 	public setScore(score: number): void {
 		this.score = score
 	}
-
-	// udpate player data
-	// update(lives: number, username: string, score: number) {
-	// 	this.lives += lives
-	// 	this.username = username
-	// 	this.score += score
-	// }
 }
 
 export default Player
