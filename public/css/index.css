@@ -99,6 +99,8 @@ p {
 }
 
 .btn-toolbar {
+	align-items: center;
+	justify-content: center;
 	margin-top: 40px;
 	margin-bottom: 20px;
 }
@@ -222,4 +224,10 @@ canvas {
 }
 #pastelDefaultRadio-color-3 {
 	background-color: #272c34;
+}
+
+@media only screen and (max-width: 480px) {
+	.btn-toolbar {
+		flex-direction: column;
+	}
 }
