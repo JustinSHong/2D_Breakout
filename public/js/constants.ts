@@ -1,36 +1,46 @@
 // game modes
 export const easyMode = {
-	name: 'easy',
 	dx: 2,
 	dy: -2,
 	lives: 5,
+	maxDx: 2.5,
+	maxDy: -2.5,
+	name: 'easy',
 }
 
 export const mediumMode = {
-	name: 'medium',
 	dx: 2.5,
 	dy: -2.5,
 	lives: 4,
+	maxDx: 3,
+	maxDy: -3,
+	name: 'medium',
 }
 
 export const hardMode = {
-	name: 'hard',
 	dx: 3,
 	dy: -3,
 	lives: 3,
+	maxDx: 3.5,
+	maxDy: -3.5,
+	name: 'hard',
 }
 
 export const veryHardMode = {
-	name: 'veryHard',
 	dx: 3.5,
 	dy: -3.5,
 	lives: 4,
+	maxDx: 4,
+	maxDy: -4,
+	name: 'veryHard',
 }
 
 export const veryEasyMode = {
 	dx: 1.5,
 	dy: -1.5,
 	lives: 5,
+	maxDx: 2,
+	maxDy: -2,
 	name: 'veryEasy',
 }
 

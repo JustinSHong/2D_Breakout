@@ -15,8 +15,6 @@ export interface IBall {
 	setBallDy(dy: number): void
 }
 
-// todo: restrict public members, use getters and setters
-
 class Ball implements IBall {
 	private ballColor: string
 	private ballRadius: number
@@ -33,8 +31,8 @@ class Ball implements IBall {
 		this.x = width / 2
 		this.y = height - 30
 		// velocity - change in position
-		this.dx = this.mode.dx
-		this.dy = this.mode.dy
+		this.dx = Math.random() * (mode.maxDx - mode.dx) + mode.dx
+		this.dy = Math.random() * (mode.maxDy - mode.dy) - mode.dy
 	}
 
 	public changeColor(): string {
@@ -46,7 +44,6 @@ class Ball implements IBall {
 		return this.ballColor
 	}
 
-	// draw ball to the canvas
 	public drawBall(canvas: ICanvas): void {
 		const ctx = canvas.getCtx()
 
@@ -57,7 +54,6 @@ class Ball implements IBall {
 		ctx.closePath()
 	}
 
-	// update ball's movement
 	public update(): { x: number; y: number } {
 		this.x += this.dx
 		this.y += this.dy

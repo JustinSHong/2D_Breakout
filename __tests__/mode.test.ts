@@ -11,6 +11,8 @@ describe('mode', () => {
 		expect(mode).toHaveProperty('name')
 		expect(mode).toHaveProperty('getMode')
 		expect(mode).toHaveProperty('setMode')
+		expect(mode).toHaveProperty('maxDx')
+		expect(mode).toHaveProperty('maxDy')
 	})
 
 	test('getters and setter', () => {
@@ -18,10 +20,19 @@ describe('mode', () => {
 			dx: 1.5,
 			dy: -1.5,
 			lives: 5,
+			maxDx: 2,
+			maxDy: -2,
 			name: 'veryEasy',
 		})
 
-		const newMode = { dx: 5, dy: 5, lives: 5, name: 'someMode' }
+		const newMode = {
+			dx: 5,
+			dy: 5,
+			lives: 5,
+			name: 'someMode',
+			maxDx: 9,
+			maxDy: -9,
+		}
 		mode.setMode(newMode)
 		expect(mode.getMode()).toEqual(newMode)
 	})
