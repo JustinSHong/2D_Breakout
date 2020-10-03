@@ -52,37 +52,46 @@ describe('game', () => {
 	test('selectGameMode', () => {
 		let mockEvent = { target: { value: 'Easy' } }
 		const easyMode = {
-			name: 'easy',
 			dx: 2,
 			dy: -2,
 			lives: 5,
+			maxDx: 2.5,
+			maxDy: -2.5,
+			name: 'easy',
 		}
+		console.log(game.selectGameMode(mockEvent as any))
 		expect(game.selectGameMode(mockEvent as any)).toEqual(easyMode)
 
 		mockEvent = { target: { value: 'Medium' } }
 		const mediumMode = {
-			name: 'medium',
 			dx: 2.5,
 			dy: -2.5,
 			lives: 4,
+			maxDx: 3,
+			maxDy: -3,
+			name: 'medium',
 		}
 		expect(game.selectGameMode(mockEvent as any)).toEqual(mediumMode)
 
 		mockEvent = { target: { value: 'Hard' } }
 		const hardMode = {
-			name: 'hard',
 			dx: 3,
 			dy: -3,
 			lives: 3,
+			maxDx: 3.5,
+			maxDy: -3.5,
+			name: 'hard',
 		}
 		expect(game.selectGameMode(mockEvent as any)).toEqual(hardMode)
 
 		mockEvent = { target: { value: 'Very Hard' } }
 		const veryHardMode = {
-			name: 'veryHard',
 			dx: 3.5,
 			dy: -3.5,
 			lives: 4,
+			maxDx: 4,
+			maxDy: -4,
+			name: 'veryHard',
 		}
 		expect(game.selectGameMode(mockEvent as any)).toEqual(veryHardMode)
 	})
