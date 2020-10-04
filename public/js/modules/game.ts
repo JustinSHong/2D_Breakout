@@ -199,14 +199,6 @@ class Game {
 		ctx.fillText('Mode: ' + mode.getMode().name, canvasWidth / 2 - 90, 20)
 	}
 
-<<<<<<< HEAD
-=======
-	public dynamicallyResizeCanvas(): void {
-		const canvasEl = this.canvas.getCanvas()
-		canvasEl.setAttribute('width', `${window.innerWidth * 0.8}`)
-	}
-
->>>>>>> 049245eb46dbea3f6c18485bbbab43642233d87e
 	// check if a key was pressed
 	public keyDownHandler = (e: KeyboardEvent): number => {
 		if (e.keyCode === 39) {
