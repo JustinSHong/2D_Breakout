@@ -26,6 +26,15 @@ export const hardMode = {
 	name: 'hard',
 }
 
+export const marathonMode = {
+	dx: 1,
+	dy: -1,
+	lives: 10,
+	maxDx: 3,
+	maxDy: -3,
+	name: 'marathon',
+}
+
 export const veryHardMode = {
 	dx: 3.5,
 	dy: -3.5,
