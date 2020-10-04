@@ -9,6 +9,7 @@ import Player from './player'
 import {
 	easyMode,
 	hardMode,
+	marathonMode,
 	mediumMode,
 	veryHardMode,
 	controlsModalLink,
@@ -128,8 +129,9 @@ class Game {
 		paddle: IPaddle,
 		player: IPlayer
 	): void {
-		const brickRowCount = brick.getBrickRowCount()
-		const brickColumnCount = brick.getBrickColumnCount()
+		const activeBrickCount = brick.getActiveBrickCount()
+		const brickCount = brick.getBrickCount()
+		const modeName = this.mode.getMode().name
 		const paddleX = paddle.getPaddleX()
 		const paddleWidth = paddle.getPaddleWidth()
 		const playerLives = player.getLives()
@@ -152,8 +154,14 @@ class Game {
 		}
 
 		// player wins - all bricks broken
-		if (playerScore == brickRowCount * brickColumnCount) {
+		if (playerScore == brickCount && modeName !== 'marathon') {
 			this.showGameEndModal('You Win', 'You Win! Congrats!')
+		}
+
+		// marathon mode - reset brick grid when all bricks broken
+		if (activeBrickCount === 0 && modeName === 'marathon') {
+			brick.initializeBrickGrid()
+			brick.changeColor()
 		}
 
 		// move paddle right until the right edge of the canvas
@@ -272,8 +280,6 @@ class Game {
 		this.pause = false
 		if (!this.playPressed) {
 			this.init()
-		} else {
-			console.log('play btn was already pressed')
 		}
 		this.playPressed = true
 		return this.pause
@@ -292,6 +298,8 @@ class Game {
 			this.mode.setMode(hardMode)
 		} else if (value === 'Very Hard') {
 			this.mode.setMode(veryHardMode)
+		} else if (value === 'Marathon') {
+			this.mode.setMode(marathonMode)
 		}
 
 		this.ball = new Ball(canvasHeight, canvasWidth, this.mode)

@@ -1,12 +1,18 @@
 import { ICanvas } from './canvas'
+import { IMode } from './mode'
 
 export interface IBrick {
+	changeColor(): string
 	drawBricks(canvas: ICanvas): void
+	initializeBrickGrid(): void
+	getActiveBrickCount(): number
+	getBrickCount(): number
 	getBrickColumnCount(): number
 	getBrickRowCount(): number
 	getBrickWidth(): number
 	getBrickHeight(): number
 	getBricks(): IBrickObject[][]
+	setActiveBrickCount(): void
 }
 
 interface IBrickObject {
@@ -16,6 +22,8 @@ interface IBrickObject {
 }
 
 class Brick implements IBrick {
+	// @ts-ignore
+	private activeBrickCount: number
 	private brickColor: string
 	private brickPadding: number
 	private brickOffsetTop: number
@@ -25,29 +33,47 @@ class Brick implements IBrick {
 	private brickWidth: number
 	private brickHeight: number
 	private bricks: IBrickObject[][]
+	private mode: IMode
 
-	constructor() {
+	constructor(mode: any) {
 		// brick properties
 		this.brickColor = '#0095DD'
 		this.brickRowCount = 10
 		this.brickColumnCount = 7
+		this.activeBrickCount = this.getBrickCount()
 		this.brickWidth = 75
 		this.brickHeight = 20
 		this.brickPadding = 10
 		this.brickOffsetTop = 50
 		this.brickOffsetLeft = 160
-		// initialize bricks
 		this.bricks = []
+		this.mode = mode
 
-		for (let col = 0; col < this.brickColumnCount; col++) {
-			this.bricks[col] = []
-			for (let row = 0; row < this.brickRowCount; row++) {
-				this.bricks[col][row] = { x: 0, y: 0, status: 1 } // default brick properties
-			}
-		}
+		this.initializeBrickGrid()
 	}
 
-	// draw brick grid to the canvas
+	public calculateActiveBrickCount(): number {
+		let total = 0
+		this.bricks.forEach(row => {
+			row.forEach(brick => {
+				if (brick.status === 1) {
+					total++
+				}
+			})
+		})
+
+		return total
+	}
+
+	public changeColor(): string {
+		const red = Math.random() * 256
+		const green = Math.random() * 256
+		const blue = Math.random() * 256
+		const color = `rgb(${red}, ${green}, ${blue})`
+		this.brickColor = color
+		return this.brickColor
+	}
+
 	public drawBricks(canvas: ICanvas): void {
 		const ctx = canvas.getCtx()
 
@@ -79,24 +105,51 @@ class Brick implements IBrick {
 		}
 	}
 
-	getBrickColumnCount(): number {
+	public initializeBrickGrid(): IBrickObject[][] {
+		for (let col = 0; col < this.brickColumnCount; col++) {
+			this.bricks[col] = []
+			for (let row = 0; row < this.brickRowCount; row++) {
+				this.bricks[col][row] = { x: 0, y: 0, status: 1 } // default brick properties
+			}
+		}
+
+		return this.bricks
+	}
+
+	public getActiveBrickCount(): number {
+		return this.activeBrickCount
+	}
+
+	public setActiveBrickCount(): void {
+		this.activeBrickCount = this.calculateActiveBrickCount()
+	}
+
+	public getBrickCount(): number {
+		return this.getBrickColumnCount() * this.getBrickRowCount()
+	}
+
+	public getBrickColumnCount(): number {
 		return this.brickColumnCount
 	}
 
-	getBrickRowCount(): number {
+	public getBrickRowCount(): number {
 		return this.brickRowCount
 	}
 
-	getBrickWidth(): number {
+	public getBrickWidth(): number {
 		return this.brickWidth
 	}
 
-	getBrickHeight(): number {
+	public getBrickHeight(): number {
 		return this.brickHeight
 	}
 
-	getBricks(): IBrickObject[][] {
+	public getBricks(): IBrickObject[][] {
 		return this.bricks
+	}
+
+	public getMode(): IMode {
+		return this.mode
 	}
 }
 

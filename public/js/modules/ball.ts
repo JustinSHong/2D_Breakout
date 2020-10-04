@@ -32,7 +32,7 @@ class Ball implements IBall {
 		this.y = height - 30
 		// velocity - change in position
 		this.dx = Math.random() * (mode.maxDx - mode.dx) + mode.dx
-		this.dy = Math.random() * (mode.maxDy - mode.dy) - mode.dy
+		this.dy = Math.random() * (mode.maxDy - mode.dy) + mode.dy
 	}
 
 	public changeColor(): string {

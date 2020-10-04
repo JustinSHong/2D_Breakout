@@ -16,7 +16,7 @@ const canvasWidth = canvas.getWidth()
 const mode = new Mode(veryEasyMode)
 // game objects
 const ball = new Ball(canvasHeight, canvasWidth, mode)
-const brick = new Brick()
+const brick = new Brick(mode)
 const paddle = new Paddle(canvas)
 const player = new Player(mode)
 const g = new Game(ball, brick, canvas, mode, paddle, player) // instantiate a game
