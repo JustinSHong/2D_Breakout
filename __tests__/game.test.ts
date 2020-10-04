@@ -17,7 +17,6 @@ describe('game', () => {
 
 	const mode = new Mode(veryEasyMode)
 	const canvas = new MockCanvas()
-
 	const ball = new Ball(canvas.height, canvas.width, mode)
 	const player = new Player(mode)
 	const brick = new Brick(mode)
