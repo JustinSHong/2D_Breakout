@@ -2,6 +2,7 @@ import { ICanvas } from './canvas'
 import { IMode } from './mode'
 
 export interface IBrick {
+	calculateActiveBrickCount(): number
 	changeColor(): string
 	drawBricks(canvas: ICanvas): void
 	initializeBrickGrid(): void
