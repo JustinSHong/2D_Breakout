@@ -107,6 +107,7 @@ class Canvas implements ICanvas {
 						b.status = 0
 						// player.score++
 						player.setScore(playerScore + 1)
+						brick.setActiveBrickCount()
 					}
 				}
 			}
