@@ -11,6 +11,7 @@ const MockCanvas = jest.fn().mockImplementation(() => {
 		clear: jest.fn(),
 		detectBrickCollisions: jest.fn(),
 		detectEdgeCollisions: jest.fn(),
+		resizeDynamically: jest.fn(),
 		getCanvas: function() {
 			return this.canvas
 		},

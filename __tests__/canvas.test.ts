@@ -19,6 +19,7 @@ describe('canvas', () => {
 		expect(canvas).toHaveProperty('height')
 		expect(canvas).toHaveProperty('clear')
 		expect(canvas).toHaveProperty('detectBrickCollisions')
+		expect(canvas).toHaveProperty('resizeDynamically')
 		expect(canvas).toHaveProperty('getCanvas')
 		expect(canvas).toHaveProperty('getCtx')
 		expect(canvas).toHaveProperty('getHeight')
@@ -52,6 +53,7 @@ describe('canvas', () => {
 			const spy2 = jest.spyOn(canvas, 'detectBrickCollisions')
 			const spy3 = jest.spyOn(canvas, 'detectEdgeCollisions')
 			const spy4 = jest.spyOn(canvas, 'getWidth')
+			const spy5 = jest.spyOn(canvas, 'resizeDynamically')
 
 			game.draw(ball, brick, canvas, paddle, player)
 			expect(spy1).toHaveBeenCalled()
@@ -65,6 +67,9 @@ describe('canvas', () => {
 
 			expect(spy4).toHaveBeenCalled()
 			expect(spy4).toHaveBeenCalledTimes(2)
+
+			expect(spy5).toHaveBeenCalled()
+			expect(spy5).toHaveBeenCalledTimes(1)
 		})
 	})
 })

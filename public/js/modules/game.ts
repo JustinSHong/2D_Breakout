@@ -137,7 +137,7 @@ class Game {
 		const playerLives = player.getLives()
 		const playerScore = player.getScore()
 		// resize canvas dynamically
-		this.dynamicallyResizeCanvas()
+		canvas.resizeDynamically()
 		// clear canvas before drawing
 		canvas.clear()
 		canvas.getCtx().beginPath()
@@ -197,11 +197,6 @@ class Game {
 		ctx.font = '24px Arial'
 		ctx.fillStyle = '#0095DD'
 		ctx.fillText('Mode: ' + mode.getMode().name, canvasWidth / 2 - 90, 20)
-	}
-
-	public dynamicallyResizeCanvas(): void {
-		const canvasEl = this.canvas.getCanvas()
-		canvasEl.setAttribute('width', `${window.innerWidth * 0.8}`)
 	}
 
 	// check if a key was pressed
