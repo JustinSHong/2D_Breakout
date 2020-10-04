@@ -56,7 +56,7 @@ describe('paddle', () => {
 			const mode = new Mode(veryEasyMode)
 
 			const ball = new Ball(canvasHeight, canvasWidth, mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const player = new Player(mode)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)

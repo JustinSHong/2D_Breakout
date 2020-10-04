@@ -15,11 +15,11 @@ jest.mock('../public/js/services/theme')
 describe('game', () => {
 	window.alert = () => {}
 
-	const canvas = new MockCanvas()
 	const mode = new Mode(veryEasyMode)
+	const canvas = new MockCanvas()
 	const ball = new Ball(canvas.height, canvas.width, mode)
 	const player = new Player(mode)
-	const brick = new Brick()
+	const brick = new Brick(mode)
 	const paddle = new Paddle(canvas)
 	const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -59,7 +59,6 @@ describe('game', () => {
 			maxDy: -2.5,
 			name: 'easy',
 		}
-		console.log(game.selectGameMode(mockEvent as any))
 		expect(game.selectGameMode(mockEvent as any)).toEqual(easyMode)
 
 		mockEvent = { target: { value: 'Medium' } }
@@ -202,7 +201,7 @@ describe('game', () => {
 			const mode = new Mode(veryEasyMode)
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 			const spy = jest.spyOn(game, 'drawCurrentGameMode')
@@ -221,7 +220,7 @@ describe('game', () => {
 			const mode = new Mode(veryEasyMode)
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -240,12 +239,12 @@ describe('game', () => {
 			spy.mockRestore()
 		})
 
-		test("showGameEndModal should be called  with 'Game Over' message when game draws", () => {
+		test("showGameEndModal should be called with 'Game Over' message when game draws", () => {
 			const canvas = new MockCanvas()
 			const mode = new Mode(veryEasyMode)
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -270,7 +269,7 @@ describe('game', () => {
 			const mode = new Mode(veryEasyMode)
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -285,11 +284,11 @@ describe('game', () => {
 		})
 
 		test('paddle position should update when user presses left arrow key', () => {
-			const canvas = new MockCanvas()
 			const mode = new Mode(veryEasyMode)
+			const canvas = new MockCanvas()
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -308,7 +307,7 @@ describe('game', () => {
 			const mode = new Mode(veryEasyMode)
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
@@ -324,7 +323,7 @@ describe('game', () => {
 			const mode = new Mode(veryEasyMode)
 			const ball = new Ball(canvas.height, canvas.width, mode)
 			const player = new Player(mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)
 
