@@ -37,13 +37,13 @@ describe('canvas', () => {
 
 	describe('game interactions', () => {
 		test('canvas draw functions should be called when game starts drawing', () => {
+			const mode = new Mode(veryEasyMode)
 			const canvas = new MockCanvas()
 			const canvasHeight = canvas.getHeight()
 			const canvasWidth = canvas.getWidth()
-			const mode = new Mode(veryEasyMode)
 
 			const ball = new Ball(canvasHeight, canvasWidth, mode)
-			const brick = new Brick()
+			const brick = new Brick(mode)
 			const paddle = new Paddle(canvas)
 			const player = new Player(mode)
 			const game = new Game(ball, brick, canvas, mode, paddle, player)

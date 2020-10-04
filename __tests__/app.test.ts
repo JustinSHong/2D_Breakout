@@ -149,6 +149,12 @@ describe('application', () => {
 		expect(select?.children[3].textContent).toBe('Very Hard')
 		expect(select?.children[3].getAttribute('name')).toBe('veryHard')
 		expect(select?.children[3].getAttribute('id')).toBe('veryHard-mode-btn')
+
+		expect(select?.children[4]).toBeTruthy()
+		expect(select?.children[4] instanceof HTMLOptionElement).toBe(true)
+		expect(select?.children[4].textContent).toBe('Marathon')
+		expect(select?.children[4].getAttribute('name')).toBe('marathon')
+		expect(select?.children[4].getAttribute('id')).toBe('marathon-mode-btn')
 	})
 
 	test('it should have a Controls modal', () => {
